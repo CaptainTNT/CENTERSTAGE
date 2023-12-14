@@ -1,15 +1,15 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.auton;
 
-import static org.firstinspires.ftc.teamcode.auto.Reset;
-import static org.firstinspires.ftc.teamcode.auto.arm;
-import static org.firstinspires.ftc.teamcode.auto.drive;
-import static org.firstinspires.ftc.teamcode.auto.servoLeftClose;
-import static org.firstinspires.ftc.teamcode.auto.servoLeftOpen;
-import static org.firstinspires.ftc.teamcode.auto.servoRightClose;
-import static org.firstinspires.ftc.teamcode.auto.servoRightOpen;
-import static org.firstinspires.ftc.teamcode.auto.spinLeft;
-import static org.firstinspires.ftc.teamcode.auto.strafeLeft;
-import static org.firstinspires.ftc.teamcode.auto.strafeRight;
+import static org.firstinspires.ftc.teamcode.auton.auto.Reset;
+import static org.firstinspires.ftc.teamcode.auton.auto.arm;
+import static org.firstinspires.ftc.teamcode.auton.auto.drive;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoLeftClose;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoLeftOpen;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoRightClose;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoRightOpen;
+import static org.firstinspires.ftc.teamcode.auton.auto.spinLeft;
+import static org.firstinspires.ftc.teamcode.auton.auto.strafeLeft;
+import static org.firstinspires.ftc.teamcode.auton.auto.strafeRight;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;

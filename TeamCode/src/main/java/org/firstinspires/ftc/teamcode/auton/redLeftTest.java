@@ -27,22 +27,27 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.auton;
 
-import static org.firstinspires.ftc.teamcode.auto.Reset;
-import static org.firstinspires.ftc.teamcode.auto.arm;
-import static org.firstinspires.ftc.teamcode.auto.drive;
-import static org.firstinspires.ftc.teamcode.auto.servoLeftClose;
-import static org.firstinspires.ftc.teamcode.auto.servoLeftOpen;
-import static org.firstinspires.ftc.teamcode.auto.servoRightClose;
-import static org.firstinspires.ftc.teamcode.auto.servoRightOpen;
-import static org.firstinspires.ftc.teamcode.auto.spinLeft;
-import static org.firstinspires.ftc.teamcode.auto.spinRight;
-import static org.firstinspires.ftc.teamcode.auto.strafeLeft;
-import static org.firstinspires.ftc.teamcode.auto.strafeRight;
+import static org.firstinspires.ftc.teamcode.auton.auto.Reset;
+import static org.firstinspires.ftc.teamcode.auton.auto.Servo;
+import static org.firstinspires.ftc.teamcode.auton.auto.Servo2;
+import static org.firstinspires.ftc.teamcode.auton.auto.backLeftDrive;
+import static org.firstinspires.ftc.teamcode.auton.auto.backRightDrive;
+import static org.firstinspires.ftc.teamcode.auton.auto.driveReset;
+import static org.firstinspires.ftc.teamcode.auton.auto.leftDrive;
+import static org.firstinspires.ftc.teamcode.auton.auto.rightDrive;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoLeftClose;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoRightClose;
+import static org.firstinspires.ftc.teamcode.auton.auto.stopArm;
+import static org.firstinspires.ftc.teamcode.auton.auto.stopDrive;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -59,20 +64,21 @@ import java.util.List;
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list.
  */
-@Autonomous(name = "blueRightDetectTF", group = "Blue")
-public class blueRightDetectTF extends LinearOpMode {
+@Autonomous(name = "redLeftTest", group = "Red")
+@Disabled
+public class redLeftTest extends LinearOpMode {
 
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
     // TFOD_MODEL_ASSET points to a model file stored in the project Asset location,
     // this is only used for Android Studio when using models in Assets.
-    private static final String TFOD_MODEL_ASSET = "blueModel.tflite";
+    private static final String TFOD_MODEL_ASSET = "redModel.tflite";
     // TFOD_MODEL_FILE points to a model file stored onboard the Robot Controller's storage,
     // this is used when uploading models directly to the RC using the model upload interface.
     //private static final String TFOD_MODEL_FILE = "/sdcard/FIRST/tflitemodels/myCustomModel.tflite";
     // Define the labels recognized in the model for TFOD (must be in training order!)
     private static final String[] LABELS = {
-       "blueProp",
+            "redProp",
     };
 
     /**
@@ -84,7 +90,6 @@ public class blueRightDetectTF extends LinearOpMode {
      * The variable to store our instance of the vision portal.
      */
     private VisionPortal visionPortal;
-    boolean Right = false;
     boolean Middle = false;
     boolean Left = false;
 
@@ -156,7 +161,7 @@ public class blueRightDetectTF extends LinearOpMode {
 
         List<Recognition> currentRecognitions = tfod.getRecognitions();
         telemetry.addData("# Objects Detected", currentRecognitions.size());
-        telemetry.addLine("Left");
+        telemetry.addLine("Right");
 
         // Step through the list of recognitions and display info for each one.
         for (Recognition recognition : currentRecognitions) {
@@ -167,18 +172,14 @@ public class blueRightDetectTF extends LinearOpMode {
             telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
             telemetry.addData("- Position", "%.0f / %.0f", x, y);
             telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
-            if (x>=330){
-                Right = true;
-                Middle = false;
-                telemetry.addLine("Right");
-            } else if ( 330 >= x) {
+            if (x<=330){
+                Left = true;
+                telemetry.addLine("Left");
+            } else if ( 330 <= x) {
                 Middle = true;
-                Right = false;
                 telemetry.addLine("Middle");
             }else {
-                telemetry.addLine("Left");
-                Middle = false;
-                Right = false;
+                telemetry.addLine("Right");
             }
 
         }   // end for() loop
@@ -188,8 +189,19 @@ public class blueRightDetectTF extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        new hardwareDrive();
+        leftDrive = hardwareMap.get(DcMotor.class, "front Left");
+        rightDrive = hardwareMap.get(DcMotor.class, "front Right");
+        backLeftDrive = hardwareMap.get(DcMotor.class, "back Left");
+        backRightDrive = hardwareMap.get(DcMotor.class, "back Right");
+//        Launchmotor = hardwareMap.get(DcMotor.class, "Launch Motor");
+        Servo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo1");
+        Servo2 = hardwareMap.get(Servo.class, "servo2");
+
+        leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        Servo.setDirection(com.qualcomm.robotcore.hardware.Servo.Direction.REVERSE);
         Reset();
+
         servoLeftClose();
         servoRightClose();
 
@@ -215,112 +227,173 @@ public class blueRightDetectTF extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            if(Right){
-                drive(-124, -0.4, 500);
-
-                spinLeft(900, 0.4, 2000);
-
-                strafeLeft(1500, 0.4, 1800);
-
-                drive(260, 0.4, 800);
-
-                servoLeftOpen(550);
-
-                drive(-300, -0.4,1000);
-
-                strafeRight(1410, 0.4,2000);
-
-                spinLeft(900, 0.4,2000);
-
-                strafeRight(4000, -0.6, 4700);
-
-                spinLeft(900, -0.4,1000);
-
-                strafeRight(600, 0.4,2000);
-
-                arm(-1200, 0.5, false, 2500);
-
-                drive(-700, -0.4,1000);
-
-                servoRightOpen(1000);
-
-                drive(200, -0.4, 1000);
+            if(Left){
+                Reset();
+                //drive(-123, -0.4);
+                sleep(3000);
+                stopDrive();
                 Reset();
 
-                strafeLeft(900, -0.4, 2000);
+                Reset();
+//                spinRight(920, 0.4);
+                sleep(2000);
+                stopDrive();
+                Reset();
 
-                drive(-500, -0.4, 1000);
+                driveReset();
+//                strafeLeft(1500, 0.4);
+                sleep(1800);
+                stopDrive();
+                driveReset();
 
+                Reset();
+//                drive(200, 0.4);
+                sleep(3000);
+                stopDrive();
+                Reset();
+
+//                servoLeftOpen();
+                sleep(3000);
+
+                Reset();
+//                drive(-200, -0.4);
+                sleep(3000);
+                stopDrive();
+                Reset();
+
+                driveReset();
+//                strafeRight(1500, 0.4);
+                sleep(1800);
+                stopDrive();
+                driveReset();
+
+                Reset();
+//                spinLeft(920, 0.4);
+                sleep(2000);
+                stopDrive();
+                Reset();
+
+                Reset();
+//                drive(-1800, -0.4);
+                sleep(3100);
+                stopDrive();
+                Reset();
+
+                Reset();
+//                arm(-1450, 0.5);
+                sleep(2000);
+                stopDrive();
+                driveReset();
+
+                Reset();
+//                strafeRight(2500, 0.4);
+                sleep(3500);
+                stopDrive();
+                driveReset();
+
+//                servoRightOpen();
+                sleep(2000);
+
+                Reset();
+//                drive(200, -0.4);
+                sleep(3100);
+                stopDrive();
+                Reset();
+
+                Reset();
+//                strafeRight(1000, 0.4);
+                sleep(3000);
+                stopDrive();
+                driveReset();
+
+                Reset();
+//                drive(-500, -0.4);
+                sleep(3100);
+                stopDrive();
+                Reset();
 
                 stop();
+
+
             } else if (Middle) {
-                drive(-124, -0.4, 500);
-
-                spinLeft(1800, 0.4,3000);
-
-
-                drive(1250, 0.4, 2000);
-
-                servoLeftOpen(500);
-
-                drive(-1300, 0.4,2000);
-
-                strafeLeft(4000, 0.6,4000);
-
-                spinRight(900, 0.4,2000);
-
-                strafeLeft(800, 0.4,2800);
-
-                arm(-1200, 0.5,false,2500);
-
-                drive(-700, -0.4,1000);
-
-                servoRightOpen(1000);
-
-                drive(200, -0.4,1000);
+                Reset();
+//                drive(-1950, -0.4);
+                sleep(3000);
+                stopDrive();
                 Reset();
 
-                strafeRight(1000, -0.4,2000);
 
-                drive(-500, -0.4,1000);
+//                servoLeftOpen();
+                sleep(3000);
 
+                Reset();
+//                drive(-300, -0.4);
+                sleep(3000);
+                stopDrive();
+                Reset();
+
+                Reset();
+//                spinRight(920, 0.4);
+                sleep(2000);
+                stopDrive();
+                Reset();
+
+                Reset();
+//                arm(-1200, 0.6);
+                sleep(1000);
+                stopDrive();
+                driveReset();
+
+                driveReset();
+//                drive(-1350, 0.4);
+                sleep(2000);
+                stopDrive();
+                driveReset();
+
+                driveReset();
+//                strafeLeft(6000, 0.4);
+                sleep(1800);
+                stopDrive();
+                driveReset();
+
+                driveReset();
+//                drive(-500, 0.4);
+                sleep(1000);
+                stopDrive();
+                driveReset();
+
+//                servoRightOpen();
+                sleep(2000);
+
+                driveReset();
+//                arm(-300, 0.6);
+                sleep(2000);
+                stopDrive();
+                stopArm();
+                Reset();
+
+                Reset();
+//                strafeRight(1000, 0.4);
+                sleep(3000);
+                stopDrive();
+                driveReset();
+
+                Reset();
+//                drive(-500, -0.4);
+                sleep(3100);
+                stopDrive();
+                Reset();
 
                 stop();
+
             } else {
-                drive(-123, -0.4,1000);
 
-                spinRight(910, 0.4,2000);
-
-                strafeRight(1500, 0.4,1800);
-
-                drive(300, 0.4,1000);
-
-                servoLeftOpen(1000);
-
-                drive(-200, -0.4,500);
-
-                strafeLeft(1450, 0.4,1800);
-
-                spinLeft(950, 0.4,2000);
-
-                strafeRight(4000, 0.6,4000);
-
-                drive(-1200, -0.4,2000);
-
-                spinLeft(930, 0.4,2000);
-
-                arm(-1200, 0.5,false, 2000);
-
-                drive(-1000, 0.4,1000);
-
-                servoRightOpen(2000);
-
-                drive(200, -0.4,1000);
                 Reset();
+//                arm(-1100, 0.5);
+                sleep(3000);
+                stopDrive();
+                driveReset();
 
-                strafeRight(1500, 0.4,3000);
-
-                drive(-800, -0.4,1500);
 
 
                 stop();

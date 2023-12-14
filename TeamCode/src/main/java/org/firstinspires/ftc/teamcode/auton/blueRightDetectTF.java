@@ -27,19 +27,19 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.auton;
 
-import static org.firstinspires.ftc.teamcode.auto.Reset;
-import static org.firstinspires.ftc.teamcode.auto.arm;
-import static org.firstinspires.ftc.teamcode.auto.drive;
-import static org.firstinspires.ftc.teamcode.auto.servoLeftClose;
-import static org.firstinspires.ftc.teamcode.auto.servoLeftOpen;
-import static org.firstinspires.ftc.teamcode.auto.servoRightClose;
-import static org.firstinspires.ftc.teamcode.auto.servoRightOpen;
-import static org.firstinspires.ftc.teamcode.auto.spinLeft;
-import static org.firstinspires.ftc.teamcode.auto.spinRight;
-import static org.firstinspires.ftc.teamcode.auto.strafeLeft;
-import static org.firstinspires.ftc.teamcode.auto.strafeRight;
+import static org.firstinspires.ftc.teamcode.auton.auto.Reset;
+import static org.firstinspires.ftc.teamcode.auton.auto.arm;
+import static org.firstinspires.ftc.teamcode.auton.auto.drive;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoLeftClose;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoLeftOpen;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoRightClose;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoRightOpen;
+import static org.firstinspires.ftc.teamcode.auton.auto.spinLeft;
+import static org.firstinspires.ftc.teamcode.auton.auto.spinRight;
+import static org.firstinspires.ftc.teamcode.auton.auto.strafeLeft;
+import static org.firstinspires.ftc.teamcode.auton.auto.strafeRight;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -59,20 +59,20 @@ import java.util.List;
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list.
  */
-@Autonomous(name = "redLeftDetectTF", group = "Red")
-public class redLeftDetectTF extends LinearOpMode {
+@Autonomous(name = "blueRightDetectTF", group = "Blue")
+public class blueRightDetectTF extends LinearOpMode {
 
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
     // TFOD_MODEL_ASSET points to a model file stored in the project Asset location,
     // this is only used for Android Studio when using models in Assets.
-    private static final String TFOD_MODEL_ASSET = "redModel.tflite";
+    private static final String TFOD_MODEL_ASSET = "blueModel.tflite";
     // TFOD_MODEL_FILE points to a model file stored onboard the Robot Controller's storage,
     // this is used when uploading models directly to the RC using the model upload interface.
     //private static final String TFOD_MODEL_FILE = "/sdcard/FIRST/tflitemodels/myCustomModel.tflite";
     // Define the labels recognized in the model for TFOD (must be in training order!)
     private static final String[] LABELS = {
-            "redProp",
+       "blueProp",
     };
 
     /**
@@ -84,6 +84,7 @@ public class redLeftDetectTF extends LinearOpMode {
      * The variable to store our instance of the vision portal.
      */
     private VisionPortal visionPortal;
+    boolean Right = false;
     boolean Middle = false;
     boolean Left = false;
 
@@ -155,7 +156,7 @@ public class redLeftDetectTF extends LinearOpMode {
 
         List<Recognition> currentRecognitions = tfod.getRecognitions();
         telemetry.addData("# Objects Detected", currentRecognitions.size());
-        telemetry.addLine("Right");
+        telemetry.addLine("Left");
 
         // Step through the list of recognitions and display info for each one.
         for (Recognition recognition : currentRecognitions) {
@@ -166,18 +167,18 @@ public class redLeftDetectTF extends LinearOpMode {
             telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
             telemetry.addData("- Position", "%.0f / %.0f", x, y);
             telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
-            if (x<=330){
-                Left = true;
+            if (x>=330){
+                Right = true;
                 Middle = false;
-                telemetry.addLine("Left");
-            } else if ( 330 <= x) {
+                telemetry.addLine("Right");
+            } else if ( 330 >= x) {
                 Middle = true;
-                Left = false;
+                Right = false;
                 telemetry.addLine("Middle");
             }else {
-                telemetry.addLine("Right");
+                telemetry.addLine("Left");
                 Middle = false;
-                Left = false;
+                Right = false;
             }
 
         }   // end for() loop
@@ -214,14 +215,85 @@ public class redLeftDetectTF extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            if(Left){
+            if(Right){
+                drive(-124, -0.4, 500);
+
+                spinLeft(900, 0.4, 2000);
+
+                strafeLeft(1500, 0.4, 1800);
+
+                drive(260, 0.4, 800);
+
+                servoLeftOpen(550);
+
+                drive(-300, -0.4,1000);
+
+                strafeRight(1410, 0.4,2000);
+
+                spinLeft(900, 0.4,2000);
+
+                strafeRight(4000, -0.6, 4700);
+
+                spinLeft(900, -0.4,1000);
+
+                strafeRight(600, 0.4,2000);
+
+                arm(-1200, 0.5, false, 2500);
+
+                drive(-700, -0.4,1000);
+
+                servoRightOpen(1000);
+
+                drive(200, -0.4, 1000);
+                Reset();
+
+                strafeLeft(900, -0.4, 2000);
+
+                drive(-500, -0.4, 1000);
+
+
+                stop();
+            } else if (Middle) {
+                drive(-124, -0.4, 500);
+
+                spinLeft(1800, 0.4,3000);
+
+
+                drive(1250, 0.4, 2000);
+
+                servoLeftOpen(500);
+
+                drive(-1300, 0.4,2000);
+
+                strafeLeft(4000, 0.6,4000);
+
+                spinRight(900, 0.4,2000);
+
+                strafeLeft(800, 0.4,2800);
+
+                arm(-1200, 0.5,false,2500);
+
+                drive(-700, -0.4,1000);
+
+                servoRightOpen(1000);
+
+                drive(200, -0.4,1000);
+                Reset();
+
+                strafeRight(1000, -0.4,2000);
+
+                drive(-500, -0.4,1000);
+
+
+                stop();
+            } else {
                 drive(-123, -0.4,1000);
 
-                spinRight(920, 0.4,2000);
+                spinRight(910, 0.4,2000);
 
                 strafeRight(1500, 0.4,1800);
 
-                drive(50, 0.4,500);
+                drive(300, 0.4,1000);
 
                 servoLeftOpen(1000);
 
@@ -231,94 +303,24 @@ public class redLeftDetectTF extends LinearOpMode {
 
                 spinLeft(950, 0.4,2000);
 
-                strafeLeft(4000, 0.6,4000);
+                strafeRight(4000, 0.6,4000);
 
-                drive(-1350, -0.4,2000);
+                drive(-1200, -0.4,2000);
 
-                spinRight(930, 0.4,2000);
+                spinLeft(930, 0.4,2000);
 
                 arm(-1200, 0.5,false, 2000);
 
-                drive(-600, 0.4,1000);
+                drive(-1000, 0.4,1000);
 
                 servoRightOpen(2000);
 
                 drive(200, -0.4,1000);
                 Reset();
 
-                strafeLeft(1500, 0.4,3000);
+                strafeRight(1500, 0.4,3000);
 
-                drive(-500, -0.4,1500);
-
-
-                stop();
-
-
-            } else if (Middle) {
-                drive(-124, -0.4,500);
-
-                spinLeft(1800, 0.4,3000);
-
-                drive(1250, 0.4,2000);
-
-                servoLeftOpen(500);
-
-                drive(-1300, 0.4,2000);
-
-                strafeRight(4000, 0.6,4000);
-
-                spinLeft(900, 0.4,2000);
-
-                strafeRight(800, 0.4,2800);
-
-                arm(-1200, 0.5,false,2500);
-
-                drive(-700, -0.4,1000);
-
-                servoRightOpen(1000);
-
-                drive(200, -0.4,1000);
-
-                strafeLeft(800, -0.4,2000);
-
-                drive(-500, -0.4,1000);
-
-                stop();
-            } else {
-                drive(-124, -0.4,500);
-
-                spinLeft(900, 0.4,2000);
-
-                strafeLeft(1500, 0.4,1800);
-
-                drive(260, 0.4,800);
-
-                servoLeftOpen(500);
-
-                drive(-300, -0.4,1000);
-
-                strafeRight(1410, 0.4,2000);
-
-                spinLeft(900, 0.4,2000);
-
-                strafeRight(4000, -0.6,4700);
-
-                spinLeft(900, -0.4,1000);
-
-                strafeRight(600, 0.4,2800);
-
-                arm(-1200, 0.5,false,2500);
-
-                drive(-700, -0.4,1000);
-
-                servoRightOpen(1000);
-
-                drive(200, -0.4,1000);
-                Reset();
-
-                strafeLeft(900, -0.4,2000);
-
-                drive(-500, -0.4,1000);
+                drive(-800, -0.4,1500);
 
 
                 stop();

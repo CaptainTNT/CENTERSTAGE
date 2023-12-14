@@ -1,21 +1,21 @@
 //Imports stuff
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.auton;
 
 
 import android.util.Size;
 
-import static org.firstinspires.ftc.teamcode.auto.Reset;
-import static org.firstinspires.ftc.teamcode.auto.Servo;
-import static org.firstinspires.ftc.teamcode.auto.Servo2;
-import static org.firstinspires.ftc.teamcode.auto.backLeftDrive;
-import static org.firstinspires.ftc.teamcode.auto.backRightDrive;
-import static org.firstinspires.ftc.teamcode.auto.driveReset;
-import static org.firstinspires.ftc.teamcode.auto.leftDrive;
-import static org.firstinspires.ftc.teamcode.auto.rightDrive;
-import static org.firstinspires.ftc.teamcode.auto.servoLeftClose;
-import static org.firstinspires.ftc.teamcode.auto.servoRightClose;
-import static org.firstinspires.ftc.teamcode.auto.stopArm;
-import static org.firstinspires.ftc.teamcode.auto.stopDrive;
+import static org.firstinspires.ftc.teamcode.auton.auto.Reset;
+import static org.firstinspires.ftc.teamcode.auton.auto.Servo;
+import static org.firstinspires.ftc.teamcode.auton.auto.Servo2;
+import static org.firstinspires.ftc.teamcode.auton.auto.backLeftDrive;
+import static org.firstinspires.ftc.teamcode.auton.auto.backRightDrive;
+import static org.firstinspires.ftc.teamcode.auton.auto.driveReset;
+import static org.firstinspires.ftc.teamcode.auton.auto.leftDrive;
+import static org.firstinspires.ftc.teamcode.auton.auto.rightDrive;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoLeftClose;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoRightClose;
+import static org.firstinspires.ftc.teamcode.auton.auto.stopArm;
+import static org.firstinspires.ftc.teamcode.auton.auto.stopDrive;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;

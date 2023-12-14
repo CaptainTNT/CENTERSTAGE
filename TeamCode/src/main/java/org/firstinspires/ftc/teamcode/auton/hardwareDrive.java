@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.auton;
 
-import static org.firstinspires.ftc.teamcode.auto.Launchmotor;
-import static org.firstinspires.ftc.teamcode.auto.Servo;
-import static org.firstinspires.ftc.teamcode.auto.Servo2;
-import static org.firstinspires.ftc.teamcode.auto.backLeftDrive;
-import static org.firstinspires.ftc.teamcode.auto.backRightDrive;
-import static org.firstinspires.ftc.teamcode.auto.leftDrive;
-import static org.firstinspires.ftc.teamcode.auto.rightDrive;
+import static org.firstinspires.ftc.teamcode.auton.auto.Launchmotor;
+import static org.firstinspires.ftc.teamcode.auton.auto.Servo;
+import static org.firstinspires.ftc.teamcode.auton.auto.Servo2;
+import static org.firstinspires.ftc.teamcode.auton.auto.backLeftDrive;
+import static org.firstinspires.ftc.teamcode.auton.auto.backRightDrive;
+import static org.firstinspires.ftc.teamcode.auton.auto.leftDrive;
+import static org.firstinspires.ftc.teamcode.auton.auto.rightDrive;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;

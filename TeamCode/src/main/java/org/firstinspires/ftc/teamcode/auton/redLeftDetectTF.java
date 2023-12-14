@@ -27,11 +27,22 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.auton;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import static org.firstinspires.ftc.teamcode.auton.auto.Reset;
+import static org.firstinspires.ftc.teamcode.auton.auto.arm;
+import static org.firstinspires.ftc.teamcode.auton.auto.drive;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoLeftClose;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoLeftOpen;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoRightClose;
+import static org.firstinspires.ftc.teamcode.auton.auto.servoRightOpen;
+import static org.firstinspires.ftc.teamcode.auton.auto.spinLeft;
+import static org.firstinspires.ftc.teamcode.auton.auto.spinRight;
+import static org.firstinspires.ftc.teamcode.auton.auto.strafeLeft;
+import static org.firstinspires.ftc.teamcode.auton.auto.strafeRight;
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -48,21 +59,20 @@ import java.util.List;
  * Use Android Studio to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list.
  */
-@TeleOp(name = "Concept: TensorFlow Object Detection2", group = "Concept")
-@Disabled
-public class ConceptTensorFlowObjectDetection2 extends LinearOpMode {
+@Autonomous(name = "redLeftDetectTF", group = "Red")
+public class redLeftDetectTF extends LinearOpMode {
 
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
     // TFOD_MODEL_ASSET points to a model file stored in the project Asset location,
     // this is only used for Android Studio when using models in Assets.
-    private static final String TFOD_MODEL_ASSET = "ModelRight.tflite";
+    private static final String TFOD_MODEL_ASSET = "redModel.tflite";
     // TFOD_MODEL_FILE points to a model file stored onboard the Robot Controller's storage,
     // this is used when uploading models directly to the RC using the model upload interface.
     //private static final String TFOD_MODEL_FILE = "/sdcard/FIRST/tflitemodels/myCustomModel.tflite";
     // Define the labels recognized in the model for TFOD (must be in training order!)
     private static final String[] LABELS = {
-       "Middle", "Right",
+            "redProp",
     };
 
     /**
@@ -74,68 +84,31 @@ public class ConceptTensorFlowObjectDetection2 extends LinearOpMode {
      * The variable to store our instance of the vision portal.
      */
     private VisionPortal visionPortal;
+    boolean Middle = false;
+    boolean Left = false;
 
-    @Override
-    public void runOpMode() {
-
-        initTfod();
-
-        // Wait for the DS start button to be touched.
-        telemetry.addData("DS preview on/off", "3 dots, Camera Stream");
-        telemetry.addData(">", "Touch Play to start OpMode");
-        telemetry.update();
-        waitForStart();
-
-        if (opModeIsActive()) {
-            while (opModeIsActive()) {
-
-                telemetryTfod();
-
-                // Push telemetry to the Driver Station.
-                telemetry.update();
-
-                // Save CPU resources; can resume streaming when needed.
-                if (gamepad1.dpad_down) {
-                    visionPortal.stopStreaming();
-                } else if (gamepad1.dpad_up) {
-                    visionPortal.resumeStreaming();
-                }
-
-                // Share the CPU.
-                sleep(20);
-            }
-        }
-
-        // Save more CPU resources when camera is no longer needed.
-        visionPortal.close();
-
-    }   // end runOpMode()
-
-    /**
-     * Initialize the TensorFlow Object Detection processor.
-     */
     private void initTfod() {
 
         // Create the TensorFlow processor by using a builder.
         tfod = new TfodProcessor.Builder()
 
-            // With the following lines commented out, the default TfodProcessor Builder
-            // will load the default model for the season. To define a custom model to load, 
-            // choose one of the following:
-            //   Use setModelAssetName() if the custom TF Model is built in as an asset (AS only).
-            //   Use setModelFileName() if you have downloaded a custom team model to the Robot Controller.
-            .setModelAssetName(TFOD_MODEL_ASSET)
-            //.setModelFileName(TFOD_MODEL_FILE)
+                // With the following lines commented out, the default TfodProcessor Builder
+                // will load the default model for the season. To define a custom model to load,
+                // choose one of the following:
+                //   Use setModelAssetName() if the custom TF Model is built in as an asset (AS only).
+                //   Use setModelFileName() if you have downloaded a custom team model to the Robot Controller.
+                .setModelAssetName(TFOD_MODEL_ASSET)
+                //.setModelFileName(TFOD_MODEL_FILE)
 
-            // The following default settings are available to un-comment and edit as needed to 
-            // set parameters for custom models.
-            .setModelLabels(LABELS)
-            //.setIsModelTensorFlow2(true)
-            //.setIsModelQuantized(true)
-            //.setModelInputSize(300)
-            //.setModelAspectRatio(16.0 / 9.0)
+                // The following default settings are available to un-comment and edit as needed to
+                // set parameters for custom models.
+                .setModelLabels(LABELS)
+                //.setIsModelTensorFlow2(true)
+                //.setIsModelQuantized(true)
+                //.setModelInputSize(300)
+                //.setModelAspectRatio(16.0 / 9.0)
 
-            .build();
+                .build();
 
         // Create the vision portal by using a builder.
         VisionPortal.Builder builder = new VisionPortal.Builder();
@@ -182,6 +155,7 @@ public class ConceptTensorFlowObjectDetection2 extends LinearOpMode {
 
         List<Recognition> currentRecognitions = tfod.getRecognitions();
         telemetry.addData("# Objects Detected", currentRecognitions.size());
+        telemetry.addLine("Right");
 
         // Step through the list of recognitions and display info for each one.
         for (Recognition recognition : currentRecognitions) {
@@ -192,9 +166,166 @@ public class ConceptTensorFlowObjectDetection2 extends LinearOpMode {
             telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
             telemetry.addData("- Position", "%.0f / %.0f", x, y);
             telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
+            if (x<=330){
+                Left = true;
+                Middle = false;
+                telemetry.addLine("Left");
+            } else if ( 330 <= x) {
+                Middle = true;
+                Left = false;
+                telemetry.addLine("Middle");
+            }else {
+                telemetry.addLine("Right");
+                Middle = false;
+                Left = false;
+            }
 
         }   // end for() loop
 
     }   // end method telemetryTfod()
 
+
+    @Override
+    public void runOpMode() {
+        new hardwareDrive();
+        Reset();
+        servoLeftClose();
+        servoRightClose();
+
+        initTfod();
+
+        // Wait for the DS start button to be touched.
+        telemetry.addData("DS preview on/off", "3 dots, Camera Stream");
+        telemetry.addData(">", "Touch Play to start OpMode");
+        telemetry.update();
+        while (!opModeIsActive()) {
+
+            telemetryTfod();
+
+            // Push telemetry to the Driver Station.
+            telemetry.update();
+
+
+        }
+
+        visionPortal.close();
+
+        waitForStart();
+
+        if (opModeIsActive()) {
+
+            if(Left){
+                drive(-123, -0.4,1000);
+
+                spinRight(920, 0.4,2000);
+
+                strafeRight(1500, 0.4,1800);
+
+                drive(50, 0.4,500);
+
+                servoLeftOpen(1000);
+
+                drive(-200, -0.4,500);
+
+                strafeLeft(1450, 0.4,1800);
+
+                spinLeft(950, 0.4,2000);
+
+                strafeLeft(4000, 0.6,4000);
+
+                drive(-1350, -0.4,2000);
+
+                spinRight(930, 0.4,2000);
+
+                arm(-1200, 0.5,false, 2000);
+
+                drive(-600, 0.4,1000);
+
+                servoRightOpen(2000);
+
+                drive(200, -0.4,1000);
+                Reset();
+
+                strafeLeft(1500, 0.4,3000);
+
+                drive(-500, -0.4,1500);
+
+
+                stop();
+
+
+            } else if (Middle) {
+                drive(-124, -0.4,500);
+
+                spinLeft(1800, 0.4,3000);
+
+                drive(1250, 0.4,2000);
+
+                servoLeftOpen(500);
+
+                drive(-1300, 0.4,2000);
+
+                strafeRight(4000, 0.6,4000);
+
+                spinLeft(900, 0.4,2000);
+
+                strafeRight(800, 0.4,2800);
+
+                arm(-1200, 0.5,false,2500);
+
+                drive(-700, -0.4,1000);
+
+                servoRightOpen(1000);
+
+                drive(200, -0.4,1000);
+
+                strafeLeft(800, -0.4,2000);
+
+                drive(-500, -0.4,1000);
+
+                stop();
+            } else {
+                drive(-124, -0.4,500);
+
+                spinLeft(900, 0.4,2000);
+
+                strafeLeft(1500, 0.4,1800);
+
+                drive(260, 0.4,800);
+
+                servoLeftOpen(500);
+
+                drive(-300, -0.4,1000);
+
+                strafeRight(1410, 0.4,2000);
+
+                spinLeft(900, 0.4,2000);
+
+                strafeRight(4000, -0.6,4700);
+
+                spinLeft(900, -0.4,1000);
+
+                strafeRight(600, 0.4,2800);
+
+                arm(-1200, 0.5,false,2500);
+
+                drive(-700, -0.4,1000);
+
+                servoRightOpen(1000);
+
+                drive(200, -0.4,1000);
+                Reset();
+
+                strafeLeft(900, -0.4,2000);
+
+                drive(-500, -0.4,1000);
+
+
+                stop();
+            }
+            stop();
+        }
+
+        // Save more CPU resources when camera is no longer needed.
+    }   // end runOpMode()
 }   // end class
