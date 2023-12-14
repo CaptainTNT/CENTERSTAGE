@@ -18,6 +18,7 @@ import static org.firstinspires.ftc.teamcode.Calabration.auto.spinLeft;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.spinRight;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeLeft;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeRight;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.timer;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -135,6 +136,8 @@ public class blueLeftDetectTF extends LinearOpMode {
 
         waitForStart();
 
+        timer.reset();
+
         if (opModeIsActive()) {
 
             if(Left){
@@ -150,7 +153,7 @@ public class blueLeftDetectTF extends LinearOpMode {
 
                 drive(-840, -0.4,3100);
 
-                strafeLeft(600, 0.4,1800);
+                strafeLeft(300, 0.4,1800);
 
                 arm(-1450, 0.5,false,2000);
 
@@ -159,8 +162,7 @@ public class blueLeftDetectTF extends LinearOpMode {
                 Reset();
                 drive(200,-0.4,3100);
 
-                strafeRight(1600, 0.4,3000);
-
+                strafeRight(1700, 0.4,3000);
 
                 drive(-500, -0.4,3100);
 
