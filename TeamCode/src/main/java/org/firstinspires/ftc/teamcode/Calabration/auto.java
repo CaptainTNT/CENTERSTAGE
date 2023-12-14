@@ -23,7 +23,7 @@ public class auto extends OpMode {
     public static Servo Servo2 = null;
 
     public static ElapsedTime timer = new ElapsedTime();
-    public static void strafeLeft(int target, double power, double sleep) {
+    public static void strafeRight(int target, double power, double sleep) {
         driveReset();
         leftDrive.setTargetPosition(-target);
         rightDrive.setTargetPosition(target);
@@ -51,7 +51,7 @@ public class auto extends OpMode {
         }
     }
 
-    public static void strafeRight(int target, double power, double sleep) {
+    public static void strafeLeft(int target, double power, double sleep) {
         driveReset();
 
         leftDrive.setTargetPosition(target);

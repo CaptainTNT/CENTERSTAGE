@@ -139,17 +139,19 @@ public class redRightDetectTF extends LinearOpMode {
         if (opModeIsActive()) {
 
             if(Right){
-                drive(-123, -0.4,3000);
+                drive(-123, -0.4,1000);
 
                 spinRight(920, 0.4,1500);
 
-                drive(-620, -0.4,3000);
+                drive(-620, -0.4,1600);
 
                 strafeRight(1500, 0.4,1800);
 
-                servoLeftOpen(3000);
+                servoLeftOpen(1500);
 
                 drive(-890, -0.4,3100);
+
+                strafeLeft(1500, 0.4,1800);
 
                 arm(-1450, 0.5,false,2000);
 
