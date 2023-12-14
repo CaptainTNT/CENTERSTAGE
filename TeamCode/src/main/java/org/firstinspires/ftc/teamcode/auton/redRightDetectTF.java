@@ -1,30 +1,19 @@
 package org.firstinspires.ftc.teamcode.auton;
 
-import static org.firstinspires.ftc.teamcode.Calabration.auto.Launchmotor;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.Reset;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.Servo;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.Servo2;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.arm;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.backLeftDrive;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.backRightDrive;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.drive;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.driveReset;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.leftDrive;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.rightDrive;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoLeftClose;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoLeftOpen;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightClose;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightOpen;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.spinRight;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.stopArm;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.stopDrive;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeLeft;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeRight;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Servo;
+
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;

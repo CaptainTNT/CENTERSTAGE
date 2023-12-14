@@ -40,7 +40,6 @@ public class blueRightDetectTF extends LinearOpMode {
     private VisionPortal visionPortal;
     boolean Right = false;
     boolean Middle = false;
-    boolean Left = false;
 
     private void initTfod() {
 
