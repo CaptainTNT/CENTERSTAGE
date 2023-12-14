@@ -27,4 +27,3 @@ allprojects {
 repositories {
     mavenCentral()
 }
-//more cool stuff
