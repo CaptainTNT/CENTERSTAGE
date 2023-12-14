@@ -15,6 +15,7 @@ import static org.firstinspires.ftc.teamcode.Calabration.auto.servoLeftOpen;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightClose;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightOpen;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.spinLeft;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.spinRight;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeLeft;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeRight;
 
@@ -137,31 +138,31 @@ public class blueLeftDetectTF extends LinearOpMode {
         if (opModeIsActive()) {
 
             if(Left){
-                drive(-123, -0.4, 1000);
+                drive(-123, -0.4,1000);
 
-                spinLeft(920, 0.4,1000);
+                spinLeft(900, 0.4,1500);
 
-                drive(-620, -0.4, 1000);
+                drive(-620, -0.4,1600);
 
-                strafeLeft(1500, 0.4,1800);
+                strafeLeft(1450, 0.4,1800);
 
-                servoLeftOpen(1000);
+                servoLeftOpen(1500);
 
-                drive(-890, -0.4, 1200);
+                drive(-840, -0.4,3100);
 
-                arm(-1200, 0.5,false,2000);
+                strafeLeft(600, 0.4,1800);
 
-                strafeRight(450, -0.4, 1000);
+                arm(-1450, 0.5,false,2000);
 
                 servoRightOpen(2000);
 
-                drive(200, -0.4, 1000);
                 Reset();
+                drive(200,-0.4,3100);
 
-                strafeRight(1000, 0.4, 3000);
+                strafeRight(1600, 0.4,3000);
 
-                drive(-500, -0.4, 1000);
 
+                drive(-500, -0.4,3100);
 
                 stop();
 
