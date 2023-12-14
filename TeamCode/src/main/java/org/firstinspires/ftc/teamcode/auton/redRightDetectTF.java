@@ -149,9 +149,9 @@ public class redRightDetectTF extends LinearOpMode {
 
                 servoLeftOpen(1500);
 
-                drive(-890, -0.4,3100);
+                drive(-840, -0.4,3100);
 
-                strafeLeft(1500, 0.4,1800);
+                strafeLeft(600, 0.4,1800);
 
                 arm(-1450, 0.5,false,2000);
 
@@ -160,7 +160,7 @@ public class redRightDetectTF extends LinearOpMode {
                 Reset();
                 drive(200,-0.4,3100);
 
-                strafeRight(1000, 0.4,3000);
+                strafeRight(1600, 0.4,3000);
 
 
                 drive(-500, -0.4,3100);
