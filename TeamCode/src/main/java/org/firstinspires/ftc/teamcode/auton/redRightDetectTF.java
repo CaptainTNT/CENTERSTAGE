@@ -30,7 +30,6 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
-
 @Autonomous(name = "redRightDetectTF", group = "Red")
 public class redRightDetectTF extends LinearOpMode {
 
