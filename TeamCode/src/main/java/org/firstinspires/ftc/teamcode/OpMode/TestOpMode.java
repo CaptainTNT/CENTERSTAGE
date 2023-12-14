@@ -1,8 +1,5 @@
 package org.firstinspires.ftc.teamcode.OpMode;
 
-import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.config.Config;
-import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -12,7 +9,6 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
-@Config
 @TeleOp
 public class TestOpMode extends OpMode {
     private DcMotor leftDrive = null;
@@ -50,7 +46,6 @@ public class TestOpMode extends OpMode {
     public void init() {
 
         controller = new PIDController(p, i, d);
-        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         leftDrive = hardwareMap.get(DcMotor.class, "front Left");
         rightDrive = hardwareMap.get(DcMotor.class, "front Right");
         backLeftDrive = hardwareMap.get(DcMotor.class, "back Left");
