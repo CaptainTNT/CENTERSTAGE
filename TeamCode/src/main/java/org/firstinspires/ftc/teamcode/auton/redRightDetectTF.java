@@ -90,11 +90,15 @@ public class redRightDetectTF extends LinearOpMode {
             telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
             if (x>=330){
                 Right = true;
+                Middle = false;
                 telemetry.addLine("Right");
             } else if ( 330 >= x) {
                 Middle = true;
+                Right = false;
                 telemetry.addLine("Middle");
             }else {
+                Middle = false;
+                Right = false;
                 telemetry.addLine("Left");
             }
 

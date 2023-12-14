@@ -96,9 +96,9 @@ public class blueLeftDetectTF extends LinearOpMode {
                 Middle = true;
                 telemetry.addLine("Middle");
             }else {
-                telemetry.addLine("Right");
                 Left = false;
                 Middle = false;
+                telemetry.addLine("Right");
             }
 
         }   // end for() loop

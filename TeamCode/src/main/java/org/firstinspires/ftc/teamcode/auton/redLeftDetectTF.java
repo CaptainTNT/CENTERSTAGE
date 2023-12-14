@@ -106,9 +106,9 @@ public class redLeftDetectTF extends LinearOpMode {
                 Left = false;
                 telemetry.addLine("Middle");
             }else {
-                telemetry.addLine("Right");
                 Middle = false;
                 Left = false;
+                telemetry.addLine("Right");
             }
 
         }   // end for() loop
