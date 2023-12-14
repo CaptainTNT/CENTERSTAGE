@@ -214,7 +214,5 @@ public class blueLeftDetectTF extends LinearOpMode {
             }
             stop();
         }
-
-        // Save more CPU resources when camera is no longer needed.
-    }   // end runOpMode()
+    }
 }   // end class
