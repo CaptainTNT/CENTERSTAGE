@@ -17,6 +17,7 @@ import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightOpen;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.spinRight;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeLeft;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeRight;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.timer;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -133,12 +134,14 @@ public class redRightDetectTF extends LinearOpMode {
 
         waitForStart();
 
+        timer.reset();
+
         if (opModeIsActive()) {
 
             if(Right){
                 drive(-123, -0.4,3000);
 
-                spinRight(920, 0.4,2000);
+                spinRight(920, 0.4,1500);
 
                 drive(-620, -0.4,3000);
 
@@ -164,25 +167,25 @@ public class redRightDetectTF extends LinearOpMode {
             } else if (Middle) {
                 drive(-1950, -0.4,3000);
 
-                servoLeftOpen(3000);
+                servoLeftOpen(1500);
 
-                drive(-300, -0.4,3000);
+                drive(-300, -0.4,1800);
 
                 spinRight(920, 0.4,2000);
 
                 arm(-1200, 0.6,false,1000);
 
-                drive(-1350, 0.4,2000);
+                drive(-1200, 0.4,2000);
 
-                strafeLeft(6000, 0.4,1800);
+                strafeLeft(5000, 0.4,1500);
 
-                drive(-500, 0.4,1000);
+                drive(-350, 0.4,1000);
 
                 servoRightOpen(2000);
 
                 Reset();
 
-                strafeRight(1000, 0.4,3000);
+                strafeRight(1100, 0.4,2000);
 
                 drive(-500, -0.4,3100);
 

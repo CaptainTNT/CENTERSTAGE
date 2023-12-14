@@ -76,7 +76,7 @@ public class auto extends OpMode {
 
         }
 
-        if (timer.milliseconds() == sleep){
+        if (timer.milliseconds() >= sleep){
             stopDrive();
         }
 
@@ -106,7 +106,7 @@ public class auto extends OpMode {
 
         }
 
-        if (timer.milliseconds() == sleep){
+        if (timer.milliseconds() >= sleep){
             stopDrive();
         }
 
@@ -136,7 +136,7 @@ public class auto extends OpMode {
             backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         }
-        if (timer.milliseconds() == sleep){
+        if (timer.milliseconds() >= sleep){
             stopDrive();
         }
 
@@ -168,13 +168,9 @@ public class auto extends OpMode {
             backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
 
-        if (timer.milliseconds() == sleep){
+        if (timer.milliseconds() >= sleep){
             stopDrive();
         }
-
-
-
-
 
     }
 
