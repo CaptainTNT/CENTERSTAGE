@@ -63,6 +63,98 @@ public class newAutonTest extends OpMode {
         while (driveMotors == motorStatus.driving) {
             checkMotorBusy();
             leftDrive.setPower(power);
+            rightDrive.setPower(-power);
+            backRightDrive.setPower(power);
+            backLeftDrive.setPower(-power);
+
+            leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        }
+        timer.reset();
+
+        if (timer.milliseconds() >= 700){
+            stopDrive();
+        }
+
+
+    }
+
+    public static void strafeLeftMB(int target, double power) {
+        driveReset();
+        driveMotors = motorStatus.driving;
+
+        leftDrive.setTargetPosition(-target);
+        rightDrive.setTargetPosition(target);
+        backRightDrive.setTargetPosition(-target);
+        backLeftDrive.setTargetPosition(target);
+
+        while (driveMotors == motorStatus.driving) {
+            checkMotorBusy();
+            leftDrive.setPower(-power);
+            rightDrive.setPower(power);
+            backRightDrive.setPower(-power);
+            backLeftDrive.setPower(power);
+
+            leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        }
+        timer.reset();
+
+        if (timer.milliseconds() >= 700){
+            stopDrive();
+        }
+
+
+    }
+
+    public static void spinLeftMB(int target, double power) {
+        driveReset();
+        driveMotors = motorStatus.driving;
+
+        leftDrive.setTargetPosition(-target);
+        rightDrive.setTargetPosition(target);
+        backRightDrive.setTargetPosition(target);
+        backLeftDrive.setTargetPosition(-target);
+
+        while (driveMotors == motorStatus.driving) {
+            leftDrive.setPower(power);
+            rightDrive.setPower(power);
+            backRightDrive.setPower(power);
+            backLeftDrive.setPower(power);
+
+            leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        }
+        timer.reset();
+
+        if (timer.milliseconds() >= 700){
+            stopDrive();
+        }
+
+
+    }
+
+    public static void spinRight(int target, double power) {
+        driveReset();
+        driveMotors = motorStatus.driving;
+
+        leftDrive.setTargetPosition(target);
+        rightDrive.setTargetPosition(-target);
+        backRightDrive.setTargetPosition(-target);
+        backLeftDrive.setTargetPosition(target);
+
+
+        while (driveMotors == motorStatus.driving) {
+            leftDrive.setPower(power);
             rightDrive.setPower(power);
             backRightDrive.setPower(power);
             backLeftDrive.setPower(power);
