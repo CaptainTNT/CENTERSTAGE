@@ -32,7 +32,6 @@ public class newAutonTest extends OpMode {
         backLeftDrive.setTargetPosition(target);
 
         while (driveMotors == motorStatus.driving) {
-            checkMotorBusy();
             leftDrive.setPower(power);
             rightDrive.setPower(power);
             backRightDrive.setPower(power);
@@ -42,6 +41,7 @@ public class newAutonTest extends OpMode {
             rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            checkMotorBusy();
         }
         timer.reset();
 
@@ -61,7 +61,6 @@ public class newAutonTest extends OpMode {
         backLeftDrive.setTargetPosition(-target);
 
         while (driveMotors == motorStatus.driving) {
-            checkMotorBusy();
             leftDrive.setPower(power);
             rightDrive.setPower(-power);
             backRightDrive.setPower(power);
@@ -71,6 +70,7 @@ public class newAutonTest extends OpMode {
             rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            checkMotorBusy();
 
         }
         timer.reset();
@@ -92,7 +92,6 @@ public class newAutonTest extends OpMode {
         backLeftDrive.setTargetPosition(target);
 
         while (driveMotors == motorStatus.driving) {
-            checkMotorBusy();
             leftDrive.setPower(-power);
             rightDrive.setPower(power);
             backRightDrive.setPower(-power);
@@ -102,6 +101,7 @@ public class newAutonTest extends OpMode {
             rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            checkMotorBusy();
 
         }
         timer.reset();
@@ -132,6 +132,7 @@ public class newAutonTest extends OpMode {
             rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            checkMotorBusy();
 
         }
         timer.reset();
@@ -143,7 +144,7 @@ public class newAutonTest extends OpMode {
 
     }
 
-    public static void spinRight(int target, double power) {
+    public static void spinRightMD(int target, double power) {
         driveReset();
         driveMotors = motorStatus.driving;
 
@@ -163,7 +164,7 @@ public class newAutonTest extends OpMode {
             rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
+            checkMotorBusy();
         }
         timer.reset();
 
@@ -194,7 +195,6 @@ public class newAutonTest extends OpMode {
         backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
-
 
 
     public enum motorStatus {
