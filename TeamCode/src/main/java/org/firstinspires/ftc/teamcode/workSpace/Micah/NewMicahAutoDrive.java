@@ -1,21 +1,18 @@
 package org.firstinspires.ftc.teamcode.workSpace.Micah;
 
-import static org.firstinspires.ftc.teamcode.Calabration.auto.Launchmotor;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.Servo;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.Servo2;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.backLeftDrive;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.backRightDrive;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.leftDrive;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.rightDrive;
-import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.Reset;
+import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.Servo2;
+import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.rightDrive;
+import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.backRightDrive;
+import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.backLeftDrive;
+import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.Launchmotor;
+import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.Servo;
 import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.driveMB;
-import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.strafeRightMB;
+import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.leftDrive;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Servo;
 
 @Autonomous(name = "NewMicahAutoDrive")
 public class NewMicahAutoDrive extends LinearOpMode {
