@@ -10,10 +10,12 @@ import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.driveM
 import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.leftDrive;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+@Disabled
 @Autonomous(name = "NewMicahAutoDrive")
 public class NewMicahAutoDrive extends LinearOpMode {
 
