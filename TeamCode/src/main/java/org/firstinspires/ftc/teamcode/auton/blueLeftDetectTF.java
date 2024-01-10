@@ -202,7 +202,7 @@ public class blueLeftDetectTF extends LinearOpMode {
                 drive(-1200, 0.4, 2000);
 
                 //Sets the robot to strafe Right for 5000 ticks at 0.4 power for 1.5 seconds
-                strafeRight(3000, 0.4, 1500);
+                strafeRight(2000, 0.4, 1500);
 
                 //Sets the robot to drive for -350 ticks at 0.4 power for 1.0 seconds
                 drive(-350, 0.4, 1000);
