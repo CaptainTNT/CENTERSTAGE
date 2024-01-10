@@ -151,21 +151,19 @@ public class blueRightDetectTF extends LinearOpMode {
 
                 strafeLeft(1500, 0.4, 1800);
 
-                drive(260, 0.4, 800);
-
                 servoLeftOpen(550);
 
-                drive(-300, -0.4,1000);
+                drive(-100, -0.4,1000);
 
                 strafeRight(1410, 0.4,2000);
 
                 spinLeft(900, 0.4,2000);
 
-                strafeRight(4000, -0.6, 4700);
+                strafeLeft(4000, -0.6, 4700);
 
-                spinLeft(900, -0.4,1000);
+                spinRight(900, -0.4,1000);
 
-                strafeRight(600, 0.4,2000);
+                strafeLeft(600, 0.4,2000);
 
                 arm(-1200, 0.5, false, 2500);
 
@@ -194,7 +192,7 @@ public class blueRightDetectTF extends LinearOpMode {
 
                 drive(-1300, 0.4,2000);
 
-                strafeLeft(4000, 0.6,4000);
+                strafeLeft( 4000, 0.6,4000);
 
                 spinRight(900, 0.4,2000);
 
@@ -216,7 +214,7 @@ public class blueRightDetectTF extends LinearOpMode {
 
                 stop();
             } else {
-                drive(-123, -0.4,1000);
+                drive(-125, -0.4,1000);
 
                 spinRight(910, 0.4,2000);
 
@@ -228,26 +226,26 @@ public class blueRightDetectTF extends LinearOpMode {
 
                 drive(-200, -0.4,500);
 
-                strafeLeft(1450, 0.4,1800);
+                strafeLeft(1380, 0.4,1800);
 
-                spinLeft(950, 0.4,2000);
+                spinLeft(900, 0.4,2000);
 
                 strafeRight(4000, 0.6,4000);
 
-                drive(-1200, -0.4,2000);
+                drive(-1100, -0.4,2000);
 
-                spinLeft(930, 0.4,2000);
+                spinLeft(900, 0.4,2000);
 
                 arm(-1200, 0.5,false, 2000);
 
-                drive(-1000, 0.4,1000);
+                drive(-300, 0.4,1000);
 
                 servoRightOpen(2000);
 
                 drive(200, -0.4,1000);
                 Reset();
 
-                strafeRight(1500, 0.4,3000);
+                strafeRight(1000, 0.4,3000);
 
                 drive(-800, -0.4,1500);
 

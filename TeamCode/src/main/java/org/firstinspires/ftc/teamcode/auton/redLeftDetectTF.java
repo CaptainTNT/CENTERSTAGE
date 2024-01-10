@@ -196,15 +196,15 @@ public class redLeftDetectTF extends LinearOpMode {
 
                 drive(-1300, 0.4,2000);
 
-                strafeRight(4000, 0.6,4000);
+                strafeRight(4000, 0.4,4000);
 
                 spinLeft(850, 0.4,2000);
 
-                strafeRight(1050, 0.4,2800);
+                strafeRight(950, 0.4,2800);
 
-                arm(-1300, 0.5,false,2500);
+                arm(-1200, 0.5,false,2500);
 
-                drive(-500, -0.4,1000);
+                drive(-1000, -0.4,1000);
 
                 servoRightOpen(1000);
 
