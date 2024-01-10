@@ -63,7 +63,7 @@ public class MainOpMode extends OpMode {
         LaunchMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         LaunchMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        Speed = 0.5;
+        Speed = 0.65;
         Turn_Speed = 0.55;
 
         telemetry.addData("Info", "OpMode is ready to run");
@@ -87,10 +87,14 @@ public class MainOpMode extends OpMode {
 
         PIDLoop(newTarget);
 
-        if (gamepad2.left_trigger > 0.3){
+        if (gamepad1.left_trigger > 0.3){
             Math.min(Math.max(Vertical, 0.4), 0.4);
             Math.min(Math.max(Horizontal, 0.4), 0.4);
             Math.min(Math.max(Pivot, 0.4), 0.4);
+        } else {
+            Math.min(Math.max(Vertical, 1), 1);
+            Math.min(Math.max(Horizontal, 1), 1);
+            Math.min(Math.max(Pivot, 1), 1);
         }
 
         if (gamepad2.left_stick_y > 0){
