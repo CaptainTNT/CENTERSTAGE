@@ -88,34 +88,34 @@ public class MainOpMode extends OpMode {
         PIDLoop(newTarget);
 
         if (gamepad2.left_stick_y > 0){
-            newTarget++;
+            newTarget += 2;
         } else if (gamepad2.left_stick_y < 0){
-            newTarget--;
+            newTarget -= 2;
         }
 
         if (gamepad2.left_stick_y > 0){
-            newTarget++;
+            newTarget += 2;
         } else if (gamepad2.left_stick_y < 0){
-            newTarget--;
+            newTarget -= 2;
         }
 
-        if (gamepad2.left_trigger > 0.3){
+        if (gamepad2.left_bumper){
             newTarget = -100;
-        } else if (gamepad2.right_trigger > 0.3){
-            newTarget = -1100;
+        } else if (gamepad2.right_bumper){
+            newTarget = -1400;
         }
 
-        if (gamepad2.left_bumper && !changed1) {
+        if (gamepad2.left_trigger > 0.3 && !changed1) {
             leftServo = (leftServo == 0) ? 1 : 0;
             changed1 = true;
-        } else if (!gamepad2.left_bumper && changed1) {
+        } else if (gamepad2.left_trigger < 0.3 && changed1) {
             changed1 = false;
         }
 
-        if (gamepad2.right_bumper && !changed2) {
+        if (gamepad2.right_trigger > 0.3 && !changed2) {
             rightServo = (rightServo == 0) ? 1 : 0;
             changed2 = true;
-        } else if (!gamepad2.right_bumper && changed2) {
+        } else if (gamepad2.right_trigger < 0.3 && changed2) {
             changed2 = false;
         }
 
@@ -130,8 +130,7 @@ public class MainOpMode extends OpMode {
         leftDrive.setPower(Pivot + Vertical + Horizontal);
         rightDrive.setPower(Pivot + (Vertical - Horizontal));
 
-        telemetry.addData("power", power);
-        telemetry.update();
+        telemetry.addData("Target", target);
     }
 
     @Override
