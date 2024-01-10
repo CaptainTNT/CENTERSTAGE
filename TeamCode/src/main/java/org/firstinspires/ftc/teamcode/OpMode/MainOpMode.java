@@ -87,6 +87,12 @@ public class MainOpMode extends OpMode {
 
         PIDLoop(newTarget);
 
+        if (gamepad2.left_trigger > 0.3){
+            Math.min(Math.max(Vertical, 0.4), 0.4);
+            Math.min(Math.max(Horizontal, 0.4), 0.4);
+            Math.min(Math.max(Pivot, 0.4), 0.4);
+        }
+
         if (gamepad2.left_stick_y > 0){
             newTarget += 2;
         } else if (gamepad2.left_stick_y < 0){
@@ -102,7 +108,7 @@ public class MainOpMode extends OpMode {
         if (gamepad2.left_bumper){
             newTarget = -100;
         } else if (gamepad2.right_bumper){
-            newTarget = -1200;
+            newTarget = -1150;
         }
 
         if (gamepad2.left_trigger > 0.3 && !changed1) {
