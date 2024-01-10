@@ -162,7 +162,7 @@ public class blueLeftDetectTF extends LinearOpMode {
                 strafeRight(400, 0.4, 1800);
 
                 //Sets the robot lift to arm for -1450 ticks at 0.5 power for 2.0 seconds
-                arm(-1450, 0.5, false, 2000);
+                arm(-1400, 0.5, false, 2000);
 
                 //Sets the robot to open right flipper for 2 seconds
                 servoRightOpen(2000);
@@ -202,7 +202,7 @@ public class blueLeftDetectTF extends LinearOpMode {
                 drive(-1200, 0.4, 2000);
 
                 //Sets the robot to strafe Right for 5000 ticks at 0.4 power for 1.5 seconds
-                strafeRight(5000, 0.4, 1500);
+                strafeRight(4000, 0.4, 1500);
 
                 //Sets the robot to drive for -350 ticks at 0.4 power for 1.0 seconds
                 drive(-350, 0.4, 1000);
@@ -214,7 +214,7 @@ public class blueLeftDetectTF extends LinearOpMode {
                 Reset();
 
                 //Sets the robot to strafe Left for 1100 ticks at 0.4 power for 2.0 seconds
-                strafeLeft(1100, 0.4, 2000);
+                strafeLeft(1200, 0.4, 2000);
 
                 //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
                 drive(-500, 0.4, 3100);
