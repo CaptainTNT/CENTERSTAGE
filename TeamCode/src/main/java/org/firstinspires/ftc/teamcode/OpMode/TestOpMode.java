@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
@@ -16,11 +17,17 @@ public class TestOpMode extends OpMode {
     private DcMotor backRightDrive = null;
     private DcMotor backLeftDrive = null;
     private DcMotorEx LaunchMotor = null;
+    private DcMotor LaunchMotor3 = null;
+    private DcMotor LaunchMotor4 = null;
     private Servo servo1 = null;
     private Servo servo2 = null;
+    private Servo servo3 = null;
+    private Servo servo4 = null;
 
-    double Speed = 0.5;
-    double Turn_Speed = 0.55;
+    double Speed;
+    double MaxSpeed;
+    double MinSpeed;
+    double Turn_Speed;
     double Vertical;
     double Horizontal;
     double Pivot;
@@ -31,12 +38,11 @@ public class TestOpMode extends OpMode {
     double pid;
     double ff;
     double power;
-    double proportionalTerm;
 
     int newTarget = 10;
     int armPos;
     int target = 0;
-
+    boolean Armed = false;
     boolean changed1 = false; //leftservo
     boolean changed2 = false; //rightservo
 
@@ -51,8 +57,12 @@ public class TestOpMode extends OpMode {
         backLeftDrive = hardwareMap.get(DcMotor.class, "back Left");
         backRightDrive = hardwareMap.get(DcMotor.class, "back Right");
         LaunchMotor =  hardwareMap.get(DcMotorEx.class, "Launch Motor");
+        LaunchMotor3 = hardwareMap.get(DcMotor.class, "Launch Motor 3");
+        LaunchMotor4 = hardwareMap.get(DcMotor.class, "Launch Motor 4");
         servo1 = hardwareMap.get(Servo.class, "servo1");
         servo2 = hardwareMap.get(Servo.class, "servo2");
+        servo3 = hardwareMap.get(Servo.class, "servo 3");
+        servo4 = hardwareMap.get(Servo.class, "servo 4");
 
 
         backRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -64,8 +74,17 @@ public class TestOpMode extends OpMode {
         LaunchMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         LaunchMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        telemetry.addData("Warning", "This is a test OpMode for tuning");
+        Speed = 0.65;
+        MaxSpeed = 0.65;
+        MinSpeed = 0.4;
+        Turn_Speed = 0.55;
+
+        servo3.setPosition(1);
+        servo4.setPosition(0);
+
+        telemetry.addData("Info", "OpMode is ready to run");
         telemetry.update();
+
     }
     public void PIDLoop(int Target) {
         target = Target;
@@ -74,52 +93,78 @@ public class TestOpMode extends OpMode {
         pid = controller.calculate(armPos, target);
         ff = Math.cos(Math.toRadians(target / ticks_in_degree)) * f;
 
-        proportionalTerm = 0.0015 * (target - armPos);
+        double proportionalTerm = 0.0015 * (target - armPos);
 
         power = pid + ff - proportionalTerm;
         power = Range.clip(power, -1.0, 1.0);
 
         LaunchMotor.setPower(power);
+        telemetry.addData("Power", power);
     }
     public void loop() {
 
         PIDLoop(newTarget);
 
-        if (gamepad2.left_stick_y > 0){
-            newTarget++;
-        } else if (gamepad2.left_stick_y < 0){
-            newTarget--;
+        if (gamepad2.touchpad && !Armed) {
+            gamepad2.setLedColor(1, 0, 0, Gamepad.LED_DURATION_CONTINUOUS);
+            gamepad2.rumble(1000);
+            Armed = true;
+        } else if (gamepad2.touchpad && Armed){
+            double x = 0;
+            while (x < 10000) {
+                LaunchMotor4.setPower(0.4);
+                x += 1;
+            }
+            LaunchMotor4.setPower(0);
+        }
+
+        if (gamepad1.left_trigger > 0.3){
+            Speed = MinSpeed;
+        } else {
+            Speed = MaxSpeed;
         }
 
         if (gamepad2.left_stick_y > 0){
-            newTarget++;
+            newTarget += 2;
         } else if (gamepad2.left_stick_y < 0){
-            newTarget--;
+            newTarget -= 2;
         }
 
-        if (gamepad2.left_trigger > 0.3){
+        if (gamepad2.left_stick_y > 0){
+            newTarget += 2;
+        } else if (gamepad2.left_stick_y < 0){
+            newTarget -= 2;
+        }
+
+        if (gamepad2.left_bumper){
             newTarget = -100;
-        } else if (gamepad2.right_trigger > 0.3){
-            newTarget = -1100;
+        } else if (gamepad2.right_bumper){
+            newTarget = -1150;
         }
 
-        if (gamepad2.left_bumper && !changed1) {
+        if (gamepad2.left_trigger > 0.3 && !changed1) {
             leftServo = (leftServo == 0) ? 1 : 0;
             changed1 = true;
-        } else if (!gamepad2.left_bumper && changed1) {
+        } else if (gamepad2.left_trigger < 0.3 && changed1) {
             changed1 = false;
         }
 
-        if (gamepad2.right_bumper && !changed2) {
+        if (gamepad2.right_trigger > 0.3 && !changed2) {
             rightServo = (rightServo == 0) ? 1 : 0;
             changed2 = true;
-        } else if (!gamepad2.right_bumper && changed2) {
+        } else if (gamepad2.right_trigger < 0.3 && changed2) {
             changed2 = false;
+        }
+        if (gamepad2.triangle){
+            servo3.setPosition(0);
+            servo4.setPosition(1);
         }
 
         servo1.setPosition(rightServo);
         servo2.setPosition(leftServo);
 
+        servo1.setPosition(gamepad2.left_trigger);
+        servo2.setPosition(gamepad2.right_trigger);
         Vertical = Math.min(Math.max(-gamepad1.left_stick_x, -Speed), Speed);
         Horizontal = Math.min(Math.max(-gamepad1.left_stick_y, -Speed), Speed);
         Pivot = Math.min(Math.max(gamepad1.right_stick_x, -Turn_Speed), Turn_Speed);
@@ -128,17 +173,7 @@ public class TestOpMode extends OpMode {
         leftDrive.setPower(Pivot + Vertical + Horizontal);
         rightDrive.setPower(Pivot + (Vertical - Horizontal));
 
-        telemetry.addData("armPos", armPos);
-        telemetry.addData("newTarget", newTarget);
-        telemetry.addData("power", power);
-        telemetry.addData("proportionalTerm", proportionalTerm);
-        telemetry.addData("speed", Speed);
-        telemetry.addData("target", target);
-        telemetry.addData("Turn_Speed", Turn_Speed);
-        telemetry.addData("Vertical", Vertical);
-        telemetry.addData("Horizontal", Horizontal);
-        telemetry.addData("Pivot", Pivot);
-        telemetry.update();
+        telemetry.addData("Target", target);
     }
 
     @Override

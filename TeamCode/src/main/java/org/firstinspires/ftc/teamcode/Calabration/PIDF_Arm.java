@@ -4,6 +4,7 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.arcrobotics.ftclib.controller.PIDController;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -40,6 +41,12 @@ public class PIDF_Arm extends OpMode {
         double power = pid + ff;
 
         LaunchMotor.setPower(power);
+
+        if (gamepad2.left_stick_y > 0){
+            target += 2;
+        } else if (gamepad2.left_stick_y < 0){
+            target -= 2;
+        }
 
 
         telemetry.addData("pos ", armPos);
