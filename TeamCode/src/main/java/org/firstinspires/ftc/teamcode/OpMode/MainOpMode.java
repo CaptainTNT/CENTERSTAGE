@@ -17,6 +17,7 @@ public class MainOpMode extends OpMode {
     private DcMotor backRightDrive = null;
     private DcMotor backLeftDrive = null;
     private DcMotorEx LaunchMotor = null;
+    private DcMotor LaunchMotor3 = null;
     private DcMotor LaunchMotor4 = null;
     private Servo servo1 = null;
     private Servo servo2 = null;
@@ -56,6 +57,7 @@ public class MainOpMode extends OpMode {
         backLeftDrive = hardwareMap.get(DcMotor.class, "back Left");
         backRightDrive = hardwareMap.get(DcMotor.class, "back Right");
         LaunchMotor = hardwareMap.get(DcMotorEx.class, "Launch Motor");
+        LaunchMotor3 = hardwareMap.get(DcMotor.class, "Launch Motor 3");
         LaunchMotor4 = hardwareMap.get(DcMotor.class, "Launch Motor 4");
         servo1 = hardwareMap.get(Servo.class, "servo1");
         servo2 = hardwareMap.get(Servo.class, "servo2");
@@ -156,12 +158,11 @@ public class MainOpMode extends OpMode {
             servo3.setPosition(0);
             servo4.setPosition(1);
         }
-
         servo1.setPosition(rightServo);
         servo2.setPosition(leftServo);
 
-        servo1.setPosition(gamepad2.left_trigger);
-        servo2.setPosition(gamepad2.right_trigger);
+        LaunchMotor3.setPower(gamepad2.right_stick_y);
+        LaunchMotor3.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Vertical = Math.min(Math.max(-gamepad1.left_stick_x, -Speed), Speed);
         Horizontal = Math.min(Math.max(-gamepad1.left_stick_y, -Speed), Speed);
         Pivot = Math.min(Math.max(gamepad1.right_stick_x, -Turn_Speed), Turn_Speed);
@@ -169,6 +170,9 @@ public class MainOpMode extends OpMode {
         backRightDrive.setPower(-Pivot + Vertical + Horizontal);
         leftDrive.setPower(Pivot + Vertical + Horizontal);
         rightDrive.setPower(Pivot + (Vertical - Horizontal));
+
+        telemetry.addData("RightServo", rightServo);
+        telemetry.addData("LeftServer", leftServo);
     }
 
     @Override
