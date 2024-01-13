@@ -32,7 +32,7 @@ public class MainOpMode extends OpMode {
     double Horizontal;
     double Pivot;
     double leftServo = 0; //odd open, even closed
-    double rightServo = 0; //odd open, even closed
+    double rightServo = 1; //odd closed, even open
     double p = 0.0025, i = 0, d = 0.00001, f = 0.083;
     double ticks_in_degree = 700 / 180.0;
     double pid;
