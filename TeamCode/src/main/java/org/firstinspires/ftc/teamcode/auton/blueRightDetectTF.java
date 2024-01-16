@@ -145,29 +145,31 @@ public class blueRightDetectTF extends LinearOpMode {
         if (opModeIsActive()) {
 
             if(Right){
-                drive(-124, -0.4, 500);
+                drive(-124, -0.4, 500); // ADD MORE COMMENTS
 
                 spinLeft(900, 0.4, 2000);
 
                 strafeLeft(1500, 0.4, 1800);
 
-                servoLeftOpen(550);
+                servoLeftOpen(550); //Drops the purple pixel on the spike mark
 
-                drive(-100, -0.4,1000);
+                drive(-200, -0.4,1000);
 
-                strafeRight(1410, 0.4,2000);
+                strafeLeft(1000, 0.4,2000);
 
-                spinLeft(900, 0.4,2000);
+                spinLeft(60, 0.4, 500); //Recorrects rotational error
 
-                strafeLeft(4000, -0.6, 4700);
+                drive(-3500, 0.4,5000); // Drives towards the backboard
 
-                spinRight(900, -0.4,1000);
+                strafeRight(700, -0.6, 1500); //Aligns with the backboard to perpare to place the pixel
 
-                strafeLeft(600, 0.4,2000);
+                //spinRight(900, -0.4,1000);
 
-                arm(-1200, 0.5, false, 2500);
+                //strafeLeft(600, 0.4,2000);
 
-                drive(-700, -0.4,1000);
+                arm(-1300, 0.5, false, 2500);
+
+                drive(-330, -0.4,1000);
 
                 servoRightOpen(1000);
 
@@ -181,26 +183,22 @@ public class blueRightDetectTF extends LinearOpMode {
 
                 stop();
             } else if (Middle) {
-                drive(-124, -0.4, 500);
 
-                spinLeft(1800, 0.4,3000);
-
-
-                drive(1250, 0.4, 2000);
+                drive(-2000, 0.4, 2000);
 
                 servoLeftOpen(500);
 
-                drive(-1300, 0.4,2000);
+                drive(-300, 0.4,2000);
 
-                strafeLeft( 4000, 0.6,4000);
+                spinLeft(900, 0.4,2000);
 
-                spinRight(900, 0.4,2000);
+                drive(-3500, 0.4, 4000);
 
-                strafeLeft(800, 0.4,2800);
+                strafeRight(700, 0.4, 2000);
 
-                arm(-1200, 0.5,false,2500);
+                arm(-1300, 0.5,false,2500);
 
-                drive(-700, -0.4,1000);
+                drive(-300, -0.4,1000);
 
                 servoRightOpen(1000);
 
