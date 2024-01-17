@@ -185,7 +185,7 @@ public class redCloseParkLeft extends LinearOpMode {
                 strafeRight(1500, 0.4);
 
                 //Sets the robot to open left servo for 1.5 seconds
-                servoLeftOpen(1500);
+                servoLeftOpen(1000);
 
                 //Sets the robot lift to arm for -1450 ticks at 0.5 power for 2.0 seconds
                 arm(-1450, 0.5, false, 2000);
@@ -320,7 +320,8 @@ public class redCloseParkLeft extends LinearOpMode {
         Servo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo1");
         Servo2 = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo2");
 
-
+        leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         Servo.setDirection(com.qualcomm.robotcore.hardware.Servo.Direction.REVERSE);
     }
 }

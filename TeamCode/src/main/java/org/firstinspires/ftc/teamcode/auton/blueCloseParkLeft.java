@@ -281,6 +281,8 @@ public class blueCloseParkLeft extends LinearOpMode {
         Servo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo1");
         Servo2 = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo2");
 
+        leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         Servo.setDirection(com.qualcomm.robotcore.hardware.Servo.Direction.REVERSE);
     }
 }   // end class

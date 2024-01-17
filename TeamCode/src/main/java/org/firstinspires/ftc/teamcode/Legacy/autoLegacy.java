@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 //Sets name for code and disables it
 @Disabled
-@Autonomous(name = "auto")
+@Autonomous(name = "autoL ")
 public class autoLegacy extends OpMode {
 
     //Set values to variables for motors

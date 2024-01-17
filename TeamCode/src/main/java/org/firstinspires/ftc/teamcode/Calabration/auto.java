@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Disabled
-@Autonomous(name = "newAutonTest")
+@Autonomous(name = "auto")
 public class auto extends OpMode {
 
     public static DcMotor leftDrive = null;
@@ -269,7 +269,7 @@ public class auto extends OpMode {
     }
 
     public static void checkMotorBusy(){
-        if (leftDrive.isBusy() || rightDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy()){
+        if (leftDrive.isBusy() || rightDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy() || Launchmotor.isBusy()){
             driveMotors = motorStatus.driving;
         } else {
             driveMotors = motorStatus.waiting;
