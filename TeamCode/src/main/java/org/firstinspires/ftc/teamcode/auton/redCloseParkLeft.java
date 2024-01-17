@@ -237,7 +237,7 @@ public class redCloseParkLeft extends LinearOpMode {
                 drive(-1200, 0.4);
 
                 //Sets the robot to strafe left for 5000 ticks at 0.4 power for 1.5 seconds
-                strafeLeft(2000, 0.4);
+                strafeLeft(1000, 0.4);
 
                 //Sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
                 arm(-1240, 0.6, false, 1000);
