@@ -32,7 +32,7 @@ public class auto extends OpMode {
         backRightDrive.setTargetPosition(target);
         backLeftDrive.setTargetPosition(target);
 
-        while (driveMotors == motorStatus.busy) {
+        while (driveMotors == motorStatus.busy && ArmMotor == motorStatus.waiting) {
             leftDrive.setPower(power);
             rightDrive.setPower(power);
             backRightDrive.setPower(power);
@@ -62,7 +62,7 @@ public class auto extends OpMode {
         backRightDrive.setTargetPosition(target);
         backLeftDrive.setTargetPosition(-target);
 
-        while (driveMotors == motorStatus.busy) {
+        while (driveMotors == motorStatus.busy && ArmMotor == motorStatus.waiting) {
             leftDrive.setPower(power);
             rightDrive.setPower(-power);
             backRightDrive.setPower(power);
@@ -94,7 +94,7 @@ public class auto extends OpMode {
         backRightDrive.setTargetPosition(-target);
         backLeftDrive.setTargetPosition(target);
 
-        while (driveMotors == motorStatus.busy) {
+        while (driveMotors == motorStatus.busy && ArmMotor == motorStatus.waiting) {
             leftDrive.setPower(-power);
             rightDrive.setPower(power);
             backRightDrive.setPower(-power);
@@ -126,7 +126,7 @@ public class auto extends OpMode {
         backRightDrive.setTargetPosition(target);
         backLeftDrive.setTargetPosition(-target);
 
-        while (driveMotors == motorStatus.busy) {
+        while (driveMotors == motorStatus.busy && ArmMotor == motorStatus.waiting) {
             leftDrive.setPower(power);
             rightDrive.setPower(power);
             backRightDrive.setPower(power);
@@ -159,7 +159,7 @@ public class auto extends OpMode {
         backLeftDrive.setTargetPosition(target);
 
 
-        while (driveMotors == motorStatus.busy) {
+        while (driveMotors == motorStatus.busy && ArmMotor == motorStatus.waiting) {
             leftDrive.setPower(power);
             rightDrive.setPower(power);
             backRightDrive.setPower(power);
