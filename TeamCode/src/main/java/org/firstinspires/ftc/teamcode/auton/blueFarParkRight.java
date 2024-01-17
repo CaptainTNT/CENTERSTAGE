@@ -184,7 +184,7 @@ public class blueFarParkRight extends LinearOpMode {
                 stop();
             } else if (Middle) {
 
-                drive(-2000, 0.4, 2000);
+                drive(-1900, 0.4, 4000);
 
                 servoLeftOpen(500);
 
@@ -192,7 +192,7 @@ public class blueFarParkRight extends LinearOpMode {
 
                 spinLeft(900, 0.4,2000);
 
-                drive(-3500, 0.4, 4000);
+                drive(-3500, 0.4, 5000);
 
                 strafeRight(700, 0.4, 2000);
 
@@ -205,7 +205,7 @@ public class blueFarParkRight extends LinearOpMode {
                 drive(200, -0.4,1000);
                 Reset();
 
-                strafeLeft(1000, -0.4,2000);
+                strafeLeft(1000, -0.4,4000);
 
                 drive(-500, -0.4,1000);
 
