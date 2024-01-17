@@ -27,10 +27,10 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 import java.util.List;
 
 //States the name of the code in the Driver Hub and groups codes of same color together
-@Autonomous(name = "redCloseParkLeft", group = "RedNewClose")
+@Autonomous(name = "redCloseParkRightLegacy", group = "RedNewClose")
 
 //States the class and adds the methods from LinearOpMode
-public class redCloseParkLeft extends LinearOpMode {
+public class redCloseParkRightLegacy extends LinearOpMode {
 
     //Tells code code to use the webcam
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
@@ -201,7 +201,7 @@ public class redCloseParkLeft extends LinearOpMode {
                 Reset();
 
                 //Sets the robot to strafe right for 1600 ticks at 0.4 power for 3.0 seconds
-                strafeRight(1600, 0.4, 3000);
+                strafeLeft(1600, 0.4, 3000);
 
                 //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
                 drive(-500, 0.4, 3100);
@@ -209,7 +209,7 @@ public class redCloseParkLeft extends LinearOpMode {
                 //Stops the robot
                 stop();
 
-              //Will run if Middle is the last object detected when opmode is started
+                //Will run if Middle is the last object detected when opmode is started
             } else if (Middle) {
 
                 //Sets the robot to drive for -1950 ticks at 0.4 power for 3.0 seconds
@@ -245,7 +245,7 @@ public class redCloseParkLeft extends LinearOpMode {
                 Reset();
 
                 //Sets the robot to strafe right for 1100 ticks at 0.4 power for 2.0 seconds
-                strafeRight(1100, 0.4, 2000);
+                strafeLeft(1100, 0.4, 2000);
 
                 //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
                 drive(-500, 0.4, 3100);
@@ -253,7 +253,7 @@ public class redCloseParkLeft extends LinearOpMode {
                 //Stops the robot
                 stop();
 
-              //Will run if Right is the last object detected when opmode is started
+                //Will run if Right is the last object detected when opmode is started
             } else {
                 //Sets the robot to drive for -1150 ticks at 0.4 power for 3.0 seconds
                 drive(-1150, 0.4, 3000);
@@ -288,7 +288,7 @@ public class redCloseParkLeft extends LinearOpMode {
                 Reset();
 
                 //Sets the robot to strafe right for 1000 ticks at 0.4 power for 3.0 seconds
-                strafeRight(1000, 0.4, 3000);
+                strafeLeft(1000, 0.4, 3000);
 
                 //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
                 drive(-500, 0.4, 3100);

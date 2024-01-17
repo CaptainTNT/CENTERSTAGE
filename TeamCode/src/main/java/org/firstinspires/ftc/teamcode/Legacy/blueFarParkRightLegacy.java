@@ -23,8 +23,8 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
 
-@Autonomous(name = "blueFarParkLeft", group = "BlueNewFar")
-public class blueFarParkLeft extends LinearOpMode {
+@Autonomous(name = "blueFarParkRightLegacy", group = "BlueNewFar")
+public class blueFarParkRightLegacy extends LinearOpMode {
 
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
@@ -167,7 +167,7 @@ public class blueFarParkLeft extends LinearOpMode {
                 drive(200, -0.4, 1000);
                 Reset();
 
-                strafeRight(1000, -0.4, 2000);
+                strafeLeft(900, -0.4, 2000);
 
                 drive(-500, -0.4, 1000);
 
@@ -183,7 +183,7 @@ public class blueFarParkLeft extends LinearOpMode {
 
                 spinLeft(900, 0.4,2000);
 
-                drive(-3500, 0.4, 4000);
+                drive(-3500, 0.4, 5000);
 
                 strafeRight(700, 0.4, 2000);
 
@@ -196,7 +196,7 @@ public class blueFarParkLeft extends LinearOpMode {
                 drive(200, -0.4,1000);
                 Reset();
 
-                strafeRight(1300, -0.4,2000);
+                strafeLeft(1000, -0.4,4000);
 
                 drive(-500, -0.4,1000);
 
@@ -234,7 +234,7 @@ public class blueFarParkLeft extends LinearOpMode {
                 drive(200, -0.4, 1000);
                 Reset();
 
-                strafeRight(900, -0.4, 2000);
+                strafeLeft(900, -0.4, 2000);
 
                 drive(-500, -0.4, 1000);
 

@@ -23,21 +23,22 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
 
-@Autonomous(name = "redFarParkRight", group = "RedNewFar")
-public class redFarParkRight extends LinearOpMode {
+@Autonomous(name = "blueFarParkLeftLegacy", group = "BlueNewFar")
+public class blueFarParkLeftLegacy extends LinearOpMode {
 
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
-    private static final String TFOD_MODEL_ASSET = "redModel.tflite";
+    private static final String TFOD_MODEL_ASSET = "blueModel.tflite";
 
     private static final String[] LABELS = {
-            "redProp",
+       "blueProp",
     };
 
     private TfodProcessor tfod;
+
     private VisionPortal visionPortal;
+    boolean Right = false;
     boolean Middle = false;
-    boolean Left = false;
 
     private void initTfod() {
 
@@ -45,7 +46,6 @@ public class redFarParkRight extends LinearOpMode {
         tfod = new TfodProcessor.Builder()
 
                 .setModelAssetName(TFOD_MODEL_ASSET)
-                //.setModelFileName(TFOD_MODEL_FILE)
 
                 .setModelLabels(LABELS)
 
@@ -61,6 +61,7 @@ public class redFarParkRight extends LinearOpMode {
             builder.setCamera(BuiltinCameraDirection.BACK);
         }
 
+
         // Set and enable the processor.
         builder.addProcessor(tfod);
 
@@ -70,14 +71,12 @@ public class redFarParkRight extends LinearOpMode {
 
     }   // end method initTfod()
 
-    /**
-     * Add telemetry about TensorFlow Object Detection (TFOD) recognitions.
-     */
+
     private void telemetryTfod() {
 
         List<Recognition> currentRecognitions = tfod.getRecognitions();
         telemetry.addData("# Objects Detected", currentRecognitions.size());
-        telemetry.addLine("Right");
+        telemetry.addLine("Left");
 
         // Step through the list of recognitions and display info for each one.
         for (Recognition recognition : currentRecognitions) {
@@ -88,18 +87,18 @@ public class redFarParkRight extends LinearOpMode {
             telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
             telemetry.addData("- Position", "%.0f / %.0f", x, y);
             telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
-            if (x<=330){
-                Left = true;
+            if (x>=330){
+                Right = true;
                 Middle = false;
-                telemetry.addLine("Left");
-            } else if ( 330 <= x) {
+                telemetry.addLine("Right");
+            } else if ( 330 >= x) {
                 Middle = true;
-                Left = false;
+                Right = false;
                 telemetry.addLine("Middle");
             }else {
                 Middle = false;
-                Left = false;
-                telemetry.addLine("Right");
+                Right = false;
+                telemetry.addLine("Left");
             }
 
         }   // end for() loop
@@ -136,56 +135,57 @@ public class redFarParkRight extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            if(Left){
-                drive(-123, -0.4,1000);
+            if(Right){
+                drive(-124, -0.4, 500); // ADD MORE COMMENTS
 
-                spinRight(900, 0.4,2000);
+                spinLeft(900, 0.4, 2000);
 
-                strafeRight(1500, 0.4,1800);
+                strafeLeft(1500, 0.4, 1800);
 
-                drive(60, 0.4,500);
+                servoLeftOpen(550); //Drops the purple pixel on the spike mark
 
-                servoLeftOpen(1000);
+                drive(-200, -0.4,1000);
 
-                drive(-300, -0.4,500);
+                strafeLeft(1000, 0.4,2000);
 
-                strafeRight(1000, 0.4,1800);
+                spinLeft(60, 0.4, 500); //Recorrects rotational error
 
-                spinRight(60, 0.4,2000);
+                drive(-3500, 0.4,5000); // Drives towards the backboard
 
-                drive(-3000, 0.4, 4000);
+                strafeRight(700, -0.6, 1500); //Aligns with the backboard to perpare to place the pixel
 
-                strafeLeft(600, 0.6,4000);
+                //spinRight(900, -0.4,1000);
 
-                arm(-1200, 0.5,false, 2000);
+                //strafeLeft(600, 0.4,2000);
 
-                drive(-400, -0.4,2000);
+                arm(-1300, 0.5, false, 2500);
 
-                servoRightOpen(2000);
+                drive(-330, -0.4,1000);
 
-                drive(200, -0.4,1000);
+                servoRightOpen(1000);
+
+                drive(200, -0.4, 1000);
                 Reset();
 
-                strafeLeft(700, 0.4,3000);
+                strafeRight(1000, -0.4, 2000);
 
-                drive(-500, -0.4,1500);
+                drive(-500, -0.4, 1000);
 
 
                 stop();
-
-
             } else if (Middle) {
-                drive(-2000, 0.4, 2000);
+
+                drive(-1960, 0.4, 4000);
 
                 servoLeftOpen(500);
 
                 drive(-300, 0.4,2000);
 
-                spinRight(900, 0.4,2000);
+                spinLeft(900, 0.4,2000);
 
                 drive(-3500, 0.4, 4000);
 
-                strafeLeft(700, 0.4, 2000);
+                strafeRight(700, 0.4, 2000);
 
                 arm(-1300, 0.5,false,2500);
 
@@ -196,48 +196,52 @@ public class redFarParkRight extends LinearOpMode {
                 drive(200, -0.4,1000);
                 Reset();
 
-                strafeLeft(1000, -0.4,2000);
+                strafeRight(1300, -0.4,2000);
 
                 drive(-500, -0.4,1000);
+
+
                 stop();
             } else {
+                drive(-124, -0.4, 500); // ADD MORE COMMENTS
 
-                drive(-124, -0.4,500);
+                spinRight(900, 0.4, 2000);
 
-                spinLeft(900, 0.4,2000);
+                strafeRight(1500, 0.4, 1800);
 
-                strafeLeft(1500, 0.4,1800);
+                servoLeftOpen(550); //Drops the purple pixel on the spike mark
 
-                drive(260, 0.4,800);
+                drive(-200, -0.4,1000);
 
-                servoLeftOpen(500);
+                strafeRight(1000, 0.4,2000);
 
-                drive(-300, -0.4,1000);
+                spinLeft(1800, 0.4, 500); //Recorrects rotational error
 
-                strafeLeft(1000, 0.4,1800);
+                drive(-3500, 0.4,5000); // Drives towards the backboard
 
-                spinLeft(1800, 0.4,2000);
+                strafeRight(1400, -0.6, 1500); //Aligns with the backboard to perpare to place the pixel
 
-                drive(3000, -0.6,4700);
+                //spinRight(900, -0.4,1000);
 
-                strafeLeft(1400, 0.4,2800);
+                //strafeLeft(600, 0.4,2000);
 
-                arm(-1200, 0.5,false,2500);
+                arm(-1300, 0.5, false, 2500);
 
-                drive(-700, -0.4,1000);
+                drive(-330, -0.4,1000);
 
                 servoRightOpen(1000);
 
-                drive(200, -0.4,1000);
+                drive(200, -0.4, 1000);
                 Reset();
 
-                strafeLeft(900, -0.4,2000);
+                strafeRight(900, -0.4, 2000);
 
-                drive(-500, -0.4,1000);
-
+                drive(-500, -0.4, 1000);
 
                 stop();
             }
+
+
             stop();
         }
 
