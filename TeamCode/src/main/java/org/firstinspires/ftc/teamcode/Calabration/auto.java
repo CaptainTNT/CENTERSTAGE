@@ -113,6 +113,7 @@ public class auto extends OpMode {
             stopDrive();
             driveReset();
         }
+        driveMotors = motorStatus.waiting;
 
 
     }
@@ -189,6 +190,9 @@ public class auto extends OpMode {
 
     public static void arm (int target, double power, boolean autoStop) {
         Reset();
+        stopDrive();
+        driveMotors = motorStatus.waiting;
+
         Launchmotor.setTargetPosition(target);
         ArmMotor = motorStatus.busy;
 
@@ -197,12 +201,13 @@ public class auto extends OpMode {
 
             Launchmotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             checkLaunchMotorBusy();
+
         }
         timer.reset();
 
         if (timer.milliseconds() >= 700){
             stopArm();
-            Reset();
+
         }
 
     }
