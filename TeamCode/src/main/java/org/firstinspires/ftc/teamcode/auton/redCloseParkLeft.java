@@ -198,7 +198,7 @@ public class redCloseParkLeft extends LinearOpMode {
                 strafeLeft(600, 0.4);
 
                 //Sets the robot lift to arm for -1450 ticks at 0.5 power for 2.0 seconds
-                arm(-1450, 0.5, false, 2000);
+                arm(-1450, 0.5, false);
 
                 //Sets the robot to open right flipper for 2 seconds
                 servoRightOpen(2000);
@@ -206,7 +206,7 @@ public class redCloseParkLeft extends LinearOpMode {
                 //Sets the robot to drive for 200 ticks at 0.4 power for 3.1 seconds
                 drive(200, 0.4);
 
-                //Resets the encoders + lowers arm
+                 //Resets the encoders + lowers arm
                 Reset();
 
                 //Sets the robot to strafe right for 1600 ticks at 0.4 power for 3.0 seconds
@@ -240,7 +240,7 @@ public class redCloseParkLeft extends LinearOpMode {
                 strafeLeft(1000, 0.4);
 
                 //Sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1240, 0.6, false, 1000);
+                arm(-1240, 0.6, false);
 
                 //Sets the robot to drive for -350 ticks at 0.4 power for 1.0 seconds
                 drive(-490, 0.4);
@@ -283,7 +283,7 @@ public class redCloseParkLeft extends LinearOpMode {
                 drive(-271, 0.4);
 
                 //sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1200, 0.6, false, 1000);
+                arm(-1200, 0.6, false);
 
                 //Sets the robot to drive for -1460 ticks at 0.4 power for 2.0 seconds
                 drive(-1460, 0.4);

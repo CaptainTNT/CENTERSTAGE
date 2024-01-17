@@ -155,7 +155,7 @@ public class blueCloseParkLeft extends LinearOpMode {
                 servoLeftOpen(1500);
 
                 //Sets the robot lift to arm for -1450 ticks at 0.5 power for 2.0 seconds
-                arm(-1400, 0.5, false, 2000);
+                arm(-1400, 0.5, false);
 
                 //Sets the robot to drive for -840 ticks at 0.4 power for 3.1 seconds
                 drive(-840, 0.4);
@@ -195,7 +195,7 @@ public class blueCloseParkLeft extends LinearOpMode {
                 spinLeft(920, 0.4);
 
                 //Sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1260, 0.6, false, 1000);
+                arm(-1260, 0.6, false);
 
                 //Sets the robot to drive for -1200 ticks at 0.4 power for 2.0 seconds
                 drive(-1200, 0.4);
@@ -241,7 +241,7 @@ public class blueCloseParkLeft extends LinearOpMode {
                 drive(-271, 0.4);
 
                 //sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1200, 0.6, false, 1000);
+                arm(-1200, 0.6, false);
 
                 //Sets the robot to drive for -1460 ticks at 0.4 power for 2.0 seconds
                 drive(-1460, 0.4);

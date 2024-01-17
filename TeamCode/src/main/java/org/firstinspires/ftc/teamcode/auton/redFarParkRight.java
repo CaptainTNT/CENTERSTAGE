@@ -166,7 +166,7 @@ public class redFarParkRight extends LinearOpMode {
 
                 strafeLeft(600, 0.6);
 
-                arm(-1200, 0.5,false, 2000);
+                arm(-1200, 0.5,false);
 
                 drive(-400, -0.4);
 
@@ -196,7 +196,7 @@ public class redFarParkRight extends LinearOpMode {
 
                 strafeLeft(700, 0.4);
 
-                arm(-1300, 0.5,false,2500);
+                arm(-1300, 0.5,false);
 
                 drive(-300, -0.4);
 
@@ -231,7 +231,7 @@ public class redFarParkRight extends LinearOpMode {
 
                 strafeLeft(1400, 0.4);
 
-                arm(-1200, 0.5,false,2500);
+                arm(-1200, 0.5,false);
 
                 drive(-700, -0.4);
 
