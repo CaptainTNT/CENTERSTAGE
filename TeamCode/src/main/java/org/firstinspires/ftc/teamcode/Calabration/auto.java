@@ -7,8 +7,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-
 @Disabled
 @Autonomous(name = "auto")
 public class auto extends OpMode {
@@ -23,8 +21,6 @@ public class auto extends OpMode {
 
     public static ElapsedTime timer = new ElapsedTime();
     static motorStatus driveMotors;
-    
-    public static Telemetry Telemetry;
 
     public static void drive(int target, double power) {
         driveReset();
@@ -282,12 +278,8 @@ public class auto extends OpMode {
     public static void checkMotorBusy(){
         if (leftDrive.isBusy() || rightDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy() || Launchmotor.isBusy()){
             driveMotors = motorStatus.busy;
-            Telemetry.addData("Busy?", driveMotors);
-            Telemetry.update();
         } else {
             driveMotors = motorStatus.waiting;
-            Telemetry.addData("Busy?", driveMotors);
-            Telemetry.update();
         }
     }
 
