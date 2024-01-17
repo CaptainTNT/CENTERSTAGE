@@ -215,12 +215,12 @@ public class auto extends OpMode {
             checkMotorBusy();
 
         }
+        ArmMotor = motorStatus.ready;
         timer.reset();
 
         if (timer.milliseconds() >= 1500){
             stopArm();
         }
-        ArmMotor = motorStatus.ready;
     }
 
     public static void stopArm() {
