@@ -204,7 +204,7 @@ public class auto extends OpMode {
         Reset();
         stopDrive();
         if (driveMotors == motorStatus.ready){
-            driveMotors = motorStatus.busy;
+            ArmMotor = motorStatus.busy;
         }
         Launchmotor.setTargetPosition(target);
 
