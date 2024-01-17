@@ -277,7 +277,11 @@ public class auto extends OpMode {
 
     public static void checkDriveMotorBusy(){
         if (leftDrive.isBusy() || rightDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy()){
-            driveMotors = motorStatus.busy;
+            if (Launchmotor.isBusy()){
+                driveMotors = motorStatus.waiting;
+            }else {
+                driveMotors = motorStatus.busy;
+            }
         } else {
             driveMotors = motorStatus.waiting;
         }
