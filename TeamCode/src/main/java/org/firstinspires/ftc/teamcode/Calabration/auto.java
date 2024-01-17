@@ -215,6 +215,7 @@ public class auto extends OpMode {
             Servo2.setPosition(1);
 
         }
+        driveMotors = motorStatus.driving;
     }
 
     public static void servoRightOpen (double sleep) {
@@ -223,6 +224,7 @@ public class auto extends OpMode {
         while (sleep > timer.milliseconds()) {
             Servo.setPosition(1);
         }
+        driveMotors = motorStatus.driving;
     }
 
     public static void servoLeftClose () {
