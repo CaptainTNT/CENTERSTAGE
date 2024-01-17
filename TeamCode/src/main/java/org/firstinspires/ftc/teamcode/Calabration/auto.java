@@ -47,7 +47,7 @@ public class auto extends OpMode {
 
         if (timer.milliseconds() >= 700){
             stopDrive();
-            Reset();
+            driveReset();
         }
 
     }
@@ -78,7 +78,7 @@ public class auto extends OpMode {
 
         if (timer.milliseconds() >= 700){
             stopDrive();
-            Reset();
+            driveReset();
         }
 
 
@@ -110,7 +110,7 @@ public class auto extends OpMode {
 
         if (timer.milliseconds() >= 700){
             stopDrive();
-            Reset();
+            driveReset();
         }
 
 
@@ -142,7 +142,7 @@ public class auto extends OpMode {
 
         if (timer.milliseconds() >= 700){
             stopDrive();
-            Reset();
+            driveReset();
         }
 
 
@@ -174,7 +174,7 @@ public class auto extends OpMode {
 
         if (timer.milliseconds() >= 700){
             stopDrive();
-            Reset();
+            driveReset();
         }
 
     }
