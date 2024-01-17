@@ -190,7 +190,6 @@ public class auto extends OpMode {
         Reset();
         Launchmotor.setTargetPosition(target);
         driveMotors = motorStatus.busy;
-        timer.reset();
 
         while (driveMotors == motorStatus.busy) {
             Launchmotor.setPower(power);
