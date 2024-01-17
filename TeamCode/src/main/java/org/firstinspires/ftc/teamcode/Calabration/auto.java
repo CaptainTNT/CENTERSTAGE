@@ -186,18 +186,20 @@ public class auto extends OpMode {
         backLeftDrive.setPower(0);
     }
 
-    public static void arm (int target, double power, boolean autoStop, double sleep) {
+    public static void arm (int target, double power, boolean autoStop) {
         Reset();
         Launchmotor.setTargetPosition(target);
+        driveMotors = motorStatus.driving;
         timer.reset();
 
-        while (sleep > timer.milliseconds()) {
+        while (driveMotors == motorStatus.driving) {
             Launchmotor.setPower(power);
 
             Launchmotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            checkMotorBusy();
         }
 
-        if ((timer.milliseconds() == sleep && autoStop)){
+        if ((autoStop)){
             stopArm();
             Reset();
         }
