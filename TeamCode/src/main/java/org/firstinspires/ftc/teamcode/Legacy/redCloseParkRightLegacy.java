@@ -16,6 +16,7 @@ import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.strafeLeft;
 import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.strafeRight;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
@@ -28,6 +29,7 @@ import java.util.List;
 
 //States the name of the code in the Driver Hub and groups codes of same color together
 @Autonomous(name = "redCloseParkRightLegacy", group = "RedNewClose")
+@Disabled
 
 //States the class and adds the methods from LinearOpMode
 public class redCloseParkRightLegacy extends LinearOpMode {

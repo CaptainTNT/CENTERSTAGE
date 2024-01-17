@@ -13,6 +13,7 @@ import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.strafeLeft;
 import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.strafeRight;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
@@ -22,6 +23,7 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
+@Disabled
 
 @Autonomous(name = "redFarParkRightLegacy", group = "RedNewFar")
 public class redFarParkRightLegacy extends LinearOpMode {
