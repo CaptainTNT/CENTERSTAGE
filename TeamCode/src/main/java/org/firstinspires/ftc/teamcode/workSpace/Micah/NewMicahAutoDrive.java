@@ -1,16 +1,16 @@
 package org.firstinspires.ftc.teamcode.workSpace.Micah;
 
-import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.Servo2;
-import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.rightDrive;
-import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.backRightDrive;
-import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.backLeftDrive;
 import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.Launchmotor;
 import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.Servo;
+import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.Servo2;
+import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.backLeftDrive;
+import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.backRightDrive;
 import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.driveMB;
 import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.leftDrive;
+import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.rightDrive;
+import static org.firstinspires.ftc.teamcode.workSpace.Micah.newAutonTest.strafeRightMB;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -26,7 +26,7 @@ public class NewMicahAutoDrive extends LinearOpMode {
 
         driveMB(1000, 0.4);
 
-        //strafeRightMB(1000, 0.4);
+        strafeRightMB(1000, 0.4);
     }
 
     public void hardwareImports() {
