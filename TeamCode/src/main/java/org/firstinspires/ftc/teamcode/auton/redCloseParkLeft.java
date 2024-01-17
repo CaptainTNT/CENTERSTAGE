@@ -191,7 +191,7 @@ public class redCloseParkLeft extends LinearOpMode {
                 arm(-1450, 0.5, false, 2000);
 
                 //Sets the robot to drive for -840 ticks at 0.4 power for 3.1 seconds
-                drive(-840, 0.4);
+                drive(-1000, 0.4);
 
                 //Sets the robot to strafe left for 600 ticks at 0.4 power for 1.8 seconds
                 strafeLeft(600, 0.4);
@@ -320,8 +320,7 @@ public class redCloseParkLeft extends LinearOpMode {
         Servo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo1");
         Servo2 = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo2");
 
-        leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-        backRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+
         Servo.setDirection(com.qualcomm.robotcore.hardware.Servo.Direction.REVERSE);
     }
 }
