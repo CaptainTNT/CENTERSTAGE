@@ -156,28 +156,26 @@ public class redLeftDetectTF extends LinearOpMode {
 
                 servoLeftOpen(1000);
 
-                drive(-200, -0.4,500);
+                drive(-300, -0.4,500);
 
-                strafeLeft(1430, 0.4,1800);
+                strafeRight(1000, 0.4,1800);
 
-                spinLeft(905, 0.4,2000);
+                spinRight(60, 0.4,2000);
 
-                strafeLeft(4000, 0.6,4000);
+                drive(-3000, 0.4, 4000);
 
-                drive(-1500, -0.4,2000);
-
-                spinRight(900, 0.4,2000);
+                strafeLeft(600, 0.6,4000);
 
                 arm(-1200, 0.5,false, 2000);
 
-                drive(-300, 0.4,1000);
+                drive(-400, -0.4,2000);
 
                 servoRightOpen(2000);
 
                 drive(200, -0.4,1000);
                 Reset();
 
-                strafeLeft(1500, 0.4,3000);
+                strafeRight(700, 0.4,3000);
 
                 drive(-500, -0.4,1500);
 
@@ -186,37 +184,33 @@ public class redLeftDetectTF extends LinearOpMode {
 
 
             } else if (Middle) {
-                drive(-124, -0.4,500);
-
-                spinLeft(1800, 0.4,3000);
-
-                drive(1250, 0.4,2000);
+                drive(-2000, 0.4, 2000);
 
                 servoLeftOpen(500);
 
-                drive(-1300, 0.4,2000);
+                drive(-300, 0.4,2000);
 
-                strafeRight(4000, 0.4,4000);
+                spinRight(900, 0.4,2000);
 
-                spinLeft(850, 0.4,2000);
+                drive(-3500, 0.4, 4000);
 
-                strafeRight(950, 0.4,2800);
+                strafeLeft(700, 0.4, 2000);
 
-                arm(-1200, 0.5,false,2500);
+                arm(-1300, 0.5,false,2500);
 
-                drive(-1000, -0.4,1000);
+                drive(-300, -0.4,1000);
 
                 servoRightOpen(1000);
 
                 drive(200, -0.4,1000);
                 Reset();
 
-                strafeLeft(950, -0.4,2000);
+                strafeRight(1000, -0.4,2000);
 
                 drive(-500, -0.4,1000);
-
                 stop();
             } else {
+
                 drive(-124, -0.4,500);
 
                 spinLeft(900, 0.4,2000);
@@ -229,15 +223,13 @@ public class redLeftDetectTF extends LinearOpMode {
 
                 drive(-300, -0.4,1000);
 
-                strafeRight(1410, 0.4,2000);
+                strafeLeft(1000, 0.4,1800);
 
-                spinLeft(900, 0.4,2000);
+                spinLeft(1800, 0.4,2000);
 
-                strafeRight(4000, -0.6,4700);
+                drive(3000, -0.6,4700);
 
-                spinLeft(900, -0.4,1000);
-
-                strafeRight(600, 0.4,2800);
+                strafeLeft(1400, 0.4,2800);
 
                 arm(-1200, 0.5,false,2500);
 
@@ -248,7 +240,7 @@ public class redLeftDetectTF extends LinearOpMode {
                 drive(200, -0.4,1000);
                 Reset();
 
-                strafeLeft(900, -0.4,2000);
+                strafeRight(900, -0.4,2000);
 
                 drive(-500, -0.4,1000);
 

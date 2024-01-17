@@ -15,7 +15,6 @@ import static org.firstinspires.ftc.teamcode.Calabration.auto.servoLeftOpen;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightClose;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightOpen;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.spinLeft;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.spinRight;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeLeft;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeRight;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.timer;
@@ -30,10 +29,11 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.tfod.TfodProcessor;
+
 import java.util.List;
 
-@Autonomous(name = "blueCloseDetectTF", group = "Blue")
-public class blueLeftDetectTF extends LinearOpMode {
+@Autonomous(name = "blueCloseParkRight", group = "BlueNewClose")
+public class blueCloseParkRight extends LinearOpMode {
 
     private static final boolean USE_WEBCAM = true;
     private static final String TFOD_MODEL_ASSET = "blueModel.tflite";

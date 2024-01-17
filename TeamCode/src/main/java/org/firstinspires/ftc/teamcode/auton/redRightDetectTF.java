@@ -32,7 +32,7 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 import java.util.List;
 
 //States the name of the code in the Driver Hub and groups codes of same color together
-@Autonomous(name = "redRightDetectTF", group = "Red")
+@Autonomous(name = "redClose", group = "Red")
 
 //States the class and adds the methods from LinearOpMode
 public class redRightDetectTF extends LinearOpMode {
@@ -187,23 +187,23 @@ public class redRightDetectTF extends LinearOpMode {
                 //Sets the robot to open left servo for 1.5 seconds
                 servoLeftOpen(1500);
 
+                //Sets the robot lift to arm for -1450 ticks at 0.5 power for 2.0 seconds
+                arm(-1450, 0.5, false, 2000);
+
                 //Sets the robot to drive for -840 ticks at 0.4 power for 3.1 seconds
                 drive(-840, 0.4, 3100);
 
                 //Sets the robot to strafe left for 600 ticks at 0.4 power for 1.8 seconds
                 strafeLeft(600, 0.4, 1800);
 
-                //Sets the robot lift to arm for -1450 ticks at 0.5 power for 2.0 seconds
-                arm(-1450, 0.5, false, 2000);
-
                 //Sets the robot to open right flipper for 2 seconds
                 servoRightOpen(2000);
 
-                //Resets the encoders + lowers arm
-                Reset();
-
                 //Sets the robot to drive for 200 ticks at 0.4 power for 3.1 seconds
                 drive(200, 0.4, 3100);
+
+                //Resets the encoders + lowers arm
+                Reset();
 
                 //Sets the robot to strafe right for 1600 ticks at 0.4 power for 3.0 seconds
                 strafeRight(1600, 0.4, 3000);
@@ -214,7 +214,7 @@ public class redRightDetectTF extends LinearOpMode {
                 //Stops the robot
                 stop();
 
-              //Will run if Middle is the last object detected when opmode is started
+                //Will run if Middle is the last object detected when opmode is started
             } else if (Middle) {
 
                 //Sets the robot to drive for -1950 ticks at 0.4 power for 3.0 seconds
@@ -229,20 +229,22 @@ public class redRightDetectTF extends LinearOpMode {
                 //Sets the robot to spin right for 920 ticks at 0.4 power for 2.0 seconds
                 spinRight(920, 0.4, 2000);
 
-                //Sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1240, 0.6, false, 1000);
-
                 //Sets the robot to drive for -1200 ticks at 0.4 power for 2.0 seconds
                 drive(-1200, 0.4, 2000);
 
                 //Sets the robot to strafe left for 5000 ticks at 0.4 power for 1.5 seconds
-                strafeLeft(5000, 0.4, 1500);
+                strafeLeft(2000, 0.4, 1500);
+
+                //Sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
+                arm(-1240, 0.6, false, 1000);
 
                 //Sets the robot to drive for -350 ticks at 0.4 power for 1.0 seconds
                 drive(-490, 0.4, 1000);
 
                 //Sets the robot to open right servo for 2000 ticks
                 servoRightOpen(2000);
+
+                drive(200, 0.4, 2000);
 
                 //Resets the encoders + lowers arm
                 Reset();
@@ -256,7 +258,7 @@ public class redRightDetectTF extends LinearOpMode {
                 //Stops the robot
                 stop();
 
-              //Will run if Right is the last object detected when opmode is started
+                //Will run if Right is the last object detected when opmode is started
             } else {
                 //Sets the robot to drive for -1150 ticks at 0.4 power for 3.0 seconds
                 drive(-1150, 0.4, 3000);
@@ -284,6 +286,8 @@ public class redRightDetectTF extends LinearOpMode {
 
                 // Sets the robot to open right flipper for 2 seconds
                 servoRightOpen(2000);
+
+                drive(200, 0.4, 2000);
 
                 //Resets the encoders + lowers arm
                 Reset();

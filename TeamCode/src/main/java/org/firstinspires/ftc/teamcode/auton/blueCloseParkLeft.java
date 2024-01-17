@@ -15,7 +15,6 @@ import static org.firstinspires.ftc.teamcode.Calabration.auto.servoLeftOpen;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightClose;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightOpen;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.spinLeft;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.spinRight;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeLeft;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeRight;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.timer;
@@ -32,8 +31,8 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 import java.util.List;
 
-@Autonomous(name = "blueCloseDetectTF", group = "Blue")
-public class blueLeftDetectTF extends LinearOpMode {
+@Autonomous(name = "blueCloseParkLeft", group = "BlueNewClose")
+public class blueCloseParkLeft extends LinearOpMode {
 
     private static final boolean USE_WEBCAM = true;
     private static final String TFOD_MODEL_ASSET = "blueModel.tflite";
@@ -174,7 +173,7 @@ public class blueLeftDetectTF extends LinearOpMode {
                 Reset();
 
                 //Sets the robot to strafe Left for 1600 ticks at 0.4 power for 3.0 seconds
-                strafeLeft(1600, 0.4, 3000);
+                strafeRight(600, 0.4, 3000);
 
                 //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
                 drive(-500, 0.4, 3100);
@@ -214,7 +213,7 @@ public class blueLeftDetectTF extends LinearOpMode {
                 Reset();
 
                 //Sets the robot to strafe Left for 1100 ticks at 0.4 power for 2.0 seconds
-                strafeLeft(1200, 0.4, 2000);
+                strafeRight(700, 0.4, 2000);
 
                 //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
                 drive(-500, 0.4, 3100);
@@ -258,7 +257,7 @@ public class blueLeftDetectTF extends LinearOpMode {
                 Reset();
 
                 //Sets the robot to strafe right for 1000 ticks at 0.4 power for 3.0 seconds
-                strafeLeft(700, 0.4, 3000);
+                strafeRight(1000, 0.4, 3000);
 
                 //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
                 drive(-500, 0.4, 3100);
