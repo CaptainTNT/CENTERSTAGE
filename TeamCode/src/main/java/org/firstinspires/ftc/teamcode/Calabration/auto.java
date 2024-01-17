@@ -229,23 +229,19 @@ public class auto extends OpMode {
 
     public static void servoLeftOpen (double sleep) {
         timer.reset();
-        driveMotors = motorStatus.busy;
 
         while (sleep > timer.milliseconds()) {
             Servo2.setPosition(1);
 
         }
-        checkMotorBusy();
     }
 
     public static void servoRightOpen (double sleep) {
         timer.reset();
-        driveMotors = motorStatus.busy;
 
         while (sleep > timer.milliseconds()) {
             Servo.setPosition(1);
         }
-        checkMotorBusy();
     }
 
     public static void servoLeftClose () {
