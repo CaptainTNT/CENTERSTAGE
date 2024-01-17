@@ -26,21 +26,21 @@ public class newAutonTest extends OpMode {
         driveReset();
         driveMotors = motorStatus.driving;
 
-        //leftDrive.setTargetPosition(target);
-        //rightDrive.setTargetPosition(target);
-        //backRightDrive.setTargetPosition(target);
-        //backLeftDrive.setTargetPosition(target);
+        leftDrive.setTargetPosition(target);
+        rightDrive.setTargetPosition(target);
+        backRightDrive.setTargetPosition(target);
+        backLeftDrive.setTargetPosition(target);
 
         while (driveMotors == motorStatus.driving) {
-            //leftDrive.setPower(power);
-            //rightDrive.setPower(power);
-            //backRightDrive.setPower(power);
-            //backLeftDrive.setPower(power);
+            leftDrive.setPower(power);
+            rightDrive.setPower(power);
+            backRightDrive.setPower(power);
+            backLeftDrive.setPower(power);
 
-            //leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            //rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            //backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            //backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             checkMotorBusy();
         }
         timer.reset();
