@@ -1,16 +1,6 @@
 package org.firstinspires.ftc.teamcode.auton;
 
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.Reset;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.arm;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.drive;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.servoLeftClose;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.servoLeftOpen;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.servoRightClose;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.servoRightOpen;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.spinLeft;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.spinRight;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.strafeLeft;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.strafeRight;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.*;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;

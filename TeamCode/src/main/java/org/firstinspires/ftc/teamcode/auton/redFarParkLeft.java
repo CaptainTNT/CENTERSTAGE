@@ -146,103 +146,103 @@ public class redFarParkLeft extends LinearOpMode {
         if (opModeIsActive()) {
 
             if(Left){
-                drive(-123, -0.4,1000);
+                drive(-123, -0.4);
 
-                spinRight(900, 0.4,2000);
+                spinRight(900, 0.4);
 
-                strafeRight(1500, 0.4,1800);
+                strafeRight(1500, 0.4);
 
-                drive(60, 0.4,500);
+                drive(60, 0.4);
 
                 servoLeftOpen(1000);
 
-                drive(-300, -0.4,500);
+                drive(-300, -0.4);
 
-                strafeRight(1000, 0.4,1800);
+                strafeRight(1000, 0.4);
 
-                spinRight(60, 0.4,2000);
+                spinRight(60, 0.4);
 
-                drive(-3000, 0.4, 4000);
+                drive(-3000, 0.4);
 
-                strafeLeft(600, 0.6,4000);
+                strafeLeft(600, 0.6);
 
                 arm(-1200, 0.5,false, 2000);
 
-                drive(-400, -0.4,2000);
+                drive(-400, -0.4);
 
                 servoRightOpen(2000);
 
-                drive(200, -0.4,1000);
+                drive(200, -0.4);
                 Reset();
 
-                strafeRight(700, 0.4,3000);
+                strafeRight(700, 0.4);
 
-                drive(-500, -0.4,1500);
+                drive(-500, -0.4);
 
 
                 stop();
 
 
             } else if (Middle) {
-                drive(-2000, 0.4, 2000);
+                drive(-2000, 0.4);
 
                 servoLeftOpen(500);
 
-                drive(-300, 0.4,2000);
+                drive(-300, 0.4);
 
-                spinRight(900, 0.4,2000);
+                spinRight(900, 0.4);
 
-                drive(-3500, 0.4, 4000);
+                drive(-3500, 0.4);
 
-                strafeLeft(700, 0.4, 2000);
+                strafeLeft(700, 0.4);
 
                 arm(-1300, 0.5,false,2500);
 
-                drive(-300, -0.4,1000);
+                drive(-300, -0.4);
 
                 servoRightOpen(1000);
 
-                drive(200, -0.4,1000);
+                drive(200, -0.4);
                 Reset();
 
-                strafeRight(1000, -0.4,2000);
+                strafeRight(1000, -0.4);
 
-                drive(-500, -0.4,1000);
+                drive(-500, -0.4);
                 stop();
             } else {
 
-                drive(-124, -0.4,500);
+                drive(-124, -0.4);
 
-                spinLeft(900, 0.4,2000);
+                spinLeft(900, 0.4);
 
-                strafeLeft(1500, 0.4,1800);
+                strafeLeft(1500, 0.4);
 
-                drive(260, 0.4,800);
+                drive(260, 0.4);
 
                 servoLeftOpen(500);
 
-                drive(-300, -0.4,1000);
+                drive(-300, -0.4);
 
-                strafeLeft(1000, 0.4,1800);
+                strafeLeft(1000, 0.4);
 
-                spinLeft(1800, 0.4,2000);
+                spinLeft(1800, 0.4);
 
-                drive(3000, -0.6,4700);
+                drive(3000, -0.6);
 
-                strafeLeft(1400, 0.4,2800);
+                strafeLeft(1400, 0.4);
 
                 arm(-1200, 0.5,false,2500);
 
-                drive(-700, -0.4,1000);
+                drive(-700, -0.4);
 
                 servoRightOpen(1000);
 
-                drive(200, -0.4,1000);
+                drive(200, -0.4);
                 Reset();
 
-                strafeRight(900, -0.4,2000);
+                strafeRight(900, -0.4);
 
-                drive(-500, -0.4,1000);
+                drive(-500, -0.4);
 
 
                 stop();
