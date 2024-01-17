@@ -21,6 +21,7 @@ public class auto extends OpMode {
 
     public static ElapsedTime timer = new ElapsedTime();
     static motorStatus driveMotors;
+    static motorStatus ArmMotor;
 
     public static void drive(int target, double power) {
         driveReset();
@@ -41,7 +42,7 @@ public class auto extends OpMode {
             rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            checkMotorBusy();
+            checkDriveMotorBusy();
         }
         timer.reset();
 
@@ -71,7 +72,7 @@ public class auto extends OpMode {
             rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            checkMotorBusy();
+            checkDriveMotorBusy();
 
         }
         timer.reset();
@@ -103,7 +104,7 @@ public class auto extends OpMode {
             rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            checkMotorBusy();
+            checkDriveMotorBusy();
 
         }
         timer.reset();
@@ -135,7 +136,7 @@ public class auto extends OpMode {
             rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            checkMotorBusy();
+            checkDriveMotorBusy();
 
         }
         timer.reset();
@@ -168,7 +169,7 @@ public class auto extends OpMode {
             rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            checkMotorBusy();
+            checkDriveMotorBusy();
         }
         timer.reset();
 
@@ -189,13 +190,13 @@ public class auto extends OpMode {
     public static void arm (int target, double power, boolean autoStop) {
         Reset();
         Launchmotor.setTargetPosition(target);
-        driveMotors = motorStatus.busy;
+        ArmMotor = motorStatus.busy;
 
-        while (driveMotors == motorStatus.busy) {
+        while (ArmMotor == motorStatus.busy) {
             Launchmotor.setPower(power);
 
             Launchmotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            checkMotorBusy();
+            checkLaunchMotorBusy();
         }
         timer.reset();
 
@@ -218,7 +219,7 @@ public class auto extends OpMode {
             Servo2.setPosition(1);
 
         }
-        checkMotorBusy();
+        checkDriveMotorBusy();
     }
 
     public static void servoRightOpen (double sleep) {
@@ -228,7 +229,7 @@ public class auto extends OpMode {
         while (sleep > timer.milliseconds()) {
             Servo.setPosition(1);
         }
-        checkMotorBusy();
+        checkDriveMotorBusy();
     }
 
     public static void servoLeftClose () {
@@ -274,11 +275,19 @@ public class auto extends OpMode {
         waiting
     }
 
-    public static void checkMotorBusy(){
+    public static void checkDriveMotorBusy(){
         if (leftDrive.isBusy() || rightDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy() || Launchmotor.isBusy()){
             driveMotors = motorStatus.busy;
         } else {
             driveMotors = motorStatus.waiting;
+        }
+    }
+    
+    public static void checkLaunchMotorBusy(){
+        if (Launchmotor.isBusy()){
+            ArmMotor = motorStatus.busy;
+        } else {
+            ArmMotor = motorStatus.waiting;
         }
     }
 
