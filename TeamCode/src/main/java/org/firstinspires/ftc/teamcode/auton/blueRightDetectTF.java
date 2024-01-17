@@ -20,6 +20,7 @@ import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeLeft;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeRight;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -31,7 +32,7 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
-
+@Disabled
 @Autonomous(name = "blueRightDetectTF", group = "Blue")
 public class blueRightDetectTF extends LinearOpMode {
 
