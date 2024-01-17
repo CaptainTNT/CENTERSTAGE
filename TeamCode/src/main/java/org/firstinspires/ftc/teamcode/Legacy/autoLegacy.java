@@ -20,7 +20,7 @@ public class autoLegacy extends OpMode {
 //    public static Servo Servo2 = null;
 //
 //    public static ElapsedTime timer = new ElapsedTime();
-//    public static void strafeLeft(int target, double power, double sleep) {
+    public static void strafeLeft(int target, double power, double sleep) {
 //        driveReset();
 //        leftDrive.setTargetPosition(-target);
 //        rightDrive.setTargetPosition(target);
@@ -46,9 +46,9 @@ public class autoLegacy extends OpMode {
 //        if (timer.milliseconds() >= sleep){
 //            stopDrive();
 //        }
-//    }
+   }
 //
-//    public static void strafeRight(int target, double power, double sleep) {
+    public static void strafeRight(int target, double power, double sleep) {
 //        driveReset();
 //
 //        leftDrive.setTargetPosition(target);
@@ -78,9 +78,9 @@ public class autoLegacy extends OpMode {
 //        }
 //
 //
-//    }
+    }
 //
-//    public static void spinLeft(int target, double power, double sleep) {
+    public static void spinLeft(int target, double power, double sleep) {
 //        driveReset();
 //
 //        leftDrive.setTargetPosition(-target);
@@ -108,9 +108,9 @@ public class autoLegacy extends OpMode {
 //        }
 //
 //
-//    }
+    }
 //
-//    public static void spinRight(int target, double power, double sleep) {
+    public static void spinRight(int target, double power, double sleep) {
 //        driveReset();
 //
 //        leftDrive.setTargetPosition(target);
@@ -138,11 +138,11 @@ public class autoLegacy extends OpMode {
 //        }
 //
 //
-//    }
+    }
 //
 //
 //
-//    public static void drive(int target, double power, double sleep) {
+    public static void drive(int target, double power, double sleep) {
 //        driveReset();
 //
 //        leftDrive.setTargetPosition(target);
@@ -169,10 +169,10 @@ public class autoLegacy extends OpMode {
 //            stopDrive();
 //        }
 //
-//    }
+    }
 //
 //
-//    public static void arm (int target, double power, boolean autoStop, double sleep) {
+    public static void arm (int target, double power, boolean autoStop, double sleep) {
 //        Reset();
 //        Launchmotor.setTargetPosition(target);
 //        timer.reset();
@@ -190,45 +190,45 @@ public class autoLegacy extends OpMode {
 //
 //
 //
-//    }
+    }
 //
-//    public static void stopDrive() {
+    public static void stopDrive() {
 //        leftDrive.setPower(0);
 //        rightDrive.setPower(0);
 //        backRightDrive.setPower(0);
 //        backLeftDrive.setPower(0);
-//    }
+    }
 //
-//    public static void stopArm() {
+    public static void stopArm() {
 //        Launchmotor.setPower(0);
-//    }
+    }
 //
-//    public static void servoLeftOpen (double sleep) {
+    public static void servoLeftOpen (double sleep) {
 //        timer.reset();
 //
 //        while (sleep > timer.milliseconds()) {
 //            Servo2.setPosition(1);
 //
 //        }
-//    }
+    }
 //
-//    public static void servoRightOpen (double sleep) {
+    public static void servoRightOpen (double sleep) {
 //        timer.reset();
 //
 //        while (sleep > timer.milliseconds()) {
 //            Servo.setPosition(1);
 //        }
-//    }
+    }
 //
-//    public static void servoLeftClose () {
+    public static void servoLeftClose () {
 //        Servo2.setPosition(0);
-//    }
+    }
 //
-//    public static void servoRightClose () {
+    public static void servoRightClose () {
 //        Servo.setPosition(0);
-//    }
+    }
 //
-//    public static void Reset() {
+    public static void Reset() {
 //        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 //        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 //        backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -241,9 +241,9 @@ public class autoLegacy extends OpMode {
 //        backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        Launchmotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //
-//    }
+    }
 //
-//    public static void driveReset() {
+    public static void driveReset() {
 //        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 //        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 //        backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -255,7 +255,7 @@ public class autoLegacy extends OpMode {
 //        backRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //
-//    }
+    }
 
     @Override
     public void init() {
