@@ -7,6 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 @Disabled
 @Autonomous(name = "auto")
 public class auto extends OpMode {
@@ -21,17 +23,19 @@ public class auto extends OpMode {
 
     public static ElapsedTime timer = new ElapsedTime();
     static motorStatus driveMotors;
+    
+    public static Telemetry Telemetry;
 
     public static void drive(int target, double power) {
         driveReset();
-        driveMotors = motorStatus.driving;
+        driveMotors = motorStatus.busy;
 
         leftDrive.setTargetPosition(target);
         rightDrive.setTargetPosition(target);
         backRightDrive.setTargetPosition(target);
         backLeftDrive.setTargetPosition(target);
 
-        while (driveMotors == motorStatus.driving) {
+        while (driveMotors == motorStatus.busy) {
             leftDrive.setPower(power);
             rightDrive.setPower(power);
             backRightDrive.setPower(power);
@@ -54,14 +58,14 @@ public class auto extends OpMode {
 
     public static void strafeRight(int target, double power) {
         driveReset();
-        driveMotors = motorStatus.driving;
+        driveMotors = motorStatus.busy;
 
         leftDrive.setTargetPosition(target);
         rightDrive.setTargetPosition(-target);
         backRightDrive.setTargetPosition(target);
         backLeftDrive.setTargetPosition(-target);
 
-        while (driveMotors == motorStatus.driving) {
+        while (driveMotors == motorStatus.busy) {
             leftDrive.setPower(power);
             rightDrive.setPower(-power);
             backRightDrive.setPower(power);
@@ -86,14 +90,14 @@ public class auto extends OpMode {
 
     public static void strafeLeft(int target, double power) {
         driveReset();
-        driveMotors = motorStatus.driving;
+        driveMotors = motorStatus.busy;
 
         leftDrive.setTargetPosition(-target);
         rightDrive.setTargetPosition(target);
         backRightDrive.setTargetPosition(-target);
         backLeftDrive.setTargetPosition(target);
 
-        while (driveMotors == motorStatus.driving) {
+        while (driveMotors == motorStatus.busy) {
             leftDrive.setPower(-power);
             rightDrive.setPower(power);
             backRightDrive.setPower(-power);
@@ -118,14 +122,14 @@ public class auto extends OpMode {
 
     public static void spinLeft(int target, double power) {
         driveReset();
-        driveMotors = motorStatus.driving;
+        driveMotors = motorStatus.busy;
 
         leftDrive.setTargetPosition(-target);
         rightDrive.setTargetPosition(target);
         backRightDrive.setTargetPosition(target);
         backLeftDrive.setTargetPosition(-target);
 
-        while (driveMotors == motorStatus.driving) {
+        while (driveMotors == motorStatus.busy) {
             leftDrive.setPower(power);
             rightDrive.setPower(power);
             backRightDrive.setPower(power);
@@ -150,7 +154,7 @@ public class auto extends OpMode {
 
     public static void spinRight(int target, double power) {
         driveReset();
-        driveMotors = motorStatus.driving;
+        driveMotors = motorStatus.busy;
 
         leftDrive.setTargetPosition(target);
         rightDrive.setTargetPosition(-target);
@@ -158,7 +162,7 @@ public class auto extends OpMode {
         backLeftDrive.setTargetPosition(target);
 
 
-        while (driveMotors == motorStatus.driving) {
+        while (driveMotors == motorStatus.busy) {
             leftDrive.setPower(power);
             rightDrive.setPower(power);
             backRightDrive.setPower(power);
@@ -189,10 +193,10 @@ public class auto extends OpMode {
     public static void arm (int target, double power, boolean autoStop) {
         Reset();
         Launchmotor.setTargetPosition(target);
-        driveMotors = motorStatus.driving;
+        driveMotors = motorStatus.busy;
         timer.reset();
 
-        while (driveMotors == motorStatus.driving) {
+        while (driveMotors == motorStatus.busy) {
             Launchmotor.setPower(power);
 
             Launchmotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -213,7 +217,7 @@ public class auto extends OpMode {
 
     public static void servoLeftOpen (double sleep) {
         timer.reset();
-        driveMotors = motorStatus.driving;
+        driveMotors = motorStatus.busy;
 
         while (sleep > timer.milliseconds()) {
             Servo2.setPosition(1);
@@ -224,7 +228,7 @@ public class auto extends OpMode {
 
     public static void servoRightOpen (double sleep) {
         timer.reset();
-        driveMotors = motorStatus.driving;
+        driveMotors = motorStatus.busy;
 
         while (sleep > timer.milliseconds()) {
             Servo.setPosition(1);
@@ -271,15 +275,19 @@ public class auto extends OpMode {
 
 
     public enum motorStatus {
-        driving,
+        busy,
         waiting
     }
 
     public static void checkMotorBusy(){
         if (leftDrive.isBusy() || rightDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy() || Launchmotor.isBusy()){
-            driveMotors = motorStatus.driving;
+            driveMotors = motorStatus.busy;
+            Telemetry.addData("Busy?", driveMotors);
+            Telemetry.update();
         } else {
             driveMotors = motorStatus.waiting;
+            Telemetry.addData("Busy?", driveMotors);
+            Telemetry.update();
         }
     }
 
