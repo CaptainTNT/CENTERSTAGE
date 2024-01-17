@@ -21,11 +21,11 @@ public class auto extends OpMode {
 
     public static ElapsedTime timer = new ElapsedTime();
     static motorStatus driveMotors;
-    static motorStatus ArmMotor;
+    static motorStatus ArmMotor = motorStatus.ready;
 
     public static void drive(int target, double power) {
         driveReset();
-        if (driveMotors == motorStatus.ready){
+        if (driveMotors == motorStatus.ready && ArmMotor == motorStatus.ready){
             driveMotors = motorStatus.busy;
         }
 
@@ -58,7 +58,7 @@ public class auto extends OpMode {
 
     public static void strafeRight(int target, double power) {
         driveReset();
-        if (driveMotors == motorStatus.ready){
+        if (driveMotors == motorStatus.ready && ArmMotor == motorStatus.ready){
             driveMotors = motorStatus.busy;
         }
 
@@ -67,7 +67,7 @@ public class auto extends OpMode {
         backRightDrive.setTargetPosition(target);
         backLeftDrive.setTargetPosition(-target);
 
-        while (driveMotors == motorStatus.busy) {
+        while (driveMotors == motorStatus.busy && ArmMotor == motorStatus.ready) {
             leftDrive.setPower(power);
             rightDrive.setPower(-power);
             backRightDrive.setPower(power);
@@ -92,7 +92,7 @@ public class auto extends OpMode {
 
     public static void strafeLeft(int target, double power) {
         driveReset();
-        if (driveMotors == motorStatus.ready){
+        if (driveMotors == motorStatus.ready && ArmMotor == motorStatus.ready){
             driveMotors = motorStatus.busy;
         }
 
@@ -127,7 +127,7 @@ public class auto extends OpMode {
 
     public static void spinLeft(int target, double power) {
         driveReset();
-        if (driveMotors == motorStatus.ready){
+        if (driveMotors == motorStatus.ready && ArmMotor == motorStatus.ready){
             driveMotors = motorStatus.busy;
         }
 
@@ -161,7 +161,7 @@ public class auto extends OpMode {
 
     public static void spinRight(int target, double power) {
         driveReset();
-        if (driveMotors == motorStatus.ready){
+        if (driveMotors == motorStatus.ready && ArmMotor == motorStatus.ready){
             driveMotors = motorStatus.busy;
         }
 
@@ -188,7 +188,6 @@ public class auto extends OpMode {
         if (timer.milliseconds() >= 700){
             stopDrive();
             driveReset();
-            driveMotors = motorStatus.waiting;
         }
         driveMotors = motorStatus.ready;
 
@@ -221,7 +220,7 @@ public class auto extends OpMode {
         if (timer.milliseconds() >= 1500){
             stopArm();
         }
-        driveMotors = motorStatus.ready;
+        ArmMotor = motorStatus.ready;
     }
 
     public static void stopArm() {
@@ -293,11 +292,20 @@ public class auto extends OpMode {
     }
 
     public static void checkMotorBusy(){
-        if (leftDrive.isBusy() || rightDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy() || Launchmotor.isBusy()){
+        if (leftDrive.isBusy() || rightDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy()){
             driveMotors = motorStatus.busy;
         } else {
             driveMotors = motorStatus.waiting;
         }
+    }
+
+    public static void checkArmBusy(){
+        if (Launchmotor.isBusy()){
+            ArmMotor = motorStatus.busy;
+        } else {
+            ArmMotor = motorStatus.waiting;
+        }
+
     }
 
     @Override
