@@ -198,8 +198,9 @@ public class auto extends OpMode {
             Launchmotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             checkMotorBusy();
         }
+        timer.reset();
 
-        if ((autoStop)){
+        if (timer.milliseconds() >= 700){
             stopArm();
             Reset();
         }
