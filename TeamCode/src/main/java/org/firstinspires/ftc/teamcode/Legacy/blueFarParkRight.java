@@ -1,19 +1,28 @@
-package org.firstinspires.ftc.teamcode.auton;
+package org.firstinspires.ftc.teamcode.Legacy;
 
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.Reset;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.arm;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.drive;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.servoLeftClose;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.servoLeftOpen;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.servoRightClose;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.servoRightOpen;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.spinLeft;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.spinRight;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.strafeLeft;
-import static org.firstinspires.ftc.teamcode.Legacy.autoLegacy.strafeRight;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.Launchmotor;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.Reset;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.Servo;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.Servo2;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.arm;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.backLeftDrive;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.backRightDrive;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.drive;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.leftDrive;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.rightDrive;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.servoLeftClose;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.servoLeftOpen;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightClose;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightOpen;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.spinLeft;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.spinRight;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeLeft;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeRight;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -23,8 +32,8 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
 
-@Autonomous(name = "blueFarParkLeft", group = "BlueNewFar")
-public class blueFarParkLeft extends LinearOpMode {
+@Autonomous(name = "blueFarParkRight", group = "BlueNewFar")
+public class blueFarParkRight extends LinearOpMode {
 
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
@@ -136,23 +145,23 @@ public class blueFarParkLeft extends LinearOpMode {
         if (opModeIsActive()) {
 
             if(Right){
-                drive(-124, -0.4); // ADD MORE COMMENTS
+                drive(-124, -0.4, 500); // ADD MORE COMMENTS
 
-                spinLeft(900, 0.4);
+                spinLeft(900, 0.4, 2000);
 
-                strafeLeft(1500, 0.4);
+                strafeLeft(1500, 0.4, 1800);
 
                 servoLeftOpen(550); //Drops the purple pixel on the spike mark
 
-                drive(-200, -0.4);
+                drive(-200, -0.4,1000);
 
-                strafeLeft(1000, 0.4);
+                strafeLeft(1000, 0.4,2000);
 
-                spinLeft(60, 0.4); //Recorrects rotational error
+                spinLeft(60, 0.4, 500); //Recorrects rotational error
 
-                drive(-3500, 0.4); // Drives towards the backboard
+                drive(-3500, 0.4,5000); // Drives towards the backboard
 
-                strafeRight(700, -0.6); //Aligns with the backboard to perpare to place the pixel
+                strafeRight(700, -0.6, 1500); //Aligns with the backboard to perpare to place the pixel
 
                 //spinRight(900, -0.4,1000);
 
@@ -160,66 +169,66 @@ public class blueFarParkLeft extends LinearOpMode {
 
                 arm(-1300, 0.5, false, 2500);
 
-                drive(-330, -0.4);
+                drive(-330, -0.4,1000);
 
                 servoRightOpen(1000);
 
-                drive(200, -0.4);
+                drive(200, -0.4, 1000);
                 Reset();
 
-                strafeRight(1000, -0.4);
+                strafeLeft(900, -0.4, 2000);
 
-                drive(-500, -0.4);
+                drive(-500, -0.4, 1000);
 
 
                 stop();
             } else if (Middle) {
 
-                drive(-1960, 0.4);
+                drive(-1960, 0.4, 4000);
 
                 servoLeftOpen(500);
 
-                drive(-300, 0.4);
+                drive(-300, 0.4,2000);
 
-                spinLeft(900, 0.4);
+                spinLeft(900, 0.4,2000);
 
-                drive(-3500, 0.4);
+                drive(-3500, 0.4, 5000);
 
-                strafeRight(700, 0.4);
+                strafeRight(700, 0.4, 2000);
 
                 arm(-1300, 0.5,false,2500);
 
-                drive(-300, -0.4);
+                drive(-300, -0.4,1000);
 
                 servoRightOpen(1000);
 
-                drive(200, -0.4);
+                drive(200, -0.4,1000);
                 Reset();
 
-                strafeRight(1300, -0.4);
+                strafeLeft(1000, -0.4,4000);
 
-                drive(-500, -0.4);
+                drive(-500, -0.4,1000);
 
 
                 stop();
             } else {
-                drive(-124, -0.4); // ADD MORE COMMENTS
+                drive(-124, -0.4, 500); // ADD MORE COMMENTS
 
-                spinRight(900, 0.4);
+                spinRight(900, 0.4, 2000);
 
-                strafeRight(1500, 0.4);
+                strafeRight(1500, 0.4, 1800);
 
                 servoLeftOpen(550); //Drops the purple pixel on the spike mark
 
-                drive(-200, -0.4);
+                drive(-200, -0.4,1000);
 
-                strafeRight(1000, 0.4);
+                strafeRight(1000, 0.4,2000);
 
-                spinLeft(1800, 0.4); //Recorrects rotational error
+                spinLeft(1800, 0.4, 500); //Recorrects rotational error
 
-                drive(-3500, 0.4); // Drives towards the backboard
+                drive(-3500, 0.4,5000); // Drives towards the backboard
 
-                strafeRight(1400, -0.6); //Aligns with the backboard to perpare to place the pixel
+                strafeRight(1400, -0.6, 1500); //Aligns with the backboard to perpare to place the pixel
 
                 //spinRight(900, -0.4,1000);
 
@@ -227,16 +236,16 @@ public class blueFarParkLeft extends LinearOpMode {
 
                 arm(-1300, 0.5, false, 2500);
 
-                drive(-330, -0.4);
+                drive(-330, -0.4,1000);
 
                 servoRightOpen(1000);
 
-                drive(200, -0.4);
+                drive(200, -0.4, 1000);
                 Reset();
 
-                strafeRight(900, -0.4);
+                strafeLeft(900, -0.4, 2000);
 
-                drive(-500, -0.4);
+                drive(-500, -0.4, 1000);
 
                 stop();
             }
@@ -249,16 +258,16 @@ public class blueFarParkLeft extends LinearOpMode {
     }
     public void hardwareImports() {
 
-//        leftDrive = hardwareMap.get(DcMotor.class, "front Left");
-//        rightDrive = hardwareMap.get(DcMotor.class, "front Right");
-//        backLeftDrive = hardwareMap.get(DcMotor.class, "back Left");
-//        backRightDrive = hardwareMap.get(DcMotor.class, "back Right");
-//        Launchmotor = hardwareMap.get(DcMotor.class, "Launch Motor");
-//        Servo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo1");
-//        Servo2 = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo2");
-//
-//        leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-//        backRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-//        Servo.setDirection(com.qualcomm.robotcore.hardware.Servo.Direction.REVERSE);
+        leftDrive = hardwareMap.get(DcMotor.class, "front Left");
+        rightDrive = hardwareMap.get(DcMotor.class, "front Right");
+        backLeftDrive = hardwareMap.get(DcMotor.class, "back Left");
+        backRightDrive = hardwareMap.get(DcMotor.class, "back Right");
+        Launchmotor = hardwareMap.get(DcMotor.class, "Launch Motor");
+        Servo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo1");
+        Servo2 = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo2");
+
+        leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        Servo.setDirection(com.qualcomm.robotcore.hardware.Servo.Direction.REVERSE);
     }// end runOpMode()
 }   // end class
