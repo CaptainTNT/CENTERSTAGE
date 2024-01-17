@@ -184,7 +184,7 @@ public class blueFarParkRight extends LinearOpMode {
                 stop();
             } else if (Middle) {
 
-                drive(-1900, 0.4, 4000);
+                drive(-1960, 0.4, 4000);
 
                 servoLeftOpen(500);
 
