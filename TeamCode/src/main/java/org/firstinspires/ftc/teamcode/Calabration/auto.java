@@ -1,16 +1,19 @@
+//Imports stuff
 package org.firstinspires.ftc.teamcode.Calabration;
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+//Sets name for code and disables it
 @Disabled
 @Autonomous(name = "auto")
 public class auto extends OpMode {
 
+    //Set values to variables for motors
     public static DcMotor leftDrive = null;
     public static DcMotor rightDrive = null;
     public static DcMotor backRightDrive = null;
@@ -20,88 +23,17 @@ public class auto extends OpMode {
     public static Servo Servo2 = null;
 
     public static ElapsedTime timer = new ElapsedTime();
-    static motorStatus driveMotors;
-    static motorStatus ArmMotor = motorStatus.ready;
-
-    public static void drive(int target, double power) {
+    public static void strafeLeft(int target, double power, double sleep) {
         driveReset();
-        if (driveMotors == motorStatus.ready && ArmMotor == motorStatus.ready){
-            driveMotors = motorStatus.busy;
-        }
-
-        leftDrive.setTargetPosition(target);
-        rightDrive.setTargetPosition(target);
-        backRightDrive.setTargetPosition(target);
-        backLeftDrive.setTargetPosition(target);
-
-        while (driveMotors == motorStatus.busy) {
-            leftDrive.setPower(power);
-            rightDrive.setPower(power);
-            backRightDrive.setPower(power);
-            backLeftDrive.setPower(power);
-
-            leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            checkMotorBusy();
-        }
-        timer.reset();
-
-        if (timer.milliseconds() >= 700){
-            stopDrive();
-            driveReset();
-        }
-        driveMotors = motorStatus.ready;
-
-    }
-
-    public static void strafeRight(int target, double power) {
-        driveReset();
-        if (driveMotors == motorStatus.ready && ArmMotor == motorStatus.ready){
-            driveMotors = motorStatus.busy;
-        }
-
-        leftDrive.setTargetPosition(target);
-        rightDrive.setTargetPosition(-target);
-        backRightDrive.setTargetPosition(target);
-        backLeftDrive.setTargetPosition(-target);
-
-        while (driveMotors == motorStatus.busy && ArmMotor == motorStatus.ready) {
-            leftDrive.setPower(power);
-            rightDrive.setPower(-power);
-            backRightDrive.setPower(power);
-            backLeftDrive.setPower(-power);
-
-            leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            checkMotorBusy();
-
-        }
-        timer.reset();
-
-        if (timer.milliseconds() >= 700){
-            stopDrive();
-            driveReset();
-        }
-        driveMotors = motorStatus.ready;
-
-    }
-
-    public static void strafeLeft(int target, double power) {
-        driveReset();
-        if (driveMotors == motorStatus.ready && ArmMotor == motorStatus.ready){
-            driveMotors = motorStatus.busy;
-        }
-
         leftDrive.setTargetPosition(-target);
         rightDrive.setTargetPosition(target);
         backRightDrive.setTargetPosition(-target);
         backLeftDrive.setTargetPosition(target);
 
-        while (driveMotors == motorStatus.busy) {
+        timer.reset();
+
+        while (sleep > timer.milliseconds()) {
+
             leftDrive.setPower(-power);
             rightDrive.setPower(power);
             backRightDrive.setPower(-power);
@@ -111,32 +43,57 @@ public class auto extends OpMode {
             rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            checkMotorBusy();
-
         }
+
+
+        if (timer.milliseconds() >= sleep){
+            stopDrive();
+        }
+    }
+
+    public static void strafeRight(int target, double power, double sleep) {
+        driveReset();
+
+        leftDrive.setTargetPosition(target);
+        rightDrive.setTargetPosition(-target);
+        backRightDrive.setTargetPosition(target);
+        backLeftDrive.setTargetPosition(-target);
         timer.reset();
 
-        if (timer.milliseconds() >= 700){
-            stopDrive();
-            driveReset();
+        while (sleep > timer.milliseconds()) {
+            leftDrive.setPower(power);
+            rightDrive.setPower(power);
+            backRightDrive.setPower(power);
+            backLeftDrive.setPower(power);
+
+            backLeftDrive.getCurrentPosition();
+
+
+            leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
         }
-        driveMotors = motorStatus.ready;
+
+        if (timer.milliseconds() >= sleep){
+            stopDrive();
+        }
 
 
     }
 
-    public static void spinLeft(int target, double power) {
+    public static void spinLeft(int target, double power, double sleep) {
         driveReset();
-        if (driveMotors == motorStatus.ready && ArmMotor == motorStatus.ready){
-            driveMotors = motorStatus.busy;
-        }
 
         leftDrive.setTargetPosition(-target);
         rightDrive.setTargetPosition(target);
         backRightDrive.setTargetPosition(target);
         backLeftDrive.setTargetPosition(-target);
 
-        while (driveMotors == motorStatus.busy) {
+        timer.reset();
+
+        while (sleep > timer.milliseconds()) {
             leftDrive.setPower(power);
             rightDrive.setPower(power);
             backRightDrive.setPower(power);
@@ -146,24 +103,18 @@ public class auto extends OpMode {
             rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            checkMotorBusy();
 
         }
-        timer.reset();
 
-        if (timer.milliseconds() >= 700){
+        if (timer.milliseconds() >= sleep){
             stopDrive();
-            driveReset();
         }
-        driveMotors = motorStatus.ready;
+
 
     }
 
-    public static void spinRight(int target, double power) {
+    public static void spinRight(int target, double power, double sleep) {
         driveReset();
-        if (driveMotors == motorStatus.ready && ArmMotor == motorStatus.ready){
-            driveMotors = motorStatus.busy;
-        }
 
         leftDrive.setTargetPosition(target);
         rightDrive.setTargetPosition(-target);
@@ -171,7 +122,9 @@ public class auto extends OpMode {
         backLeftDrive.setTargetPosition(target);
 
 
-        while (driveMotors == motorStatus.busy) {
+        timer.reset();
+
+        while (sleep > timer.milliseconds()) {
             leftDrive.setPower(power);
             rightDrive.setPower(power);
             backRightDrive.setPower(power);
@@ -181,15 +134,64 @@ public class auto extends OpMode {
             rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            checkMotorBusy();
+
         }
+        if (timer.milliseconds() >= sleep){
+            stopDrive();
+        }
+
+
+    }
+
+
+
+    public static void drive(int target, double power, double sleep) {
+        driveReset();
+
+        leftDrive.setTargetPosition(target);
+        rightDrive.setTargetPosition(target);
+        backRightDrive.setTargetPosition(target);
+        backLeftDrive.setTargetPosition(target);
+
+
         timer.reset();
 
-        if (timer.milliseconds() >= 700){
-            stopDrive();
-            driveReset();
+        while (sleep > timer.milliseconds()) {
+            leftDrive.setPower(power);
+            rightDrive.setPower(power);
+            backRightDrive.setPower(power);
+            backLeftDrive.setPower(power);
+
+            leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         }
-        driveMotors = motorStatus.ready;
+
+        if (timer.milliseconds() >= sleep){
+            stopDrive();
+        }
+
+    }
+
+
+    public static void arm (int target, double power, boolean autoStop, double sleep) {
+        Reset();
+        Launchmotor.setTargetPosition(target);
+        timer.reset();
+
+        while (sleep > timer.milliseconds()) {
+            Launchmotor.setPower(power);
+
+            Launchmotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+
+        if ((timer.milliseconds() == sleep && autoStop)){
+            stopArm();
+            Reset();
+        }
+
+
 
     }
 
@@ -198,29 +200,6 @@ public class auto extends OpMode {
         rightDrive.setPower(0);
         backRightDrive.setPower(0);
         backLeftDrive.setPower(0);
-    }
-
-    public static void arm (int target, double power, boolean autoStop) {
-        Reset();
-        stopDrive();
-        if (driveMotors == motorStatus.ready){
-            ArmMotor = motorStatus.busy;
-        }
-        Launchmotor.setTargetPosition(target);
-
-        while (ArmMotor == motorStatus.busy) {
-            Launchmotor.setPower(power);
-
-            Launchmotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            checkMotorBusy();
-
-        }
-        ArmMotor = motorStatus.ready;
-        timer.reset();
-
-        if (timer.milliseconds() >= 1500){
-            stopArm();
-        }
     }
 
     public static void stopArm() {
@@ -252,20 +231,6 @@ public class auto extends OpMode {
         Servo.setPosition(0);
     }
 
-    public static void driveReset() {
-        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        backLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-
-        leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-    }
-
     public static void Reset() {
         leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -281,26 +246,17 @@ public class auto extends OpMode {
 
     }
 
-    public enum motorStatus {
-        busy,
-        waiting,
-        ready
-    }
+    public static void driveReset() {
+        leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-    public static void checkMotorBusy(){
-        if (leftDrive.isBusy() || rightDrive.isBusy() || backLeftDrive.isBusy() || backRightDrive.isBusy()){
-            driveMotors = motorStatus.busy;
-        } else {
-            driveMotors = motorStatus.waiting;
-        }
-    }
 
-    public static void checkArmBusy(){
-        if (Launchmotor.isBusy()){
-            ArmMotor = motorStatus.busy;
-        } else {
-            ArmMotor = motorStatus.waiting;
-        }
+        leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
 
@@ -314,3 +270,9 @@ public class auto extends OpMode {
 
     }
 }
+
+
+
+
+
+

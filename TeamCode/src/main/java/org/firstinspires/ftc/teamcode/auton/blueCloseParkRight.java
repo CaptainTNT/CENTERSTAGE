@@ -141,71 +141,71 @@ public class blueCloseParkRight extends LinearOpMode {
         if (opModeIsActive()) {
 
             if(Left){
-                drive(-123, 0.4);
+                drive(-123, 0.4, 1000);
 
                 //Sets the robot to spin Left for 920 ticks at 0.4 power for 1.5 seconds
-                spinLeft(900, 0.4);
+                spinLeft(900, 0.4, 1500);
 
                 //Sets the robot to drive for -620 ticks at 0.4 power for 1.6 seconds
-                drive(-620, 0.4);
+                drive(-620, 0.4, 1600);
 
                 //Sets the robot to strafe Left for 1500 ticks at 0.4 power for 1.8 seconds
-                strafeLeft(1500, 0.4);
+                strafeLeft(1500, 0.4, 1800);
 
                 //Sets the robot to open left servo for 1.5 seconds
                 servoLeftOpen(1500);
 
                 //Sets the robot lift to arm for -1450 ticks at 0.5 power for 2.0 seconds
-                arm(-1400, 0.5, false);
+                arm(-1400, 0.5, false, 2000);
 
                 //Sets the robot to drive for -840 ticks at 0.4 power for 3.1 seconds
-                drive(-840, 0.4);
+                drive(-840, 0.4, 3100);
 
                 //Sets the robot to strafe Right for 600 ticks at 0.4 power for 1.8 seconds
-                strafeRight(400, 0.4);
+                strafeRight(400, 0.4, 1800);
 
                 //Sets the robot to open right flipper for 2 seconds
                 servoRightOpen(2000);
 
                 //Sets the robot to drive for 200 ticks at 0.4 power for 3.1 seconds
-                drive(200, 0.4);
+                drive(200, 0.4, 3100);
 
                 //Resets the encoders + lowers arm
                 Reset();
 
                 //Sets the robot to strafe Left for 1600 ticks at 0.4 power for 3.0 seconds
-                strafeLeft(1600, 0.4);
+                strafeLeft(1600, 0.4, 3000);
 
                 //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
-                drive(-500, 0.4);
+                drive(-500, 0.4, 3100);
 
                 //Stops the robot
                 stop();
 
             } else if (Middle) {
                 //Sets the robot to drive for -1950 ticks at 0.4 power for 3.0 seconds
-                drive(-1950, 0.4);
+                drive(-1950, 0.4, 3000);
 
                 //Sets the robot to open left flipper for 1.5 seconds
                 servoLeftOpen(1500);
 
                 //Sets the robot to drive for -300 ticks at 0.4 power for 1.8 seconds
-                drive(-300, 0.4);
+                drive(-300, 0.4, 1800);
 
                 //Sets the robot to spin Left for 920 ticks at 0.4 power for 2.0 seconds
-                spinLeft(920, 0.4);
+                spinLeft(920, 0.4, 2000);
 
                 //Sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1260, 0.6, false);
+                arm(-1260, 0.6, false, 1000);
 
                 //Sets the robot to drive for -1200 ticks at 0.4 power for 2.0 seconds
-                drive(-1200, 0.4);
+                drive(-1200, 0.4, 2000);
 
                 //Sets the robot to strafe Right for 5000 ticks at 0.4 power for 1.5 seconds
-                strafeRight(880, 0.4);
+                strafeRight(880, 0.4, 1500);
 
                 //Sets the robot to drive for -350 ticks at 0.4 power for 1.0 seconds
-                drive(-350, 0.4);
+                drive(-350, 0.4, 1000);
 
                 //Sets the robot to open right servo for 2000 ticks
                 servoRightOpen(2000);
@@ -214,54 +214,54 @@ public class blueCloseParkRight extends LinearOpMode {
                 Reset();
 
                 //Sets the robot to strafe Left for 1100 ticks at 0.4 power for 2.0 seconds
-                strafeLeft(1200, 0.4);
+                strafeLeft(1200, 0.4, 2000);
 
                 //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
-                drive(-500, 0.4);
+                drive(-500, 0.4, 3100);
 
                 //Stops the robot
                 stop();
 
             } else {
                 //Sets the robot to drive for -1150 ticks at 0.4 power for 3.0 seconds
-                drive(-1150, 0.4);
+                drive(-1150, 0.4, 3000);
 
                 //Sets the robot to spin right for 920 ticks at 0.4 power for 2.0 seconds
-                spinLeft(920, 0.4);
+                spinLeft(920, 0.4, 2000);
 
                 //Sets the robot to strafe right for 420 ticks at 0.4 power for 2.0 seconds
-                strafeLeft(420, 0.4);
+                strafeLeft(420, 0.4, 2000);
 
                 //Sets the robot to drive for 280 ticks at 0.4 power for 3.0 seconds
-                drive(280, 0.4);
+                drive(280, 0.4, 3000);
 
                 //Sets the robot to open left flipper for 3 seconds
                 servoLeftOpen(3000);
 
                 //Sets the robot to drive for -271 ticks at 0.4 power for 2.0 seconds
-                drive(-271, 0.4);
+                drive(-271, 0.4, 2000);
 
                 //sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1200, 0.6, false);
+                arm(-1200, 0.6, false, 1000);
 
                 //Sets the robot to drive for -1460 ticks at 0.4 power for 2.0 seconds
-                drive(-1460, 0.4);
+                drive(-1460, 0.4, 2000);
 
-                strafeLeft(250, 0.4);
+                strafeLeft(250, 0.4, 1000);
 
                 // Sets the robot to open right flipper for 2 seconds
                 servoRightOpen(2000);
 
-                drive(200,0.4);
+                drive(200,0.4,1000);
 
                 //Resets the encoders + lowers arm
                 Reset();
 
                 //Sets the robot to strafe right for 1000 ticks at 0.4 power for 3.0 seconds
-                strafeLeft(700, 0.4);
+                strafeLeft(700, 0.4, 3000);
 
                 //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
-                drive(-500, 0.4);
+                drive(-500, 0.4, 3100);
 
                 //Stops the robot
                 stop();
