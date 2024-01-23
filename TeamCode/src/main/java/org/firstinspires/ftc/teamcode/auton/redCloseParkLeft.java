@@ -170,6 +170,8 @@ public class redCloseParkLeft extends LinearOpMode {
         //Runs when opmode is started
         if (opModeIsActive()) {
 
+            telemetryTfod();
+
             //Will run if Left is the last object detected when opmode is started
             if(Right){
 

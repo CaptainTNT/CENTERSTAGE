@@ -139,6 +139,8 @@ public class blueCloseParkLeft extends LinearOpMode {
 
         if (opModeIsActive()) {
 
+            telemetryTfod();
+
             if(Left){
                 drive(-123, 0.4, 1000);
 
