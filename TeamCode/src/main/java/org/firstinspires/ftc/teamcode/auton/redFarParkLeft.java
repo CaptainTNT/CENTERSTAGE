@@ -162,20 +162,20 @@ public class redFarParkLeft extends LinearOpMode {
 
                 spinRight(60, 0.4,2000);
 
-                drive(-3000, 0.4, 4000);
+                drive(-4000, 0.4, 4000);
 
-                strafeLeft(600, 0.6,4000);
+                strafeLeft(700, 0.6,1000);
 
-                arm(-1200, 0.5,false, 2000);
+                arm(-1300, 0.5,false, 2000);
 
-                drive(-400, -0.4,2000);
+                drive(-300, -0.4,1000);
 
                 servoRightOpen(2000);
 
                 drive(200, -0.4,1000);
                 Reset();
 
-                strafeRight(700, 0.4,3000);
+                strafeRight(1100, 0.4,3000);
 
                 drive(-500, -0.4,1500);
 
@@ -184,7 +184,7 @@ public class redFarParkLeft extends LinearOpMode {
 
 
             } else if (Middle) {
-                drive(-2000, 0.4, 2000);
+                drive(-2000, 0.4, 4000);
 
                 servoLeftOpen(500);
 
@@ -194,18 +194,18 @@ public class redFarParkLeft extends LinearOpMode {
 
                 drive(-3500, 0.4, 4000);
 
-                strafeLeft(700, 0.4, 2000);
+                strafeLeft(1400, 0.4, 2000);
 
                 arm(-1300, 0.5,false,2500);
 
-                drive(-300, -0.4,1000);
+                drive(-600, -0.4,2000);
 
                 servoRightOpen(1000);
 
                 drive(200, -0.4,1000);
                 Reset();
 
-                strafeRight(1000, -0.4,2000);
+                strafeRight(1500, -0.4,2000);
 
                 drive(-500, -0.4,1000);
                 stop();
@@ -225,13 +225,13 @@ public class redFarParkLeft extends LinearOpMode {
 
                 strafeLeft(1000, 0.4,1800);
 
-                spinLeft(1800, 0.4,2000);
+                spinLeft(1800, 0.4,3000);
 
-                drive(3000, -0.6,4700);
+                drive(-3000, -0.6,4700);
 
                 strafeLeft(1400, 0.4,2800);
 
-                arm(-1200, 0.5,false,2500);
+                arm(-1300, 0.5,false,2500);
 
                 drive(-700, -0.4,1000);
 
