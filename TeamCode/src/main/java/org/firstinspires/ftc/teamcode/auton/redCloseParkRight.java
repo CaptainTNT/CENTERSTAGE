@@ -17,6 +17,7 @@ import static org.firstinspires.ftc.teamcode.Calabration.auto.servoLeftClose;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoLeftOpen;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightClose;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightOpen;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.spinLeft;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.spinRight;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeLeft;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeRight;
@@ -271,7 +272,7 @@ public class redCloseParkRight extends LinearOpMode {
                 spinRight(920, 0.4, 2000);
 
                 //Sets the robot to strafe right for 420 ticks at 0.4 power for 2.0 seconds
-                strafeRight(420, 0.4, 2000);
+                strafeRight(300, 0.4, 2000);
 
                 //Sets the robot to drive for 280 ticks at 0.4 power for 3.0 seconds
                 drive(280, 0.4, 3000);
@@ -282,11 +283,13 @@ public class redCloseParkRight extends LinearOpMode {
                 //Sets the robot to drive for -271 ticks at 0.4 power for 2.0 seconds
                 drive(-271, 0.4, 2000);
 
+                spinLeft(60, 0.4, 1000);
+
                 //sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1200, 0.6, false, 1000);
+                arm(-1300, 0.6, false, 1000);
 
                 //Sets the robot to drive for -1460 ticks at 0.4 power for 2.0 seconds
-                drive(-1460, 0.4, 2000);
+                drive(-1500, 0.4, 2000);
 
                 // Sets the robot to open right flipper for 2 seconds
                 servoRightOpen(2000);

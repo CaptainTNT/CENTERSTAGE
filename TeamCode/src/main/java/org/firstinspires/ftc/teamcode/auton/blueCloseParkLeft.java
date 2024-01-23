@@ -173,7 +173,7 @@ public class blueCloseParkLeft extends LinearOpMode {
                 Reset();
 
                 //Sets the robot to strafe Left for 1600 ticks at 0.4 power for 3.0 seconds
-                strafeRight(600, 0.4, 3000);
+                strafeRight(1000, 0.4, 3000);
 
                 //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
                 drive(-500, 0.4, 3100);
@@ -195,13 +195,13 @@ public class blueCloseParkLeft extends LinearOpMode {
                 spinLeft(920, 0.4, 2000);
 
                 //Sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1260, 0.6, false, 1000);
+                arm(-1300, 0.6, false, 1000);
 
                 //Sets the robot to drive for -1200 ticks at 0.4 power for 2.0 seconds
                 drive(-1200, 0.4, 2000);
 
                 //Sets the robot to strafe Right for 5000 ticks at 0.4 power for 1.5 seconds
-                strafeRight(880, 0.4, 1500);
+                strafeRight(890, 0.4, 1500);
 
                 //Sets the robot to drive for -350 ticks at 0.4 power for 1.0 seconds
                 drive(-350, 0.4, 1000);
@@ -213,7 +213,7 @@ public class blueCloseParkLeft extends LinearOpMode {
                 Reset();
 
                 //Sets the robot to strafe Left for 1100 ticks at 0.4 power for 2.0 seconds
-                strafeRight(700, 0.4, 2000);
+                strafeRight(1500, 0.4, 3000);
 
                 //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
                 drive(-500, 0.4, 3100);
@@ -241,10 +241,10 @@ public class blueCloseParkLeft extends LinearOpMode {
                 drive(-271, 0.4, 2000);
 
                 //sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1200, 0.6, false, 1000);
+                arm(-1300, 0.6, false, 1000);
 
                 //Sets the robot to drive for -1460 ticks at 0.4 power for 2.0 seconds
-                drive(-1460, 0.4, 2000);
+                drive(-1440, 0.4, 2000);
 
                 strafeLeft(250, 0.4, 1000);
 
@@ -257,7 +257,7 @@ public class blueCloseParkLeft extends LinearOpMode {
                 Reset();
 
                 //Sets the robot to strafe right for 1000 ticks at 0.4 power for 3.0 seconds
-                strafeRight(1000, 0.4, 3000);
+                strafeRight(1500, 0.4, 3000);
 
                 //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
                 drive(-500, 0.4, 3100);
