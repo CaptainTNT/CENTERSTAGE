@@ -17,6 +17,7 @@ public class MainOpMode extends OpMode {
     private DcMotor backRightDrive = null;
     private DcMotor backLeftDrive = null;
     private DcMotorEx LaunchMotor = null;
+    private DcMotorEx LaunchMotor2 = null;
     private DcMotor LaunchMotor3 = null;
     private DcMotor LaunchMotor4 = null;
     private Servo servo1 = null;
@@ -57,6 +58,7 @@ public class MainOpMode extends OpMode {
         backLeftDrive = hardwareMap.get(DcMotor.class, "back Left");
         backRightDrive = hardwareMap.get(DcMotor.class, "back Right");
         LaunchMotor = hardwareMap.get(DcMotorEx.class, "Launch Motor");
+        LaunchMotor2 = hardwareMap.get(DcMotorEx.class, "Launch Motor2");
         LaunchMotor3 = hardwareMap.get(DcMotor.class, "Launch Motor 3");
         LaunchMotor4 = hardwareMap.get(DcMotor.class, "Launch Motor 4");
         servo1 = hardwareMap.get(Servo.class, "servo1");
@@ -69,10 +71,13 @@ public class MainOpMode extends OpMode {
         leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         rightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        LaunchMotor2.setDirection(DcMotorSimple.Direction.REVERSE);
         servo1.setPosition(Servo.Direction.REVERSE.ordinal());
 
         LaunchMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         LaunchMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        LaunchMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        LaunchMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         Speed = 0.65;
         MaxSpeed = 0.65;
@@ -96,9 +101,11 @@ public class MainOpMode extends OpMode {
         double proportionalTerm = 0.0015 * (target - armPos);
 
         power = pid + ff - proportionalTerm;
-        power = Range.clip(power, -1.0, 1.0);
+        power = Range.clip(power, -0.5, 0.5);
 
         LaunchMotor.setPower(power);
+        LaunchMotor2.setPower(power);
+
     }
     public void loop() {
 
