@@ -140,6 +140,8 @@ public class blueCloseParkRight extends LinearOpMode {
 
         if (opModeIsActive()) {
 
+            telemetryTfod();
+
             if(Left){
                 drive(-123, 0.4, 1000);
 
@@ -196,7 +198,7 @@ public class blueCloseParkRight extends LinearOpMode {
                 spinLeft(920, 0.4, 2000);
 
                 //Sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1260, 0.6, false, 1000);
+                arm(-1300, 0.6, false, 1000);
 
                 //Sets the robot to drive for -1200 ticks at 0.4 power for 2.0 seconds
                 drive(-1200, 0.4, 2000);

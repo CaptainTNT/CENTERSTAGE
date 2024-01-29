@@ -144,6 +144,8 @@ public class blueFarParkLeft extends LinearOpMode {
 
         if (opModeIsActive()) {
 
+            telemetryTfod();
+
             if(Right){
                 drive(-124, -0.4, 500); // ADD MORE COMMENTS
 
