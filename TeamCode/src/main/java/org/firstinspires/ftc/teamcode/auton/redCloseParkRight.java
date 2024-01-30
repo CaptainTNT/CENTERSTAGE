@@ -243,10 +243,10 @@ public class redCloseParkRight extends LinearOpMode {
                 strafeLeft(2000, 0.4, 1500);
 
                 //Sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1240, 0.6, false, 1000);
+                arm(-1400, 0.6, false, 1000);
 
                 //Sets the robot to drive for -350 ticks at 0.4 power for 1.0 seconds
-                drive(-490, 0.4, 1000);
+                drive(-400, 0.4, 1000);
 
                 //Sets the robot to open right servo for 2000 ticks
                 servoRightOpen(2000);
@@ -257,7 +257,7 @@ public class redCloseParkRight extends LinearOpMode {
                 Reset();
 
                 //Sets the robot to strafe right for 1100 ticks at 0.4 power for 2.0 seconds
-                strafeLeft(1100, 0.4, 2000);
+                strafeLeft(1300, 0.4, 2000);
 
                 //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
                 drive(-500, 0.4, 3100);
@@ -285,7 +285,7 @@ public class redCloseParkRight extends LinearOpMode {
                 //Sets the robot to drive for -271 ticks at 0.4 power for 2.0 seconds
                 drive(-271, 0.4, 2000);
 
-                spinLeft(60, 0.4, 1000);
+                spinLeft(60, 0.4,1000);
 
                 //sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
                 arm(-1300, 0.6, false, 1000);
