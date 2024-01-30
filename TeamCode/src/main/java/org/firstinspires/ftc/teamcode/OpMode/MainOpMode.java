@@ -39,10 +39,10 @@ public class MainOpMode extends OpMode {
     double pid;
     double ff;
     double power;
-
     int newTarget = 10;
     int armPos;
     int target = 0;
+    boolean Safety = false;
     boolean Armed = false;
     boolean changed1 = false; //leftservo
     boolean changed2 = false; //rightservo
@@ -58,7 +58,7 @@ public class MainOpMode extends OpMode {
         backLeftDrive = hardwareMap.get(DcMotor.class, "back Left");
         backRightDrive = hardwareMap.get(DcMotor.class, "back Right");
         LaunchMotor = hardwareMap.get(DcMotorEx.class, "Launch Motor");
-        LaunchMotor2 = hardwareMap.get(DcMotorEx.class, "Launch Motor2");
+        LaunchMotor2 = hardwareMap.get(DcMotorEx.class, "Launch Motor 2");
         LaunchMotor3 = hardwareMap.get(DcMotor.class, "Launch Motor 3");
         LaunchMotor4 = hardwareMap.get(DcMotor.class, "Launch Motor 4");
         servo1 = hardwareMap.get(Servo.class, "servo1");
@@ -111,9 +111,12 @@ public class MainOpMode extends OpMode {
 
         PIDLoop(newTarget);
 
-        if (gamepad2.touchpad && !Armed) {
+        if (gamepad2.touchpad && !Safety) {
             gamepad2.setLedColor(1, 0, 0, Gamepad.LED_DURATION_CONTINUOUS);
             gamepad2.rumble(1000);
+            newTarget = -1000;
+            Safety = true;
+        } else if (!gamepad2.touchpad && Safety){
             Armed = true;
         } else if (gamepad2.touchpad && Armed){
             double x = 0;
@@ -180,6 +183,7 @@ public class MainOpMode extends OpMode {
 
         telemetry.addData("RightServo", rightServo);
         telemetry.addData("LeftServer", leftServo);
+        telemetry.addData("armPos", armPos);
     }
 
     @Override
