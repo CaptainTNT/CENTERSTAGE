@@ -150,45 +150,45 @@ public class redFarParkLeft extends LinearOpMode {
             telemetry.update();
             visionPortal.close();
             if(Left){
-                drive(-123, -0.4,1000);
+                drive(-124, -0.4, 500); // ADD MORE COMMENTS
 
-                spinRight(900, 0.4,2000);
+                spinRight(900, 0.4, 2000);
 
-                strafeRight(1500, 0.4,1800);
+                strafeRight(1500, 0.4, 1800);
 
-                drive(60, 0.4,500);
+                servoLeftOpen(550); //Drops the purple pixel on the spike mark
 
-                servoLeftOpen(1000);
+                drive(-200, -0.4,1000);
 
-                drive(-300, -0.4,500);
+                strafeRight(1100, 0.4,2000);
 
-                strafeRight(1000, 0.4,1800);
+                spinRight(100, 0.4,500);
 
-                spinRight(60, 0.4,2000);
+                drive(-3500, 0.4,5000); // Drives towards the backboard
 
-                drive(-4000, 0.4, 4000);
+                strafeLeft(810, -0.4, 3000); //Aligns with the backboard to perpare to place the pixel
 
-                strafeLeft(700, 0.6,1000);
+                //spinRight(900, -0.4,1000);
 
-                arm(-1300, 0.5,false, 2000);
+                //strafeLeft(600, 0.4,2000);
 
-                drive(-300, -0.4,1000);
+                arm(-1400, 0.5, false, 2500);
 
-                servoRightOpen(2000);
+                drive(-330, -0.4,1000);
 
-                drive(200, -0.4,1000);
+                servoRightOpen(1000);
+
+                drive(200, -0.4, 1000);
                 Reset();
 
-                strafeRight(1100, 0.4,3000);
+                strafeRight(900, -0.4, 2000);
 
-                drive(-500, -0.4,1500);
-
+                drive(-500, -0.4, 1000);
 
                 stop();
-
-
             } else if (Middle) {
-                drive(-2000, 0.4, 4000);
+
+                drive(-2000, 0.4, 3000);
 
                 servoLeftOpen(500);
 
@@ -198,58 +198,65 @@ public class redFarParkLeft extends LinearOpMode {
 
                 drive(-3500, 0.4, 4000);
 
-                strafeLeft(1400, 0.4, 2000);
+                strafeLeft(1200, 0.4, 2000);
 
-                arm(-1300, 0.5,false,2500);
-
-                drive(-600, -0.4,2000);
-
-                servoRightOpen(1000);
-
-                drive(200, -0.4,1000);
-                Reset();
-
-                strafeRight(1500, -0.4,2000);
-
-                drive(-500, -0.4,1000);
-                stop();
-            } else {
-
-                drive(-124, -0.4,500);
-
-                spinLeft(900, 0.4,2000);
-
-                strafeLeft(1500, 0.4,1800);
-
-                drive(260, 0.4,800);
-
-                servoLeftOpen(500);
+                arm(-1400, 0.5,false,2500);
 
                 drive(-300, -0.4,1000);
 
-                strafeLeft(1000, 0.4,1800);
-
-                spinLeft(1800, 0.4,3000);
-
-                drive(-3000, -0.6,4700);
-
-                strafeLeft(1400, 0.4,2800);
-
-                arm(-1300, 0.5,false,2500);
-
-                drive(-700, -0.4,1000);
-
                 servoRightOpen(1000);
 
                 drive(200, -0.4,1000);
+
                 Reset();
 
-                strafeRight(900, -0.4,2000);
+                strafeRight(1200, -0.4,2000);
 
                 drive(-500, -0.4,1000);
 
+                stop();
+            } else {
+                drive(-124, -0.4, 500); // ADD MORE COMMENTS
+
+                spinLeft(900, 0.4, 2000);
+
+                strafeLeft(1500, 0.4, 1800);
+
+                drive(300, -0.4,1000);
+
+                servoLeftOpen(550); //Drops the purple pixel on the spike mark
+
+                drive(-200, -0.4,1000);
+
+                strafeLeft(1000, 0.4,2000);
+
+                spinRight(1810, 0.4, 4000); //Recorrects rotational error
+
+                drive(-3500, 0.4,5000); // Drives towards the backboard
+
+                strafeLeft(1100, -0.4, 1500); //Aligns with the backboard to perpare to place the pixel
+
+                //spinRight(900, -0.4,1000);
+
+                //strafeLeft(600, 0.4,2000);
+
+                arm(-1400, 0.5, false, 2500);
+
+                drive(-330, -0.4,1000);
+
+                servoRightOpen(1000);
+
+                drive(200, -0.4, 1000);
+                Reset();
+
+                strafeRight(1500, -0.4, 2500);
+
+                drive(-500, -0.4, 1000);
+
 
                 stop();
+
+
             }
             stop();
         }
