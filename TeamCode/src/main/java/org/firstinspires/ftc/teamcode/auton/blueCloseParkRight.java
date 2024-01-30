@@ -132,7 +132,6 @@ public class blueCloseParkRight extends LinearOpMode {
 
         }
 
-        visionPortal.close();
 
         waitForStart();
 
@@ -141,7 +140,9 @@ public class blueCloseParkRight extends LinearOpMode {
         if (opModeIsActive()) {
 
             telemetryTfod();
-
+            sleep(1000);
+            telemetry.update();
+            visionPortal.close();
             if(Left){
                 drive(-123, 0.4, 1000);
 

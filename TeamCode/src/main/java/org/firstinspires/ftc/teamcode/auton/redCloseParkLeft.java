@@ -158,7 +158,6 @@ public class redCloseParkLeft extends LinearOpMode {
         }
 
         //Closes vision portal for cpu savings
-        visionPortal.close();
 
         //Stops code until opmode is started
         waitForStart();
@@ -171,6 +170,9 @@ public class redCloseParkLeft extends LinearOpMode {
         if (opModeIsActive()) {
 
             telemetryTfod();
+            sleep(1000);
+            telemetry.update();
+            visionPortal.close();
 
             //Will run if Left is the last object detected when opmode is started
             if(Right){

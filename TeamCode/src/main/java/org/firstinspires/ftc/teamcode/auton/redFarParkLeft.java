@@ -139,7 +139,6 @@ public class redFarParkLeft extends LinearOpMode {
 
         }
 
-        visionPortal.close();
 
 
         waitForStart();
@@ -147,7 +146,9 @@ public class redFarParkLeft extends LinearOpMode {
         if (opModeIsActive()) {
 
             telemetryTfod();
-
+            sleep(1000);
+            telemetry.update();
+            visionPortal.close();
             if(Left){
                 drive(-123, -0.4,1000);
 
