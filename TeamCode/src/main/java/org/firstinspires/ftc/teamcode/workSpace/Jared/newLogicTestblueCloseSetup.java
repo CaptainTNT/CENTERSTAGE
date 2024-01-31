@@ -100,12 +100,12 @@ public class newLogicTestblueCloseSetup extends LinearOpMode {
                 Left = false;
                 Middle = true;
                 telemetry.addLine("Middle");
-            }else {
+            }else if (tfodTime.milliseconds()>1000){
                 Left = false;
                 Middle = false;
                 telemetry.addLine("Right");
             }
-
+            telemetry.addData("time:", tfodTime.milliseconds());
         }   // end for() loop
 
     }   // end method telemetryTfod()
