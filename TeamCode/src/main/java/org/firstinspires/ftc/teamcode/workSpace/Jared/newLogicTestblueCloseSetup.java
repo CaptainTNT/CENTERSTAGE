@@ -79,7 +79,6 @@ public class newLogicTestblueCloseSetup extends LinearOpMode {
 
         List<Recognition> currentRecognitions = tfod.getRecognitions();
         telemetry.addData("# Objects Detected", currentRecognitions.size());
-        telemetry.addLine("Right");
 
         // Step through the list of recognitions and display info for each one.
         for (Recognition recognition : currentRecognitions) {
@@ -90,22 +89,20 @@ public class newLogicTestblueCloseSetup extends LinearOpMode {
             telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
             telemetry.addData("- Position", "%.0f / %.0f", x, y);
             telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
+            tfodTime.reset();
+            tfodTime.startTime();
+
             if (x<=330 && tfodTime.milliseconds() < 1000){
-                tfodTime.reset();
                 Left = true;
                 Middle = false;
                 telemetry.addLine("Left");
-            } else if ( 330 <= x && tfodTime.milliseconds() < 1000) {
                 tfodTime.reset();
+            } else if ( 330 <= x && tfodTime.milliseconds() < 1000) {
                 Left = false;
                 Middle = true;
                 telemetry.addLine("Middle");
-            }else if (tfodTime.milliseconds()>1000){
-                Left = false;
-                Middle = false;
-                telemetry.addLine("Right");
+                tfodTime.reset();
             }
-            telemetry.addData("time:", tfodTime.milliseconds());
         }   // end for() loop
 
     }   // end method telemetryTfod()
@@ -128,7 +125,12 @@ public class newLogicTestblueCloseSetup extends LinearOpMode {
         while (!opModeIsActive()) {
 
             telemetryTfod();
-
+            telemetry.addData("time:", tfodTime.milliseconds());
+            if (tfodTime.milliseconds() > 1000){
+                Left = false;
+                Middle = false;
+                telemetry.addLine("Right");
+            }
             // Push telemetry to the Driver Station.
             telemetry.update();
 
