@@ -27,6 +27,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -60,6 +61,8 @@ public class redCloseParkRight extends LinearOpMode {
     //Sets variables for detection
     boolean Right = false;
     boolean Middle = false;
+    public ElapsedTime tfodTime = new ElapsedTime();
+
 
 
     //Creates method for the tfod to start in init
@@ -101,7 +104,6 @@ public class redCloseParkRight extends LinearOpMode {
         //Adds telemerty for if a object is detected
         List<Recognition> currentRecognitions = tfod.getRecognitions();
         telemetry.addData("# Objects Detected", currentRecognitions.size());
-        telemetry.addLine("Left");
 
         //Step through the list of recognitions and display info for each one.
         for (Recognition recognition : currentRecognitions) {
@@ -114,22 +116,23 @@ public class redCloseParkRight extends LinearOpMode {
             telemetry.addData(""," ");
             telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
 
+            tfodTime.reset();
+            tfodTime.startTime();
             //Code for position and size of the object (not currently using)
             //telemetry.addData("- Position", "%.0f / %.0f", x, y);
             //telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
 
             //Logic for deciding what tape the object is on
-            if (x>=330){
+            if (x>=330 && tfodTime.milliseconds() < 1000){
                 Right = true;
                 Middle = false;
                 telemetry.addLine("Right");
-            } else if ( 330 >= x) {
+                tfodTime.reset();
+            } else if ( 330 >= x && tfodTime.milliseconds() < 1000) {
                 Middle = true;
                 Right = false;
                 telemetry.addLine("Middle");
-            }else {
-                Middle = false;
-                Right = false;
+                tfodTime.reset();
             }
         }
     }
@@ -156,6 +159,11 @@ public class redCloseParkRight extends LinearOpMode {
         while (!opModeIsActive()) {
 
             telemetryTfod();
+            if (tfodTime.milliseconds() > 1000){
+                Right = false;
+                Middle = false;
+                telemetry.addLine("Right");
+            }
 
             //Push telemetry to the Driver Station.
             telemetry.update();
@@ -173,9 +181,7 @@ public class redCloseParkRight extends LinearOpMode {
         //Runs when opmode is started
         if (opModeIsActive()) {
 
-            telemetryTfod();
-            sleep(1000);
-            telemetry.update();
+
             visionPortal.close();
             //Will run if Left is the last object detected when opmode is started
             if(Right){

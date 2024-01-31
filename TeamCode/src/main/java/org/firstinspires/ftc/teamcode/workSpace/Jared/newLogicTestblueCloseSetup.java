@@ -20,6 +20,7 @@ import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeRight;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.timer;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -32,6 +33,7 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
+@Disabled
 
 @Autonomous(name = "newLogicTestblueCloseSetup", group = "Test")
 public class newLogicTestblueCloseSetup extends LinearOpMode {

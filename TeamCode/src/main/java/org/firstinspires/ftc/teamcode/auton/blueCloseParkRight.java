@@ -23,6 +23,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -45,6 +46,8 @@ public class blueCloseParkRight extends LinearOpMode {
     private VisionPortal visionPortal;
     boolean Middle = false;
     boolean Left = false;
+    public ElapsedTime tfodTime = new ElapsedTime();
+
 
     private void initTfod() {
 
@@ -78,7 +81,6 @@ public class blueCloseParkRight extends LinearOpMode {
 
         List<Recognition> currentRecognitions = tfod.getRecognitions();
         telemetry.addData("# Objects Detected", currentRecognitions.size());
-        telemetry.addLine("Right");
 
         // Step through the list of recognitions and display info for each one.
         for (Recognition recognition : currentRecognitions) {
@@ -87,20 +89,19 @@ public class blueCloseParkRight extends LinearOpMode {
 
             telemetry.addData(""," ");
             telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
-            telemetry.addData("- Position", "%.0f / %.0f", x, y);
-            telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
-            if (x<=330){
+            tfodTime.reset();
+            tfodTime.startTime();
+
+            if (x<=330 && tfodTime.milliseconds() < 1000){
                 Left = true;
                 Middle = false;
                 telemetry.addLine("Left");
-            } else if ( 330 <= x) {
+                tfodTime.reset();
+            } else if ( 330 <= x && tfodTime.milliseconds() < 1000) {
                 Left = false;
                 Middle = true;
                 telemetry.addLine("Middle");
-            }else {
-                Left = false;
-                Middle = false;
-                telemetry.addLine("Right");
+                tfodTime.reset();
             }
 
         }   // end for() loop
@@ -125,6 +126,11 @@ public class blueCloseParkRight extends LinearOpMode {
         while (!opModeIsActive()) {
 
             telemetryTfod();
+            if (tfodTime.milliseconds() > 1000){
+                Left = false;
+                Middle = false;
+                telemetry.addLine("Right");
+            }
 
             // Push telemetry to the Driver Station.
             telemetry.update();
@@ -139,9 +145,7 @@ public class blueCloseParkRight extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            telemetryTfod();
-            sleep(1000);
-            telemetry.update();
+
             visionPortal.close();
             if(Left){
                 drive(-123, 0.4, 1000);

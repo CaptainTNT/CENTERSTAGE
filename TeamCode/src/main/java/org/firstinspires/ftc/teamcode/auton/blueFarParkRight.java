@@ -18,11 +18,13 @@ import static org.firstinspires.ftc.teamcode.Calabration.auto.spinLeft;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.spinRight;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeLeft;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeRight;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.timer;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -48,6 +50,7 @@ public class blueFarParkRight extends LinearOpMode {
     private VisionPortal visionPortal;
     boolean Right = false;
     boolean Middle = false;
+    public ElapsedTime tfodTime = new ElapsedTime();
 
     private void initTfod() {
 
@@ -85,7 +88,6 @@ public class blueFarParkRight extends LinearOpMode {
 
         List<Recognition> currentRecognitions = tfod.getRecognitions();
         telemetry.addData("# Objects Detected", currentRecognitions.size());
-        telemetry.addLine("Left");
 
         // Step through the list of recognitions and display info for each one.
         for (Recognition recognition : currentRecognitions) {
@@ -94,20 +96,19 @@ public class blueFarParkRight extends LinearOpMode {
 
             telemetry.addData(""," ");
             telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
-            telemetry.addData("- Position", "%.0f / %.0f", x, y);
-            telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
-            if (x>=330){
+            tfodTime.reset();
+            tfodTime.startTime();
+
+            if (x>=330 && tfodTime.milliseconds() < 1000){
                 Right = true;
                 Middle = false;
                 telemetry.addLine("Right");
-            } else if ( 330 >= x) {
+                tfodTime.reset();
+            } else if ( 330 >= x && tfodTime.milliseconds() < 1000) {
                 Middle = true;
                 Right = false;
                 telemetry.addLine("Middle");
-            }else {
-                Middle = false;
-                Right = false;
-                telemetry.addLine("Left");
+                tfodTime.reset();
             }
 
         }   // end for() loop
@@ -131,6 +132,11 @@ public class blueFarParkRight extends LinearOpMode {
         while (!opModeIsActive()) {
 
             telemetryTfod();
+            if (tfodTime.milliseconds() > 1000){
+                Right = false;
+                Middle = false;
+                telemetry.addLine("Right");
+            }
 
             // Push telemetry to the Driver Station.
             telemetry.update();
@@ -140,12 +146,12 @@ public class blueFarParkRight extends LinearOpMode {
 
 
         waitForStart();
+        timer.reset();
+
 
         if (opModeIsActive()) {
 
-            telemetryTfod();
-            sleep(1000);
-            telemetry.update();
+
             visionPortal.close();
             if(Right){
                 drive(-124, -0.4, 500); // ADD MORE COMMENTS
