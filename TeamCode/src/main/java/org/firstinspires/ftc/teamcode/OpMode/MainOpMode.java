@@ -114,7 +114,7 @@ public class MainOpMode extends OpMode {
         if (gamepad2.touchpad && !Safety) {
             gamepad2.setLedColor(1, 0, 0, Gamepad.LED_DURATION_CONTINUOUS);
             gamepad2.rumble(1000);
-            newTarget = -1000;
+            newTarget = -800;
             Safety = true;
         } else if (!gamepad2.touchpad && Safety){
             Armed = true;
