@@ -23,6 +23,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -45,7 +46,7 @@ public class newLogicTestblueCloseSetup extends LinearOpMode {
     private VisionPortal visionPortal;
     boolean Middle = false;
     boolean Left = false;
-
+    public ElapsedTime tfodTime = new ElapsedTime();
     private void initTfod() {
 
         // Create the TensorFlow processor by using a builder.
@@ -89,13 +90,13 @@ public class newLogicTestblueCloseSetup extends LinearOpMode {
             telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
             telemetry.addData("- Position", "%.0f / %.0f", x, y);
             telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
-            if (x<=330 && timer.milliseconds() < 1000){
-                timer.reset();
+            if (x<=330 && tfodTime.milliseconds() < 1000){
+                tfodTime.reset();
                 Left = true;
                 Middle = false;
                 telemetry.addLine("Left");
-            } else if ( 330 <= x && timer.milliseconds() < 1000) {
-                timer.reset();
+            } else if ( 330 <= x && tfodTime.milliseconds() < 1000) {
+                tfodTime.reset();
                 Left = false;
                 Middle = true;
                 telemetry.addLine("Middle");
