@@ -11,6 +11,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 @Config
 @TeleOp
+@Disabled
 public class PIDF_Arm extends OpMode {
     private PIDController controller;
     public static double p = 0.0025, i = 0, d = 0.00001;

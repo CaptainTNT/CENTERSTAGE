@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.OpMode;
 
 import com.arcrobotics.ftclib.controller.PIDController;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -11,6 +12,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
 @TeleOp
+@Disabled
 public class TestOpMode extends OpMode {
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
