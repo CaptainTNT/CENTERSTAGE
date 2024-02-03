@@ -173,13 +173,13 @@ public class redFarParkRight extends LinearOpMode {
 
                 drive(-3500, 0.4,5000); // Drives towards the backboard
 
-                strafeLeft(810, -0.4, 3000); //Aligns with the backboard to perpare to place the pixel
+                strafeLeft(810, -0.4, 1000); //Aligns with the backboard to perpare to place the pixel
 
                 //spinRight(900, -0.4,1000);
 
                 //strafeLeft(600, 0.4,2000);
 
-                arm(-1400, 0.5, false, 2500);
+                arm(-1340, 0.5, false, 1000);
 
                 drive(-330, -0.4,1000);
 
@@ -199,7 +199,7 @@ public class redFarParkRight extends LinearOpMode {
 
                 servoLeftOpen(500);
 
-                drive(-300, 0.4,2000);
+                drive(-300, 0.4,1000);
 
                 spinRight(900, 0.4,2000);
 
@@ -207,7 +207,7 @@ public class redFarParkRight extends LinearOpMode {
 
                 strafeLeft(1200, 0.4, 2000);
 
-                arm(-1400, 0.5,false,2500);
+                arm(-1340, 0.5,false,1000);
 
                 drive(-300, -0.4,1000);
 
@@ -237,7 +237,7 @@ public class redFarParkRight extends LinearOpMode {
 
                 strafeLeft(1000, 0.4,2000);
 
-                spinRight(1810, 0.4, 4000); //Recorrects rotational error
+                spinRight(1810, 0.4, 3000); //Recorrects rotational error
 
                 drive(-3500, 0.4,5000); // Drives towards the backboard
 
@@ -247,7 +247,7 @@ public class redFarParkRight extends LinearOpMode {
 
                 //strafeLeft(600, 0.4,2000);
 
-                arm(-1400, 0.5, false, 2500);
+                arm(-1340, 0.5, false, 2500);
 
                 drive(-330, -0.4,1000);
 

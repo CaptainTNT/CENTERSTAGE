@@ -186,44 +186,44 @@ public class redCloseParkRight extends LinearOpMode {
             //Will run if Left is the last object detected when opmode is started
             if(Right){
 
-                //Sets the robot to drive for -123 ticks at 0.4 power for 1.0 seconds
-                drive(-123, 0.4, 1000);
+                //Sets the robot to drive for -123 ticks at 0.45 power for 1.0 seconds
+                drive(-123, 0.45, 1000);
 
-                //Sets the robot to spin right for 920 ticks at 0.4 power for 1.5 seconds
-                spinRight(920, 0.4, 1500);
+                //Sets the robot to spin right for 920 ticks at 0.45 power for 1.5 seconds
+                spinRight(920, 0.45, 1500);
 
-                //Sets the robot to drive for -620 ticks at 0.4 power for 1.6 seconds
-                drive(-620, 0.4, 1600);
+                //Sets the robot to drive for -620 ticks at 0.45 power for 1.6 seconds
+                drive(-620, 0.45, 1600);
 
-                //Sets the robot to strafe right for 1500 ticks at 0.4 power for 1.8 seconds
-                strafeRight(1500, 0.4, 1800);
+                //Sets the robot to strafe right for 1500 ticks at 0.45 power for 1.8 seconds
+                strafeRight(1500, 0.45, 1800);
 
                 //Sets the robot to open left servo for 1.5 seconds
-                servoLeftOpen(1500);
+                servoLeftOpen(1000);
 
                 //Sets the robot lift to arm for -1450 ticks at 0.5 power for 2.0 seconds
-                arm(-1400, 0.5, false, 2000);
+                arm(-1340, 0.5, false, 1000);
 
-                //Sets the robot to drive for -840 ticks at 0.4 power for 3.1 seconds
-                drive(-840, 0.4, 3100);
+                //Sets the robot to drive for -840 ticks at 0.45 power for 3.1 seconds
+                drive(-840, 0.45, 1000);
 
-                //Sets the robot to strafe left for 600 ticks at 0.4 power for 1.8 seconds
-                strafeLeft(600, 0.4, 1800);
+                //Sets the robot to strafe left for 600 ticks at 0.45 power for 1.8 seconds
+                strafeLeft(600, 0.45, 1500);
 
                 //Sets the robot to open right flipper for 2 seconds
-                servoRightOpen(2000);
+                servoRightOpen(1000);
 
-                //Sets the robot to drive for 200 ticks at 0.4 power for 3.1 seconds
-                drive(200, 0.4, 3100);
+                //Sets the robot to drive for 200 ticks at 0.45 power for 3.1 seconds
+                drive(200, 0.45, 1000);
 
                 //Resets the encoders + lowers arm
                 Reset();
 
-                //Sets the robot to strafe right for 1600 ticks at 0.4 power for 3.0 seconds
-                strafeLeft(1000, 0.4, 3000);
+                //Sets the robot to strafe right for 1600 ticks at 0.45 power for 3.0 seconds
+                strafeLeft(1000, 0.45, 1300);
 
-                //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
-                drive(-500, 0.4, 3100);
+                //Sets the robot to drive for -500 ticks at 0.45 power for 3.1 seconds
+                drive(-500, 0.45, 1000);
 
                 //Stops the robot
                 stop();
@@ -231,86 +231,86 @@ public class redCloseParkRight extends LinearOpMode {
                 //Will run if Middle is the last object detected when opmode is started
             } else if (Middle) {
 
-                //Sets the robot to drive for -1950 ticks at 0.4 power for 3.0 seconds
-                drive(-1950, 0.4, 3000);
+                //Sets the robot to drive for -1950 ticks at 0.45 power for 3.0 seconds
+                drive(-1950, 0.45, 3000);
 
                 //Sets the robot to open left flipper for 1.5 seconds
-                servoLeftOpen(1500);
+                servoLeftOpen(1000);
 
-                //Sets the robot to drive for -300 ticks at 0.4 power for 1.8 seconds
-                drive(-300, 0.4, 1800);
+                //Sets the robot to drive for -300 ticks at 0.45 power for 1.8 seconds
+                drive(-300, 0.45, 1000);
 
-                //Sets the robot to spin right for 920 ticks at 0.4 power for 2.0 seconds
-                spinRight(920, 0.4, 2000);
+                //Sets the robot to spin right for 920 ticks at 0.45 power for 2.0 seconds
+                spinRight(920, 0.45, 2000);
 
-                //Sets the robot to drive for -1200 ticks at 0.4 power for 2.0 seconds
-                drive(-1200, 0.4, 2000);
+                //Sets the robot to drive for -1200 ticks at 0.45 power for 2.0 seconds
+                drive(-1200, 0.45, 2000);
 
-                //Sets the robot to strafe left for 5000 ticks at 0.4 power for 1.5 seconds
-                strafeLeft(2000, 0.4, 1500);
+                //Sets the robot to strafe left for 5000 ticks at 0.45 power for 1.5 seconds
+                strafeLeft(2000, 0.45, 1500);
 
                 //Sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1390, 0.6, false, 2000);
+                arm(-1340, 0.6, false, 2000);
 
-                //Sets the robot to drive for -350 ticks at 0.4 power for 1.0 seconds
-                drive(-370, 0.4, 1000);
+                //Sets the robot to drive for -350 ticks at 0.45 power for 1.0 seconds
+                drive(-370, 0.45, 1000);
 
                 //Sets the robot to open right servo for 2000 ticks
-                servoRightOpen(2000);
+                servoRightOpen(1000);
 
-                drive(200, 0.4, 2000);
+                drive(200, 0.45, 1000);
 
                 //Resets the encoders + lowers arm
                 Reset();
 
-                //Sets the robot to strafe right for 1100 ticks at 0.4 power for 2.0 seconds
-                strafeLeft(1500, 0.4, 2000);
+                //Sets the robot to strafe right for 1100 ticks at 0.45 power for 2.0 seconds
+                strafeLeft(1500, 0.45, 2000);
 
-                //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
-                drive(-500, 0.4, 3100);
+                //Sets the robot to drive for -500 ticks at 0.45 power for 3.1 seconds
+                drive(-500, 0.45, 1000);
 
                 //Stops the robot
                 stop();
 
                 //Will run if Right is the last object detected when opmode is started
             } else {
-                //Sets the robot to drive for -1150 ticks at 0.4 power for 3.0 seconds
-                drive(-1150, 0.4, 3000);
+                //Sets the robot to drive for -1150 ticks at 0.45 power for 3.0 seconds
+                drive(-1150, 0.45, 3000);
 
-                //Sets the robot to spin right for 920 ticks at 0.4 power for 2.0 seconds
-                spinRight(920, 0.4, 2000);
+                //Sets the robot to spin right for 920 ticks at 0.45 power for 2.0 seconds
+                spinRight(910, 0.45, 2000);
 
-                //Sets the robot to strafe right for 420 ticks at 0.4 power for 2.0 seconds
-                strafeRight(300, 0.4, 2000);
+                //Sets the robot to strafe right for 420 ticks at 0.45 power for 2.0 seconds
+                strafeRight(300, 0.45, 1000);
 
-                //Sets the robot to drive for 280 ticks at 0.4 power for 3.0 seconds
-                drive(280, 0.4, 3000);
+                //Sets the robot to drive for 280 ticks at 0.45 power for 3.0 seconds
+                drive(250, 0.45, 1000);
 
                 //Sets the robot to open left flipper for 3 seconds
                 servoLeftOpen(3000);
 
-                //Sets the robot to drive for -271 ticks at 0.4 power for 2.0 seconds
-                drive(-271, 0.4, 2000);
+                //Sets the robot to drive for -271 ticks at 0.45 power for 2.0 seconds
+                drive(-271, 0.45, 1000);
 
                 //sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1390, 0.6, false, 1000);
+                arm(-1340, 0.6, false, 1000);
 
-                //Sets the robot to drive for -1460 ticks at 0.4 power for 2.0 seconds
-                drive(-1500, 0.4, 2000);
+                //Sets the robot to drive for -1460 ticks at 0.45 power for 2.0 seconds
+                drive(-1500, 0.45, 2000);
 
                 // Sets the robot to open right flipper for 2 seconds
-                servoRightOpen(2000);
+                servoRightOpen(1000);
 
-                drive(200, 0.4, 2000);
+                drive(200, 0.45, 1000);
 
                 //Resets the encoders + lowers arm
                 Reset();
 
-                //Sets the robot to strafe right for 1000 ticks at 0.4 power for 3.0 seconds
-                strafeLeft(2000, 0.4, 3000);
+                //Sets the robot to strafe right for 1000 ticks at 0.45 power for 3.0 seconds
+                strafeLeft(2000, 0.45, 3000);
 
-                //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
-                drive(-500, 0.4, 3100);
+                //Sets the robot to drive for -500 ticks a6t 0.45 power for 3.1 seconds
+                drive(-500, 0.45, 3100);
 
                 //Stops the robot
                 stop();

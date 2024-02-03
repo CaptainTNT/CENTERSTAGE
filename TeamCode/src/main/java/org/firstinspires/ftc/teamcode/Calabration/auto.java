@@ -246,6 +246,28 @@ public class auto extends OpMode {
 
     }
 
+    public static void sleep(double time) {
+
+
+
+        timer.reset();
+
+        while (time > timer.milliseconds()) {
+            driveReset();
+
+            stopDrive();
+
+        }
+        if (timer.milliseconds() >= time){
+            leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backRightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backLeftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        }
+
+
+    }
+
     public static void driveReset() {
         leftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

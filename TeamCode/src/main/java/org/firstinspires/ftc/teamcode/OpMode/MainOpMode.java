@@ -148,7 +148,7 @@ public class MainOpMode extends OpMode {
         if (gamepad2.left_bumper){
             newTarget = -100;
         } else if (gamepad2.right_bumper){
-            newTarget = -1250;
+            newTarget = -1350;
         }
 
         if (gamepad2.left_trigger > 0.3 && !changed1) {
