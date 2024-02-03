@@ -135,7 +135,7 @@ public class blueFarParkRight extends LinearOpMode {
             if (tfodTime.milliseconds() > 1000){
                 Right = false;
                 Middle = false;
-                telemetry.addLine("Right");
+                telemetry.addLine("Left");
             }
 
             // Push telemetry to the Driver Station.
@@ -203,11 +203,11 @@ public class blueFarParkRight extends LinearOpMode {
 
                 drive(-3500, 0.4, 4000);
 
-                strafeRight(1100, 0.4, 2000);
+                strafeRight(1000, 0.4, 2000);
 
                 arm(-1400, 0.5,false,2500);
 
-                drive(-300, -0.4,1000);
+                drive(-400, -0.4,1000);
 
                 servoRightOpen(1000);
 

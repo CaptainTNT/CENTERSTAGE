@@ -162,7 +162,7 @@ public class redCloseParkRight extends LinearOpMode {
             if (tfodTime.milliseconds() > 1000){
                 Right = false;
                 Middle = false;
-                telemetry.addLine("Right");
+                telemetry.addLine("Left");
             }
 
             //Push telemetry to the Driver Station.
@@ -202,7 +202,7 @@ public class redCloseParkRight extends LinearOpMode {
                 servoLeftOpen(1500);
 
                 //Sets the robot lift to arm for -1450 ticks at 0.5 power for 2.0 seconds
-                arm(-1450, 0.5, false, 2000);
+                arm(-1400, 0.5, false, 2000);
 
                 //Sets the robot to drive for -840 ticks at 0.4 power for 3.1 seconds
                 drive(-840, 0.4, 3100);
@@ -250,10 +250,10 @@ public class redCloseParkRight extends LinearOpMode {
                 strafeLeft(2000, 0.4, 1500);
 
                 //Sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1400, 0.6, false, 1000);
+                arm(-1390, 0.6, false, 2000);
 
                 //Sets the robot to drive for -350 ticks at 0.4 power for 1.0 seconds
-                drive(-400, 0.4, 1000);
+                drive(-370, 0.4, 1000);
 
                 //Sets the robot to open right servo for 2000 ticks
                 servoRightOpen(2000);
@@ -292,10 +292,8 @@ public class redCloseParkRight extends LinearOpMode {
                 //Sets the robot to drive for -271 ticks at 0.4 power for 2.0 seconds
                 drive(-271, 0.4, 2000);
 
-                spinLeft(60, 0.4,1000);
-
                 //sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1300, 0.6, false, 1000);
+                arm(-1390, 0.6, false, 1000);
 
                 //Sets the robot to drive for -1460 ticks at 0.4 power for 2.0 seconds
                 drive(-1500, 0.4, 2000);
