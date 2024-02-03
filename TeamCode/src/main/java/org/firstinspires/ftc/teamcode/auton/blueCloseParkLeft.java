@@ -266,7 +266,7 @@ public class blueCloseParkLeft extends LinearOpMode {
                 Reset();
 
                 //Sets the robot to strafe right for 1000 ticks at 0.4 power for 3.0 seconds
-                strafeRight(1600, 0.4, 3000);
+                strafeRight(2000, 0.4, 3000);
 
                 //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
                 drive(-500, 0.4, 3100);

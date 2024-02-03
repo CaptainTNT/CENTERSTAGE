@@ -188,7 +188,7 @@ public class redFarParkLeft extends LinearOpMode {
                 drive(200, -0.4, 1000);
                 Reset();
 
-                strafeRight(900, -0.4, 2000);
+                strafeRight(1000, -0.4, 2000);
 
                 drive(-500, -0.4, 1000);
 
@@ -217,7 +217,7 @@ public class redFarParkLeft extends LinearOpMode {
 
                 Reset();
 
-                strafeRight(1200, -0.4,2000);
+                strafeRight(1500, -0.4,2000);
 
                 drive(-500, -0.4,1000);
 
@@ -256,7 +256,7 @@ public class redFarParkLeft extends LinearOpMode {
                 drive(200, -0.4, 1000);
                 Reset();
 
-                strafeRight(1500, -0.4, 2500);
+                strafeRight(2000, -0.4, 2500);
 
                 drive(-500, -0.4, 1000);
 
