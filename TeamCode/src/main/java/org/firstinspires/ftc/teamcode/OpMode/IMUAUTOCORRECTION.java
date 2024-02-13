@@ -55,10 +55,10 @@ public class IMUAUTOCORRECTION extends OpMode {
         //without this data from imu thows exception
         imu.initialize(parameters);
         // initalize DT motors
-        front_left = hardwareMap.get(DcMotor.class, "FL");
-        front_right = hardwareMap.get(DcMotor.class, "rightFront");
-        back_left = hardwareMap.get(DcMotor.class, "leftRear");
-        back_right = hardwareMap.get(DcMotor.class, "rightRear");
+        front_left = hardwareMap.get(DcMotor.class, "front Left");
+        front_right = hardwareMap.get(DcMotor.class, "front Right");
+        back_left = hardwareMap.get(DcMotor.class, "back Left");
+        back_right = hardwareMap.get(DcMotor.class, "back Right");
     }
 
     @Override

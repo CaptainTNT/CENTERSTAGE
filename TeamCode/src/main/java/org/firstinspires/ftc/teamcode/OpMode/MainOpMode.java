@@ -19,11 +19,11 @@ public class MainOpMode extends OpMode {
     private DcMotorEx LaunchMotor = null;
     private DcMotorEx LaunchMotor2 = null;
     private DcMotor LaunchMotor3 = null;
-    private DcMotor LaunchMotor4 = null;
     private Servo servo1 = null;
     private Servo servo2 = null;
     private Servo servo3 = null;
     private Servo servo4 = null;
+    private Servo servo5 = null;
 
     double Speed;
     double MaxSpeed;
@@ -34,7 +34,7 @@ public class MainOpMode extends OpMode {
     double Pivot;
     double leftServo = 0; //odd open, even closed
     double rightServo = 1; //odd closed, even open
-    double p = 0.0025, i = 0, d = 0.00001, f = 0.083;
+    double p = 0.0025, i = 0.074, d = 0.00001, f = 0.083;
     double ticks_in_degree = 700 / 180.0;
     double pid;
     double ff;
@@ -60,11 +60,11 @@ public class MainOpMode extends OpMode {
         LaunchMotor = hardwareMap.get(DcMotorEx.class, "Launch Motor");
         LaunchMotor2 = hardwareMap.get(DcMotorEx.class, "Launch Motor 2");
         LaunchMotor3 = hardwareMap.get(DcMotor.class, "Launch Motor 3");
-        LaunchMotor4 = hardwareMap.get(DcMotor.class, "Launch Motor 4");
         servo1 = hardwareMap.get(Servo.class, "servo1");
         servo2 = hardwareMap.get(Servo.class, "servo2");
         servo3 = hardwareMap.get(Servo.class, "servo 3");
         servo4 = hardwareMap.get(Servo.class, "servo 4");
+        servo5 = hardwareMap.get(Servo.class, "servo 5");
 
 
         backRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -74,15 +74,20 @@ public class MainOpMode extends OpMode {
         LaunchMotor2.setDirection(DcMotorSimple.Direction.REVERSE);
         servo1.setPosition(Servo.Direction.REVERSE.ordinal());
 
+        leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         LaunchMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         LaunchMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         LaunchMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         LaunchMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        Speed = 0.65;
-        MaxSpeed = 0.65;
-        MinSpeed = 0.4;
-        Turn_Speed = 0.55;
+        Speed = 0.85;
+        MaxSpeed = 1;
+        MinSpeed = 0.65;
+        Turn_Speed = 0.7;
 
         servo3.setPosition(1);
         servo4.setPosition(0);
@@ -114,17 +119,12 @@ public class MainOpMode extends OpMode {
         if (gamepad2.touchpad && !Safety) {
             gamepad2.setLedColor(1, 0, 0, Gamepad.LED_DURATION_CONTINUOUS);
             gamepad2.rumble(1000);
-            newTarget = -800;
+            //newTarget = -800;
             Safety = true;
         } else if (!gamepad2.touchpad && Safety){
             Armed = true;
         } else if (gamepad2.touchpad && Armed){
-            double x = 0;
-            while (x < 10000) {
-                LaunchMotor4.setPower(0.4);
-                x += 1;
-            }
-            LaunchMotor4.setPower(0);
+            servo5.setPosition(1);
         }
 
         if (gamepad1.left_trigger > 0.3){
@@ -146,7 +146,7 @@ public class MainOpMode extends OpMode {
         }
 
         if (gamepad2.left_bumper){
-            newTarget = -100;
+            newTarget = 50;
         } else if (gamepad2.right_bumper){
             newTarget = -1350;
         }
@@ -173,7 +173,7 @@ public class MainOpMode extends OpMode {
 
         LaunchMotor3.setPower(gamepad2.right_stick_y);
         LaunchMotor3.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        Vertical = Math.min(Math.max(-gamepad1.left_stick_x, -Speed), Speed);
+        Vertical = Math.min(Math.max(gamepad1.left_stick_x, -Speed), Speed);
         Horizontal = Math.min(Math.max(-gamepad1.left_stick_y, -Speed), Speed);
         Pivot = Math.min(Math.max(gamepad1.right_stick_x, -Turn_Speed), Turn_Speed);
         backLeftDrive.setPower(-Pivot + (Vertical - Horizontal));
