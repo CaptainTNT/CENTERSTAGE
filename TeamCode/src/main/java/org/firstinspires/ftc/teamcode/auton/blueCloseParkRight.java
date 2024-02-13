@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.auton;
 
 import static org.firstinspires.ftc.teamcode.Calabration.auto.Launchmotor;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.Launchmotor2;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.Reset;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.Servo;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.Servo2;
@@ -22,6 +23,7 @@ import static org.firstinspires.ftc.teamcode.Calabration.auto.timer;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -163,7 +165,7 @@ public class blueCloseParkRight extends LinearOpMode {
                 servoLeftOpen(1500);
 
                 //Sets the robot lift to arm for -1450 ticks at 0.5 power for 2.0 seconds
-                arm(-1340, 0.5, false, 2000);
+                arm(-1350, 0.5, false, 2000);
 
                 //Sets the robot to drive for -840 ticks at 0.45 power for 3.1 seconds
                 drive(- 840, 0.45, 3100);
@@ -203,7 +205,7 @@ public class blueCloseParkRight extends LinearOpMode {
                 spinLeft(920, 0.45, 2000);
 
                 //Sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1340, 0.6, false, 1000);
+                arm(-1350, 0.6, false, 1000);
 
                 //Sets the robot to drive for -1200 ticks at 0.45 power for 2.0 seconds
                 drive(-1200, 0.45, 2000);
@@ -249,7 +251,7 @@ public class blueCloseParkRight extends LinearOpMode {
                 drive(-271, 0.45, 2000);
 
                 //sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1340, 0.6, false, 1000);
+                arm(-1350, 0.6, false, 1000);
 
                 //Sets the robot to drive for -1460 ticks at 0.45 power for 2.0 seconds
                 drive(-1440, 0.45, 2000);
@@ -285,12 +287,14 @@ public class blueCloseParkRight extends LinearOpMode {
         rightDrive = hardwareMap.get(DcMotor.class, "front Right");
         backLeftDrive = hardwareMap.get(DcMotor.class, "back Left");
         backRightDrive = hardwareMap.get(DcMotor.class, "back Right");
-        Launchmotor = hardwareMap.get(DcMotor.class, "Launch Motor");
+        Launchmotor = hardwareMap.get(DcMotorEx.class, "Launch Motor");
+        Launchmotor2 = hardwareMap.get(DcMotorEx.class, "Launch Motor 2");
         Servo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo1");
         Servo2 = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo2");
 
         leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         backRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         Servo.setDirection(com.qualcomm.robotcore.hardware.Servo.Direction.REVERSE);
+        Launchmotor2.setDirection(DcMotorEx.Direction.REVERSE);
     }
 }   // end class
