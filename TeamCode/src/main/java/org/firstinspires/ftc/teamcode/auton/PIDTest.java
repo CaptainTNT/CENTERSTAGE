@@ -94,7 +94,7 @@ public class PIDTest extends LinearOpMode {
     }   // end method initTfod()
 
     public void PIDLoop(int Target) {
-        Launchmotor = hardwareMap.get(DcMotor.class, "Launch Motor");
+        Launchmotor = hardwareMap.get(DcMotorEx.class, "Launch Motor");
         DcMotor LaunchMotor2 = null;
         LaunchMotor2 = hardwareMap.get(DcMotor.class, "Launch Motor 2");
 
@@ -196,7 +196,7 @@ public class PIDTest extends LinearOpMode {
         rightDrive = hardwareMap.get(DcMotor.class, "front Right");
         backLeftDrive = hardwareMap.get(DcMotor.class, "back Left");
         backRightDrive = hardwareMap.get(DcMotor.class, "back Right");
-        Launchmotor = hardwareMap.get(DcMotor.class, "Launch Motor");
+        Launchmotor = hardwareMap.get(DcMotorEx.class, "Launch Motor");
         Servo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo1");
         Servo2 = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo2");
 

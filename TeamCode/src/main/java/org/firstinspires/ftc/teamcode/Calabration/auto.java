@@ -224,8 +224,7 @@ public class auto extends OpMode {
         backLeftDrive.setPower(0);
     }
 
-    public static void stopArm() {Launchmotor.setPower(0);Launchmotor2.setPower(0);
-    }
+    public static void stopArm() {Launchmotor.setPower(0);Launchmotor2.setPower(0);}
 
     public static void servoLeftOpen (double sleep) {
         timer.reset();

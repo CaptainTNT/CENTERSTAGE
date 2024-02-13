@@ -104,7 +104,7 @@ public class RedPropPipeline implements VisionProcessor {
         //use binary mat from here
         List<MatOfPoint> countersList = new ArrayList<>();
         Imgproc.findContours(binaryMat, countersList, new Mat(), Imgproc.RETR_LIST, Imgproc.CHAIN_APPROX_SIMPLE);
-        Imgproc.drawContours(binaryMat, countersList,0, new Scalar(255,0,0));
+        Imgproc.drawContours(binaryMat, countersList,0, new Scalar(230,0,0));
 
         Rect hat = new Rect(new Point(0,0), new Point(1,1));
 

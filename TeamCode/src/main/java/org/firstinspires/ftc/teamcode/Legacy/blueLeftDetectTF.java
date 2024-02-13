@@ -24,6 +24,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
@@ -157,7 +158,7 @@ public class blueLeftDetectTF extends LinearOpMode {
                 servoLeftOpen(1500);
 
                 //Sets the robot lift to arm for -1450 ticks at 0.5 power for 2.0 seconds
-                arm(-1400, 0.5, false, 2000);
+                arm(-1300, 0.5, false, 2000);
 
                 //Sets the robot to drive for -840 ticks at 0.4 power for 3.1 seconds
                 drive(-840, 0.4, 3100);
@@ -197,7 +198,7 @@ public class blueLeftDetectTF extends LinearOpMode {
                 spinLeft(920, 0.4, 2000);
 
                 //Sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1260, 0.6, false, 1000);
+                arm(-1300, 0.6, false, 1000);
 
                 //Sets the robot to drive for -1200 ticks at 0.4 power for 2.0 seconds
                 drive(-1200, 0.4, 2000);
@@ -243,7 +244,7 @@ public class blueLeftDetectTF extends LinearOpMode {
                 drive(-271, 0.4, 2000);
 
                 //sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
-                arm(-1200, 0.6, false, 1000);
+                arm(-1300, 0.6, false, 1000);
 
                 //Sets the robot to drive for -1460 ticks at 0.4 power for 2.0 seconds
                 drive(-1460, 0.4, 2000);
@@ -279,7 +280,7 @@ public class blueLeftDetectTF extends LinearOpMode {
         rightDrive = hardwareMap.get(DcMotor.class, "front Right");
         backLeftDrive = hardwareMap.get(DcMotor.class, "back Left");
         backRightDrive = hardwareMap.get(DcMotor.class, "back Right");
-        Launchmotor = hardwareMap.get(DcMotor.class, "Launch Motor");
+        Launchmotor = hardwareMap.get(DcMotorEx.class, "Launch Motor");
         Servo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo1");
         Servo2 = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo2");
 

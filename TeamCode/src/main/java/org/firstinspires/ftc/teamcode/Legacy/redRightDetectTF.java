@@ -24,6 +24,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -318,7 +319,7 @@ public class redRightDetectTF extends LinearOpMode {
         rightDrive = hardwareMap.get(DcMotor.class, "front Right");
         backLeftDrive = hardwareMap.get(DcMotor.class, "back Left");
         backRightDrive = hardwareMap.get(DcMotor.class, "back Right");
-        Launchmotor = hardwareMap.get(DcMotor.class, "Launch Motor");
+        Launchmotor = hardwareMap.get(DcMotorEx.class, "Launch Motor");
         Servo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo1");
         Servo2 = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo2");
 
