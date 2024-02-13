@@ -1,12 +1,15 @@
 //Imports stuff
 package org.firstinspires.ftc.teamcode.Calabration;
+import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
 
 //Sets name for code and disables it
 @Disabled
@@ -18,7 +21,8 @@ public class auto extends OpMode {
     public static DcMotor rightDrive = null;
     public static DcMotor backRightDrive = null;
     public static DcMotor backLeftDrive = null;
-    public static DcMotor Launchmotor = null;
+    public static DcMotorEx Launchmotor = null;
+    public static DcMotorEx Launchmotor2 = null;
     public static Servo Servo = null;
     public static Servo Servo2 = null;
 
@@ -175,15 +179,33 @@ public class auto extends OpMode {
     }
 
 
-    public static void arm (int target, double power, boolean autoStop, double sleep) {
+    public static void arm (int Target, double Power, boolean autoStop, double sleep) {
         Reset();
-        Launchmotor.setTargetPosition(target);
         timer.reset();
+        double p = 0.0025, i = 0, d = 0.00001, f = 0.083;
+        double ticks_in_degree = 700 / 180.0;
+        double pid;
+        double ff;
+        double power;
+        PIDController controller;
+        controller = new PIDController(p, i, d);
+        Launchmotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        Launchmotor2.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
         while (sleep > timer.milliseconds()) {
-            Launchmotor.setPower(power);
+            int target = Target;
+            controller.setPID(p, i, d);
+            int armPos = Launchmotor.getCurrentPosition();
+            pid = controller.calculate(armPos, target);
+            ff = Math.cos(Math.toRadians(target / ticks_in_degree)) * f;
 
-            Launchmotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            double proportionalTerm = 0.0015 * (target - armPos);
+
+            power = pid + ff - proportionalTerm;
+            power = Range.clip(power, -0.5, 0.5);
+
+            Launchmotor.setPower(power);
+            Launchmotor2.setPower(power);
         }
 
         if ((timer.milliseconds() == sleep && autoStop)){
@@ -202,8 +224,7 @@ public class auto extends OpMode {
         backLeftDrive.setPower(0);
     }
 
-    public static void stopArm() {
-        Launchmotor.setPower(0);
+    public static void stopArm() {Launchmotor.setPower(0);Launchmotor2.setPower(0);
     }
 
     public static void servoLeftOpen (double sleep) {
@@ -237,12 +258,14 @@ public class auto extends OpMode {
         backRightDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         Launchmotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        Launchmotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         backLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         Launchmotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Launchmotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
 
