@@ -28,7 +28,9 @@ public class MainOpMode extends OpMode {
     double Speed;
     double MaxSpeed;
     double MinSpeed;
-    double Turn_Speed;
+    double MaxTurnSpeed;
+    double MinTurnSpeed;
+    double TurnSpeed;
     double Vertical;
     double Horizontal;
     double Pivot;
@@ -87,7 +89,9 @@ public class MainOpMode extends OpMode {
         Speed = 0.85;
         MaxSpeed = 1;
         MinSpeed = 0.65;
-        Turn_Speed = 0.7;
+        TurnSpeed = 0.7;
+        MaxTurnSpeed = 0.7;
+        MinTurnSpeed = 0.5;
 
         servo3.setPosition(1);
         servo4.setPosition(0);
@@ -129,8 +133,10 @@ public class MainOpMode extends OpMode {
 
         if (gamepad1.left_trigger > 0.3){
             Speed = MinSpeed;
+            TurnSpeed = MinTurnSpeed;
         } else {
             Speed = MaxSpeed;
+            TurnSpeed = MaxTurnSpeed;
         }
 
         if (gamepad2.left_stick_y > 0){
@@ -175,7 +181,7 @@ public class MainOpMode extends OpMode {
         LaunchMotor3.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Vertical = Math.min(Math.max(gamepad1.left_stick_x, -Speed), Speed);
         Horizontal = Math.min(Math.max(-gamepad1.left_stick_y, -Speed), Speed);
-        Pivot = Math.min(Math.max(gamepad1.right_stick_x, -Turn_Speed), Turn_Speed);
+        Pivot = Math.min(Math.max(gamepad1.right_stick_x, -TurnSpeed), TurnSpeed);
         backLeftDrive.setPower(-Pivot + (Vertical - Horizontal));
         backRightDrive.setPower(-Pivot + Vertical + Horizontal);
         leftDrive.setPower(Pivot + Vertical + Horizontal);
