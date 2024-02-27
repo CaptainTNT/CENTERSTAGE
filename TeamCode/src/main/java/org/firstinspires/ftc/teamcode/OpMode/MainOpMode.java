@@ -24,6 +24,8 @@ public class MainOpMode extends OpMode {
     private Servo servo3 = null;
     private Servo servo4 = null;
     private Servo servo5 = null;
+    private Servo servo6 = null;
+    private Servo servo7 = null;
 
     double Speed;
     double MaxSpeed;
@@ -36,6 +38,7 @@ public class MainOpMode extends OpMode {
     double Pivot;
     double leftServo = 0; //odd open, even closed
     double rightServo = 1; //odd closed, even open
+    double flprServo;
     double p = 0.0025, i = 0.074, d = 0.00001, f = 0.083;
     double ticks_in_degree = 700 / 180.0;
     double pid;
@@ -48,6 +51,7 @@ public class MainOpMode extends OpMode {
     boolean Armed = false;
     boolean changed1 = false; //leftservo
     boolean changed2 = false; //rightservo
+    boolean changed3 = false;
 
     PIDController controller;
 
@@ -67,6 +71,8 @@ public class MainOpMode extends OpMode {
         servo3 = hardwareMap.get(Servo.class, "servo 3");
         servo4 = hardwareMap.get(Servo.class, "servo 4");
         servo5 = hardwareMap.get(Servo.class, "servo 5");
+        servo6 = hardwareMap.get(Servo.class, "servo 6");
+        servo7 = hardwareMap.get(Servo.class, "Servo 7");
 
 
         backRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -174,8 +180,18 @@ public class MainOpMode extends OpMode {
             servo3.setPosition(0);
             servo4.setPosition(1);
         }
+
+        if (gamepad2.dpad_left){
+            flprServo = 1;
+        } else if (gamepad2.dpad_right){
+            flprServo = 0;
+        }
+
         servo1.setPosition(rightServo);
         servo2.setPosition(leftServo);
+        servo6.setPosition(flprServo);
+        servo7.setPosition(flprServo);
+
 
         LaunchMotor3.setPower(gamepad2.right_stick_y);
         LaunchMotor3.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
