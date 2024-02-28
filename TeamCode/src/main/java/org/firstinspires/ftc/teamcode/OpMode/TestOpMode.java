@@ -12,7 +12,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
 @TeleOp
-@Disabled
 public class TestOpMode extends OpMode {
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
@@ -60,17 +59,13 @@ public class TestOpMode extends OpMode {
         backRightDrive = hardwareMap.get(DcMotor.class, "back Right");
         LaunchMotor =  hardwareMap.get(DcMotorEx.class, "Launch Motor");
         LaunchMotor3 = hardwareMap.get(DcMotor.class, "Launch Motor 3");
-        LaunchMotor4 = hardwareMap.get(DcMotor.class, "Launch Motor 4");
         servo1 = hardwareMap.get(Servo.class, "servo1");
         servo2 = hardwareMap.get(Servo.class, "servo2");
         servo3 = hardwareMap.get(Servo.class, "servo 3");
         servo4 = hardwareMap.get(Servo.class, "servo 4");
 
 
-        backRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-        leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-        backLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+
         servo1.setPosition(Servo.Direction.REVERSE.ordinal());
 
         LaunchMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
