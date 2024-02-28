@@ -58,6 +58,8 @@ public class MainOpMode extends OpMode {
     boolean changed3 = false;
     boolean changed4 = false;
     boolean changed5 = false;
+    boolean Open = false;
+
 
 
 
@@ -197,6 +199,18 @@ public class MainOpMode extends OpMode {
             changed4 = true;
         } else if (gamepad2.dpad_right  && changed4) {
             changed4 = false;
+        }
+
+        if (gamepad2.x && !Open){
+            flprServo = 1;
+            flprServo0 = 0;
+            Open = true;
+
+        } else if (gamepad2.x && Open){
+            flprServo = 0;
+            flprServo0 = 1;
+            Open = false;
+
         }
 
 
