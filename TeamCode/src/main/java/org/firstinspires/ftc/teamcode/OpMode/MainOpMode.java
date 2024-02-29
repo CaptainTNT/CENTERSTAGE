@@ -39,8 +39,8 @@ public class MainOpMode extends OpMode {
     double leftServo = 0; //odd open, even closed
     double rightServo = 1; //odd closed, even open
     double flprServo = 0;
-    double flprServo0 = 1;
 
+    int x = 0;
 
 
     double p = 0.0025, i = 0.074, d = 0.00001, f = 0.083;
@@ -89,6 +89,8 @@ public class MainOpMode extends OpMode {
         backLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         LaunchMotor2.setDirection(DcMotorSimple.Direction.REVERSE);
         servo1.setPosition(Servo.Direction.REVERSE.ordinal());
+        servo7.setPosition(Servo.Direction.REVERSE.ordinal());
+
 
         leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -112,6 +114,7 @@ public class MainOpMode extends OpMode {
 
         telemetry.addData("Info", "OpMode is ready to run");
         telemetry.update();
+
 
     }
     public void PIDLoop(int Target) {
@@ -188,38 +191,22 @@ public class MainOpMode extends OpMode {
             servo3.setPosition(0);
             servo4.setPosition(1);
         }
-        if (gamepad2.dpad_left  && !changed5) {
-            flprServo = (flprServo == 0) ? 1 : 0;
-            changed5 = true;
-        } else if (gamepad2.dpad_left  && changed5 ) {
-            changed5 = false;
-        }
-        if (gamepad2.dpad_right  && !changed4) {
-            flprServo0 = (flprServo0 == 0) ? 1 : 0;
-            changed4 = true;
-        } else if (gamepad2.dpad_right  && changed4) {
-            changed4 = false;
-        }
+        if (gamepad2.cross){
+            x += 1;
+            if (x % 2 == 0){
+                flprServo = 1;
 
-        if (gamepad2.x && !Open){
-            flprServo = 1;
-            flprServo0 = 0;
-            Open = true;
-
-        } else if (gamepad2.x && Open){
-            flprServo = 0;
-            flprServo0 = 1;
-            Open = false;
+            }
+            else { flprServo = 0;
+            }
 
         }
-
 
 
         servo1.setPosition(rightServo);
         servo2.setPosition(leftServo);
         servo6.setPosition(flprServo);
-        servo7.setPosition(flprServo0);
-
+        servo7.setPosition(flprServo);
 
         LaunchMotor3.setPower(gamepad2.right_stick_y);
         LaunchMotor3.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
