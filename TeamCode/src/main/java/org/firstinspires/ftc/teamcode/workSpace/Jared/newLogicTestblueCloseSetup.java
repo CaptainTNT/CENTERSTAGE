@@ -150,7 +150,7 @@ public class newLogicTestblueCloseSetup extends LinearOpMode {
 
             visionPortal.close();
 
-            if(Left){
+           /* if(Left){
                 drive(-123, 0.4, 1000);
 
                 //Sets the robot to spin Left for 920 ticks at 0.4 power for 1.5 seconds
@@ -163,7 +163,8 @@ public class newLogicTestblueCloseSetup extends LinearOpMode {
                 strafeLeft(1500, 0.4, 1800);
 
                 //Sets the robot to open left servo for 1.5 seconds
-                servoLeftOpen(1500);
+                servoLeftOpen(
+                );
 
                 //Sets the robot lift to arm for -1450 ticks at 0.5 power for 2.0 seconds
                 arm(-1400, 0.5, false, 2000);
@@ -277,7 +278,7 @@ public class newLogicTestblueCloseSetup extends LinearOpMode {
                 stop();
 
 
-            }
+            }*/
             stop();
         }
     }
