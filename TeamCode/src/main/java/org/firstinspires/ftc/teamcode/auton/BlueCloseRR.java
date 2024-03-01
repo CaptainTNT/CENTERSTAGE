@@ -31,11 +31,11 @@ public class BlueCloseRR extends LinearOpMode {
     Vector2d REDRIGHTAT = new Vector2d(53.5,-44);
     Vector2d REDPARKLEFT = new Vector2d(66,-12);
     Vector2d REDPARKRIGHT = new Vector2d(66,-60);
-    Vector2d TrussAlignment = new Vector2d(35,9);
+    Vector2d TrussAlignment = new Vector2d(10.76, 9.89);
     SampleMecanumDrive drive;
 
     Pose2d StartPose = new Pose2d(12,63,Math.toRadians(90));
-    Pose2d Truss_AL = new Pose2d(35,9,Math.toRadians(180));
+    Pose2d Truss_AL = new Pose2d(10.76, 9.89,Math.toRadians(180));
 
     public void runOpMode() throws InterruptedException {
         BluePropProcessor = new BluePropPipeline(telemetry);
@@ -45,29 +45,34 @@ public class BlueCloseRR extends LinearOpMode {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         TrajectorySequence PlaceRight = drive.trajectorySequenceBuilder(StartPose)
-                .lineToConstantHeading(new Vector2d(8.74, 30.69))
-                .splineToLinearHeading(new Pose2d(53.80, 29.10, Math.toRadians(180.00)), Math.toRadians(-4.84))
+                .lineToSplineHeading(new Pose2d(11.34, 31.27, Math.toRadians(180.00)))
+                .splineToConstantHeading(new Vector2d(7.00, 31.27), Math.toRadians(180.00))
                 .lineToConstantHeading(TrussAlignment)
                 .build();
+
+
         TrajectorySequence PlaceMiddle = drive.trajectorySequenceBuilder(StartPose)
-                .lineToConstantHeading(new Vector2d(18.56, 24.77))
-                .splineToLinearHeading(new Pose2d(52.93, 35.60, Math.toRadians(180.15)), Math.toRadians(23.15))
+                .lineToSplineHeading(new Pose2d(12.00, 31.27, Math.toRadians(270.00)))
+                .splineTo(new Vector2d(49.50, 37.00), Math.toRadians(180.00))
                 .lineToConstantHeading(TrussAlignment)
                 .build();
         TrajectorySequence PlaceLeft = drive.trajectorySequenceBuilder(StartPose)
-                .lineToConstantHeading(new Vector2d(25.06, 30.55))
-                .splineToLinearHeading(new Pose2d(53.37, 42.54, Math.toRadians(180.15)), Math.toRadians(23.15))
+                .lineToSplineHeading(new Pose2d(28.53, 30.26, Math.toRadians(180.00)))
+                .splineTo(new Vector2d(53.50, 44.00), Math.toRadians(180.00))
+
                 .lineToConstantHeading(TrussAlignment)
                 .build();
         TrajectorySequence gothrutruss = drive.trajectorySequenceBuilder(Truss_AL)
-                .splineTo(new Vector2d(-40.37, 9.46), Math.toRadians(179.67))
-                .lineToConstantHeading(new Vector2d(-67.5, 17.9))
+                .splineTo(new Vector2d(-26.00, 10.90), Math.toRadians(180.00))
+                .lineToSplineHeading(new Pose2d(-60.62, 17.55, Math.toRadians(180.00)))
                 .build();
+
         TrajectorySequence cyclewhites = drive.trajectorySequenceBuilder(stack3)
-                .splineTo(new Vector2d(-40.37, 9.46), Math.toRadians(179.67))
-                .lineToConstantHeading(TrussAlignment)
-                .splineToLinearHeading(new Pose2d(53.80, 29.10, Math.toRadians(180.00)), Math.toRadians(-4.84))
+                .lineTo(new Vector2d(-26.50, 10.90))
+                .splineToConstantHeading(new Vector2d(10.76, 9.89), Math.toRadians(180.00))
+                .lineToConstantHeading(new Vector2d(45.84, 30.00))
                 .build();
+
         TrajectorySequence ParkLeft = drive.trajectorySequenceBuilder(new Pose2d(53.8,29.1))
                 .strafeRight(35)
                 .build();

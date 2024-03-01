@@ -100,7 +100,7 @@ public class RedCloseRR extends LinearOpMode {
                     arm(-1350,1000);
                     servoRightOpen();
                 })
-                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(180.10))
+                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(180.0))
                 .addTemporalMarker( () -> {
                     arm(20,1000);
                 })
@@ -116,7 +116,7 @@ public class RedCloseRR extends LinearOpMode {
                     arm(-1350,1000);
                     servoRightOpen();
                 })
-                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(180.10)).addTemporalMarker( () -> {
+                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(180.00)).addTemporalMarker( () -> {
                     arm(20,1000);
                 })
                 .build();
