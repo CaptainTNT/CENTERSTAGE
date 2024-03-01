@@ -222,37 +222,33 @@ public class auto extends OpMode {
 
     public static void stopArm() {Launchmotor.setPower(0);Launchmotor2.setPower(0);}
 
-    public static void servoLeftOpen (double sleep) {
-        timer.reset();
+    public static void servoLeftOpen () {
 
-        while (sleep > timer.milliseconds()) {
             Servo2.setPosition(1);
 
-        }
+
     }
 
-    public static void servoRightOpen (double sleep) {
+    public static void servoRightOpen () {
         timer.reset();
 
-        while (sleep > timer.milliseconds()) {
+
             Servo.setPosition(1);
-        }
-    }
-    public static void servoLeftOpenFl (double sleep) {
-        timer.reset();
 
-        while (sleep > timer.milliseconds()) {
+    }
+    public static void servoLeftOpenFl () {
+
+
+
             Servo3.setPosition(1);
 
-        }
+
     }
 
-    public static void servoRightOpenFl (double sleep) {
-        timer.reset();
+    public static void servoRightOpenFl () {
 
-        while (sleep > timer.milliseconds()) {
             Servo4.setPosition(1);
-        }
+
     }
 
     public static void servoLeftClose () {

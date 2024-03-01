@@ -155,7 +155,7 @@ public class blueFarParkRight extends LinearOpMode {
 
 
             visionPortal.close();
-            if(Right){
+            /*if(Right){
                 drive(-124, -0.4, 500); // ADD MORE COMMENTS
 
                 spinLeft(900, 0.4, 2000);
@@ -262,7 +262,7 @@ public class blueFarParkRight extends LinearOpMode {
                 drive(-500, -0.4, 1000);
 
                 stop();
-            }
+            }*/
 
 
             stop();

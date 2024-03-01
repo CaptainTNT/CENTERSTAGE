@@ -185,7 +185,7 @@ public class redCloseParkRight extends LinearOpMode {
 
             visionPortal.close();
             //Will run if Left is the last object detected when opmode is started
-            if(Right){
+            /*if(Right){
 
                 //Sets the robot to drive for -123 ticks at 0.45 power for 1.0 seconds
                 drive(-123, 0.45, 1000);
@@ -317,7 +317,7 @@ public class redCloseParkRight extends LinearOpMode {
                 stop();
 
 
-            }
+            }*/
 
             //Stops robot
             stop();

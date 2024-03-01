@@ -149,7 +149,7 @@ public class blueCloseParkRight extends LinearOpMode {
 
 
             visionPortal.close();
-            if(Left){
+           /* if(Left){
                 drive(-123, 0.45, 1000);
 
                 //Sets the robot to spin Left for 920 ticks at 0.45 power for 1.5 seconds
@@ -276,7 +276,7 @@ public class blueCloseParkRight extends LinearOpMode {
                 stop();
 
 
-            }
+            }*/
             stop();
         }
     }

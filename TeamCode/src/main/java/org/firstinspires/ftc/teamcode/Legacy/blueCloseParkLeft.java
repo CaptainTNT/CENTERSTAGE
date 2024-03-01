@@ -112,7 +112,6 @@ public class blueCloseParkLeft extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        hardwareImports();
         Reset();
         servoLeftClose();
         servoRightClose();
@@ -144,7 +143,7 @@ public class blueCloseParkLeft extends LinearOpMode {
 
             telemetryTfod();
 
-            if(Left){
+            /*if(Left){
                 drive(-123, 0.4, 1000);
 
                 //Sets the robot to spin Left for 920 ticks at 0.4 power for 1.5 seconds
@@ -271,7 +270,7 @@ public class blueCloseParkLeft extends LinearOpMode {
                 stop();
 
 
-            }
+            }*/
             stop();
         }
     }

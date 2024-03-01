@@ -173,7 +173,7 @@ public class redRightDetectTF extends LinearOpMode {
         if (opModeIsActive()) {
 
             //Will run if Left is the last object detected when opmode is started
-            if(Right){
+           /* if(Right){
 
                 //Sets the robot to drive for -123 ticks at 0.4 power for 1.0 seconds
                 drive(-123, 0.4, 1000);
@@ -305,7 +305,7 @@ public class redRightDetectTF extends LinearOpMode {
                 stop();
 
 
-            }
+            }*/
 
             //Stops robot
             stop();

@@ -147,7 +147,7 @@ public class redLeftDetectTF extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            if(Left){
+            /*if(Left){
                 drive(-123, -0.4,1000);
 
                 spinRight(900, 0.4,2000);
@@ -248,7 +248,7 @@ public class redLeftDetectTF extends LinearOpMode {
 
 
                 stop();
-            }
+            }*/
             stop();
         }
 

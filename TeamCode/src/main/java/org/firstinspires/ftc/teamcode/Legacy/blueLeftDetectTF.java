@@ -142,7 +142,7 @@ public class blueLeftDetectTF extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            if(Left){
+            /*if(Left){
                 drive(-123, 0.4, 1000);
 
                 //Sets the robot to spin Left for 920 ticks at 0.4 power for 1.5 seconds
@@ -269,7 +269,7 @@ public class blueLeftDetectTF extends LinearOpMode {
                 stop();
 
 
-            }
+            }*/
             stop();
         }
     }
