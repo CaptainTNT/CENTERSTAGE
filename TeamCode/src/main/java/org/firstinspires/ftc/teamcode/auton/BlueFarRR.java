@@ -1,8 +1,12 @@
 package org.firstinspires.ftc.teamcode.auton;
 
+import static org.firstinspires.ftc.teamcode.Calabration.auto.arm;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoLeftClose;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoLeftCloseFl;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoLeftOpen;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.servoLeftOpenFl;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightOpen;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightOpenFl;
 import static org.firstinspires.ftc.teamcode.common.RedPropPipeline.Location.LEFT;
 import static org.firstinspires.ftc.teamcode.common.RedPropPipeline.Location.MIDDLE;
 import static org.firstinspires.ftc.teamcode.common.RedPropPipeline.Location.RIGHT;
@@ -54,6 +58,10 @@ public class BlueFarRR extends LinearOpMode {
                 servoLeftOpen();
             })
             .splineToLinearHeading(stack3, Math.toRadians(-4.84))
+            .addTemporalMarker( () -> {
+                servoLeftCloseFl();
+                servoLeftClose();
+            })
             .build();
     TrajectorySequence PlaceRight = drive.trajectorySequenceBuilder(StartPose)
             .lineToConstantHeading(new Vector2d(-46, 30.55))
@@ -61,15 +69,51 @@ public class BlueFarRR extends LinearOpMode {
                 servoLeftOpen();
             })
             .splineToLinearHeading(stack3, Math.toRadians(-4.84))
+            .addTemporalMarker( () -> {
+                servoLeftCloseFl();
+                servoLeftClose();
+            })
             .build();
     TrajectorySequence LeftYELLPlacement = drive.trajectorySequenceBuilder(new Pose2d(35,9, Math.toRadians(180.00)))
+            .addTemporalMarker( () -> {
+                servoLeftOpenFl();
+                servoRightOpenFl();
+
+                arm(-1350,1000);
+            })
             .lineToConstantHeading(BLUELEFTAT)
+            .addTemporalMarker( () -> {
+
+                servoRightOpen();
+                servoLeftOpen();
+            })
             .build();
     TrajectorySequence MiddleYELLPlacement = drive.trajectorySequenceBuilder(new Pose2d(35,9, Math.toRadians(180.00)))
+            .addTemporalMarker( () -> {
+                servoLeftOpenFl();
+                servoRightOpenFl();
+
+                arm(-1350,1000);
+            })
             .lineToConstantHeading(BLUEMIDDLEAT)
+            .addTemporalMarker( () -> {
+
+                servoRightOpen();
+                servoLeftOpen();
+            })
             .build();
     TrajectorySequence RightYELLPlacement = drive.trajectorySequenceBuilder(new Pose2d(35,9, Math.toRadians(180.00)))
+            .addTemporalMarker( () -> {
+                servoLeftOpenFl();
+                servoRightOpenFl();
+
+                arm(-1350,1000);
+            })
             .lineToConstantHeading(BLUERIGHTAT)
+            .addTemporalMarker( () -> {
+                servoRightOpen();
+                servoLeftOpen();
+            })
             .build();
     TrajectorySequence gothrutruss = drive.trajectorySequenceBuilder(stack3)
             .splineTo(new Vector2d(-40.37, 9.46), Math.toRadians(180))
