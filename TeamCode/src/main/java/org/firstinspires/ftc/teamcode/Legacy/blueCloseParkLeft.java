@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.auton;
+package org.firstinspires.ftc.teamcode.Legacy;
 
 import static org.firstinspires.ftc.teamcode.Calabration.auto.Launchmotor;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.Launchmotor2;
@@ -16,7 +16,6 @@ import static org.firstinspires.ftc.teamcode.Calabration.auto.servoLeftOpen;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightClose;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.servoRightOpen;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.spinLeft;
-import static org.firstinspires.ftc.teamcode.Calabration.auto.spinRight;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeLeft;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.strafeRight;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.timer;
@@ -26,7 +25,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.BuiltinCameraDirection;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -36,23 +34,19 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
 
-@Autonomous(name = "redFarParkRight", group = "RedNewFar")
-public class redFarParkRight extends LinearOpMode {
+@Autonomous(name = "blueCloseParkLeft", group = "BlueNewClose")
+public class blueCloseParkLeft extends LinearOpMode {
 
-    private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
-
-    private static final String TFOD_MODEL_ASSET = "redModel.tflite";
-
+    private static final boolean USE_WEBCAM = true;
+    private static final String TFOD_MODEL_ASSET = "blueModel.tflite";
     private static final String[] LABELS = {
-            "redProp",
+       "blueProp",
     };
 
     private TfodProcessor tfod;
     private VisionPortal visionPortal;
     boolean Middle = false;
     boolean Left = false;
-    public ElapsedTime tfodTime = new ElapsedTime();
-
 
     private void initTfod() {
 
@@ -60,7 +54,6 @@ public class redFarParkRight extends LinearOpMode {
         tfod = new TfodProcessor.Builder()
 
                 .setModelAssetName(TFOD_MODEL_ASSET)
-                //.setModelFileName(TFOD_MODEL_FILE)
 
                 .setModelLabels(LABELS)
 
@@ -76,22 +69,18 @@ public class redFarParkRight extends LinearOpMode {
             builder.setCamera(BuiltinCameraDirection.BACK);
         }
 
-        // Set and enable the processor.
         builder.addProcessor(tfod);
 
         // Build the Vision Portal, using the above settings.
         visionPortal = builder.build();
 
-
     }   // end method initTfod()
 
-    /**
-     * Add telemetry about TensorFlow Object Detection (TFOD) recognitions.
-     */
     private void telemetryTfod() {
 
         List<Recognition> currentRecognitions = tfod.getRecognitions();
         telemetry.addData("# Objects Detected", currentRecognitions.size());
+        telemetry.addLine("Right");
 
         // Step through the list of recognitions and display info for each one.
         for (Recognition recognition : currentRecognitions) {
@@ -100,19 +89,20 @@ public class redFarParkRight extends LinearOpMode {
 
             telemetry.addData(""," ");
             telemetry.addData("Image", "%s (%.0f %% Conf.)", recognition.getLabel(), recognition.getConfidence() * 100);
-            tfodTime.reset();
-            tfodTime.startTime();
-
-            if (x<=330 && tfodTime.milliseconds() < 1000){
+            telemetry.addData("- Position", "%.0f / %.0f", x, y);
+            telemetry.addData("- Size", "%.0f x %.0f", recognition.getWidth(), recognition.getHeight());
+            if (x<=330){
                 Left = true;
                 Middle = false;
                 telemetry.addLine("Left");
-                tfodTime.reset();
-            } else if ( 330 <= x && tfodTime.milliseconds() < 1000) {
-                Middle = true;
+            } else if ( 330 <= x) {
                 Left = false;
+                Middle = true;
                 telemetry.addLine("Middle");
-                tfodTime.reset();
+            }else {
+                Left = false;
+                Middle = false;
+                telemetry.addLine("Right");
             }
 
         }   // end for() loop
@@ -130,17 +120,13 @@ public class redFarParkRight extends LinearOpMode {
         initTfod();
 
         // Wait for the DS start button to be touched.
-        telemetry.addData("DS preview on/off", "3 dots, Camera Stream");
+        telemetry.addLine("WAIT NATHAN DONT START, WAIT" );
+
         telemetry.addData(">", "Touch Play to start OpMode");
         telemetry.update();
         while (!opModeIsActive()) {
 
             telemetryTfod();
-            if (tfodTime.milliseconds() > 1000){
-                Left = false;
-                Middle = false;
-                telemetry.addLine("Right");
-            }
 
             // Push telemetry to the Driver Station.
             telemetry.update();
@@ -148,130 +134,148 @@ public class redFarParkRight extends LinearOpMode {
 
         }
 
+        visionPortal.close();
 
         waitForStart();
-        timer.reset();
 
+        timer.reset();
 
         if (opModeIsActive()) {
 
-
-            visionPortal.close();
+            telemetryTfod();
 
             if(Left){
-                drive(-124, -0.4, 500); // ADD MORE COMMENTS
+                drive(-123, 0.4, 1000);
 
-                spinRight(900, 0.4, 2000);
+                //Sets the robot to spin Left for 920 ticks at 0.4 power for 1.5 seconds
+                spinLeft(900, 0.4, 1500);
 
-                strafeRight(1500, 0.4, 1800);
+                //Sets the robot to drive for -620 ticks at 0.4 power for 1.6 seconds
+                drive(-620, 0.4, 1600);
 
-                servoLeftOpen(550); //Drops the purple pixel on the spike mark
-
-                drive(-200, -0.4,1000);
-
-                strafeRight(1100, 0.4,2000);
-
-                spinRight(100, 0.4,500);
-
-                drive(-3500, 0.4,5000); // Drives towards the backboard
-
-                strafeLeft(810, -0.4, 1000); //Aligns with the backboard to perpare to place the pixel
-
-                //spinRight(900, -0.4,1000);
-
-                //strafeLeft(600, 0.4,2000);
-
-                arm(-1300,  1000);
-
-                drive(-330, -0.4,1000);
-
-                servoRightOpen(1000);
-
-                drive(200, -0.4, 1000);
-                Reset();
-
-                strafeLeft(2000, -0.4, 2000);
-
-                drive(-500, -0.4, 1000);
-
-                stop();
-            } else if (Middle) {
-
-                drive(-2000, 0.4, 3000);
-
-                servoLeftOpen(500);
-
-                drive(-300, 0.4,1000);
-
-                spinRight(900, 0.4,2000);
-
-                drive(-3500, 0.4, 4000);
-
-                strafeLeft(1200, 0.4, 2000);
-
-                arm(-1300, 1000);
-
-                drive(-300, -0.4,1000);
-
-                servoRightOpen(1000);
-
-                drive(200, -0.4,1000);
-
-                Reset();
-
-                strafeLeft(1500, -0.4,2000);
-
-                drive(-500, -0.4,1000);
-
-                stop();
-            } else {
-                drive(-124, -0.4, 500); // ADD MORE COMMENTS
-
-                spinLeft(900, 0.4, 2000);
-
+                //Sets the robot to strafe Left for 1500 ticks at 0.4 power for 1.8 seconds
                 strafeLeft(1500, 0.4, 1800);
 
-                drive(300, -0.4,1000);
+                //Sets the robot to open left servo for 1.5 seconds
+                servoLeftOpen(1500);
 
-                servoLeftOpen(550); //Drops the purple pixel on the spike mark
+                //Sets the robot lift to arm for -1450 ticks at 0.5 power for 2.0 seconds
+                arm(-1300, 2000);
 
-                drive(-200, -0.4,1000);
+                //Sets the robot to drive for -840 ticks at 0.4 power for 3.1 seconds
+                drive(-840, 0.4, 3100);
 
-                strafeLeft(1000, 0.4,2000);
+                //Sets the robot to strafe Right for 600 ticks at 0.4 power for 1.8 seconds
+                strafeRight(400, 0.4, 1800);
 
-                spinRight(1810, 0.4, 3000); //Recorrects rotational error
+                //Sets the robot to open right flipper for 2 seconds
+                servoRightOpen(2000);
 
-                drive(-3500, 0.4,5000); // Drives towards the backboard
+                //Sets the robot to drive for 200 ticks at 0.4 power for 3.1 seconds
+                drive(200, 0.4, 3100);
 
-                strafeLeft(1100, -0.4, 1500); //Aligns with the backboard to perpare to place the pixel
-
-                //spinRight(900, -0.4,1000);
-
-                //strafeLeft(600, 0.4,2000);
-
-                arm(-1300,  2500);
-
-                drive(-330, -0.4,1000);
-
-                servoRightOpen(1000);
-
-                drive(200, -0.4, 1000);
+                //Resets the encoders + lowers arm
                 Reset();
 
-                strafeLeft(1000, -0.4, 2500);
+                //Sets the robot to strafe Left for 1600 ticks at 0.4 power for 3.0 seconds
+                strafeRight(1000, 0.4, 3000);
 
-                drive(-500, -0.4, 1000);
+                //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
+                drive(-500, 0.4, 3100);
 
+                //Stops the robot
+                stop();
 
+            } else if (Middle) {
+                //Sets the robot to drive for -1950 ticks at 0.4 power for 3.0 seconds
+                drive(-1950, 0.4, 3000);
+
+                //Sets the robot to open left flipper for 1.5 seconds
+                servoLeftOpen(1500);
+
+                //Sets the robot to drive for -300 ticks at 0.4 power for 1.8 seconds
+                drive(-300, 0.4, 1800);
+
+                //Sets the robot to spin Left for 920 ticks at 0.4 power for 2.0 seconds
+                spinLeft(920, 0.4, 2000);
+
+                //Sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
+                arm(-1350,  1000);
+
+                //Sets the robot to drive for -1200 ticks at 0.4 power for 2.0 seconds
+                drive(-1200, 0.4, 2000);
+
+                //Sets the robot to strafe Right for 5000 ticks at 0.4 power for 1.5 seconds
+                strafeRight(890, 0.4, 1500);
+
+                //Sets the robot to drive for -350 ticks at 0.4 power for 1.0 seconds
+                drive(-350, 0.4, 1000);
+
+                //Sets the robot to open right servo for 2000 ticks
+                servoRightOpen(2000);
+
+                //Resets the encoders + lowers arm
+                Reset();
+
+                //Sets the robot to strafe Left for 1100 ticks at 0.4 power for 2.0 seconds
+                strafeRight(1500, 0.4, 3000);
+
+                //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
+                drive(-500, 0.4, 3100);
+
+                //Stops the robot
+                stop();
+
+            } else {
+                //Sets the robot to drive for -1150 ticks at 0.4 power for 3.0 seconds
+                drive(-1150, 0.4, 3000);
+
+                //Sets the robot to spin right for 920 ticks at 0.4 power for 2.0 seconds
+                spinLeft(920, 0.4, 2000);
+
+                //Sets the robot to strafe right for 420 ticks at 0.4 power for 2.0 seconds
+                strafeLeft(420, 0.4, 2000);
+
+                //Sets the robot to drive for 280 ticks at 0.4 power for 3.0 seconds
+                drive(280, 0.4, 3000);
+
+                //Sets the robot to open left flipper for 3 seconds
+                servoLeftOpen(3000);
+
+                //Sets the robot to drive for -271 ticks at 0.4 power for 2.0 seconds
+                drive(-271, 0.4, 2000);
+
+                //sets the robot to lift arm for -1200 ticks at 0.6 power for 1.0 seconds
+                arm(-1350, 1000);
+
+                //Sets the robot to drive for -1460 ticks at 0.4 power for 2.0 seconds
+                drive(-1440, 0.4, 2000);
+
+                strafeLeft(250, 0.4, 1000);
+
+                // Sets the robot to open right flipper for 2 seconds
+                servoRightOpen(2000);
+
+                drive(200,0.4,1000);
+
+                //Resets the encoders + lowers arm
+                Reset();
+
+                //Sets the robot to strafe right for 1000 ticks at 0.4 power for 3.0 seconds
+                strafeRight(1500, 0.4, 3000);
+
+                //Sets the robot to drive for -500 ticks at 0.4 power for 3.1 seconds
+                drive(-500, 0.4, 3100);
+
+                //Stops the robot
                 stop();
 
 
             }
             stop();
         }
-
-        // Save more CPU resources when camera is no longer needed.
     }
+
     public void hardwareImports() {
 
         leftDrive = hardwareMap.get(DcMotor.class, "front Left");
@@ -286,6 +290,5 @@ public class redFarParkRight extends LinearOpMode {
         leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         backRightDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         Servo.setDirection(com.qualcomm.robotcore.hardware.Servo.Direction.REVERSE);
-        Launchmotor2.setDirection(DcMotorEx.Direction.REVERSE);
-    }// end runOpMode()
+    }
 }   // end class

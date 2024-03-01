@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.auton;
+package org.firstinspires.ftc.teamcode.Legacy;
 
 import static org.firstinspires.ftc.teamcode.Calabration.auto.Launchmotor;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.Launchmotor2;
@@ -36,22 +36,21 @@ import org.firstinspires.ftc.vision.tfod.TfodProcessor;
 
 import java.util.List;
 
-@Autonomous(name = "blueFarParkLeft", group = "BlueNewFar")
-public class blueFarParkLeft extends LinearOpMode {
+@Autonomous(name = "redFarParkRight", group = "RedNewFar")
+public class redFarParkRight extends LinearOpMode {
 
     private static final boolean USE_WEBCAM = true;  // true for webcam, false for phone camera
 
-    private static final String TFOD_MODEL_ASSET = "blueModel.tflite";
+    private static final String TFOD_MODEL_ASSET = "redModel.tflite";
 
     private static final String[] LABELS = {
-       "blueProp",
+            "redProp",
     };
 
     private TfodProcessor tfod;
-
     private VisionPortal visionPortal;
-    boolean Right = false;
     boolean Middle = false;
+    boolean Left = false;
     public ElapsedTime tfodTime = new ElapsedTime();
 
 
@@ -61,6 +60,7 @@ public class blueFarParkLeft extends LinearOpMode {
         tfod = new TfodProcessor.Builder()
 
                 .setModelAssetName(TFOD_MODEL_ASSET)
+                //.setModelFileName(TFOD_MODEL_FILE)
 
                 .setModelLabels(LABELS)
 
@@ -76,7 +76,6 @@ public class blueFarParkLeft extends LinearOpMode {
             builder.setCamera(BuiltinCameraDirection.BACK);
         }
 
-
         // Set and enable the processor.
         builder.addProcessor(tfod);
 
@@ -86,7 +85,9 @@ public class blueFarParkLeft extends LinearOpMode {
 
     }   // end method initTfod()
 
-
+    /**
+     * Add telemetry about TensorFlow Object Detection (TFOD) recognitions.
+     */
     private void telemetryTfod() {
 
         List<Recognition> currentRecognitions = tfod.getRecognitions();
@@ -102,14 +103,14 @@ public class blueFarParkLeft extends LinearOpMode {
             tfodTime.reset();
             tfodTime.startTime();
 
-            if (x>=330 && tfodTime.milliseconds() < 1000){
-                Right = true;
+            if (x<=330 && tfodTime.milliseconds() < 1000){
+                Left = true;
                 Middle = false;
-                telemetry.addLine("Right");
+                telemetry.addLine("Left");
                 tfodTime.reset();
-            } else if ( 330 >= x && tfodTime.milliseconds() < 1000) {
+            } else if ( 330 <= x && tfodTime.milliseconds() < 1000) {
                 Middle = true;
-                Right = false;
+                Left = false;
                 telemetry.addLine("Middle");
                 tfodTime.reset();
             }
@@ -136,9 +137,9 @@ public class blueFarParkLeft extends LinearOpMode {
 
             telemetryTfod();
             if (tfodTime.milliseconds() > 1000){
-                Right = false;
+                Left = false;
                 Middle = false;
-                telemetry.addLine("Left");
+                telemetry.addLine("Right");
             }
 
             // Push telemetry to the Driver Station.
@@ -154,31 +155,33 @@ public class blueFarParkLeft extends LinearOpMode {
 
         if (opModeIsActive()) {
 
+
             visionPortal.close();
-            if(Right){
+
+            if(Left){
                 drive(-124, -0.4, 500); // ADD MORE COMMENTS
 
-                spinLeft(900, 0.4, 2000);
+                spinRight(900, 0.4, 2000);
 
-                strafeLeft(1500, 0.4, 1800);
+                strafeRight(1500, 0.4, 1800);
 
                 servoLeftOpen(550); //Drops the purple pixel on the spike mark
 
                 drive(-200, -0.4,1000);
 
-                strafeLeft(1000, 0.4,2000);
+                strafeRight(1100, 0.4,2000);
 
-                spinLeft(60, 0.4, 500); //Recorrects rotational error
+                spinRight(100, 0.4,500);
 
                 drive(-3500, 0.4,5000); // Drives towards the backboard
 
-                strafeRight(700, -0.6, 1500); //Aligns with the backboard to perpare to place the pixel
+                strafeLeft(810, -0.4, 1000); //Aligns with the backboard to perpare to place the pixel
 
                 //spinRight(900, -0.4,1000);
 
                 //strafeLeft(600, 0.4,2000);
 
-                arm(-1300,  2500);
+                arm(-1300,  1000);
 
                 drive(-330, -0.4,1000);
 
@@ -187,10 +190,9 @@ public class blueFarParkLeft extends LinearOpMode {
                 drive(200, -0.4, 1000);
                 Reset();
 
-                strafeRight(2000, -0.4, 2500);
+                strafeLeft(2000, -0.4, 2000);
 
                 drive(-500, -0.4, 1000);
-
 
                 stop();
             } else if (Middle) {
@@ -199,17 +201,17 @@ public class blueFarParkLeft extends LinearOpMode {
 
                 servoLeftOpen(500);
 
-                drive(-300, 0.4,2000);
+                drive(-300, 0.4,1000);
 
-                spinLeft(900, 0.4,2000);
+                spinRight(900, 0.4,2000);
 
                 drive(-3500, 0.4, 4000);
 
-                strafeRight(1000, 0.4, 2000);
+                strafeLeft(1200, 0.4, 2000);
 
-                arm(-1300, 2500);
+                arm(-1300, 1000);
 
-                drive(-400, -0.4,1000);
+                drive(-300, -0.4,1000);
 
                 servoRightOpen(1000);
 
@@ -217,32 +219,31 @@ public class blueFarParkLeft extends LinearOpMode {
 
                 Reset();
 
-                strafeRight(1500, -0.4,2000);
+                strafeLeft(1500, -0.4,2000);
 
                 drive(-500, -0.4,1000);
 
                 stop();
             } else {
-
                 drive(-124, -0.4, 500); // ADD MORE COMMENTS
 
-                spinRight(900, 0.4, 2000);
+                spinLeft(900, 0.4, 2000);
 
-                strafeRight(1500, 0.4, 1800);
+                strafeLeft(1500, 0.4, 1800);
 
-                drive(240, -0.4,1000);
+                drive(300, -0.4,1000);
 
                 servoLeftOpen(550); //Drops the purple pixel on the spike mark
 
                 drive(-200, -0.4,1000);
 
-                strafeRight(1100, 0.4,2000);
+                strafeLeft(1000, 0.4,2000);
 
-                spinLeft(1810, 0.4, 5000); //Recorrects rotational error
+                spinRight(1810, 0.4, 3000); //Recorrects rotational error
 
                 drive(-3500, 0.4,5000); // Drives towards the backboard
 
-                strafeRight(1100, -0.4, 2000); //Aligns with the backboard to perpare to place the pixel
+                strafeLeft(1100, -0.4, 1500); //Aligns with the backboard to perpare to place the pixel
 
                 //spinRight(900, -0.4,1000);
 
@@ -257,14 +258,15 @@ public class blueFarParkLeft extends LinearOpMode {
                 drive(200, -0.4, 1000);
                 Reset();
 
-                strafeRight(1000, -0.4, 2000);
+                strafeLeft(1000, -0.4, 2500);
 
                 drive(-500, -0.4, 1000);
 
+
                 stop();
+
+
             }
-
-
             stop();
         }
 

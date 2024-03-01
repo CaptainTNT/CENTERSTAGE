@@ -1,5 +1,5 @@
 //States the package the code is in
-package org.firstinspires.ftc.teamcode.auton;
+package org.firstinspires.ftc.teamcode.Legacy;
 
 //Imports methods/classes
 
