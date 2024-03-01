@@ -11,9 +11,11 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.apache.commons.math3.geometry.Vector;
 import org.apache.commons.math3.geometry.euclidean.twod.Line;
+import org.firstinspires.ftc.teamcode.Calabration.hardwareImports;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
 @Config
@@ -35,14 +37,7 @@ public class RedCloseRR extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         //Defines and reverses motors
-        Servo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo1");
-        Servo2 = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo2");
-        Servo3 = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo 6");
-        Servo4 = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo 7");
-        Launchmotor = hardwareMap.get(DcMotorEx.class, "Launch Motor");
-        Launchmotor2 = hardwareMap.get(DcMotorEx.class, "Launch Motor 2");
-        Servo.setDirection(com.qualcomm.robotcore.hardware.Servo.Direction.REVERSE);
-        Launchmotor2.setDirection(DcMotorEx.Direction.REVERSE);
+        hardwareImports motor = new hardwareImports(hardwareMap);
 
         Pose2d StartPose = new Pose2d(12,-63,Math.toRadians(270));
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
