@@ -79,12 +79,12 @@ public class RedCloseRR extends LinearOpMode {
                 .addTemporalMarker( () -> {
                     servoLeftOpen();
                 })
-                .splineTo(new Vector2d(53.5,-30), Math.toRadians(180))
+                .lineToConstantHeading(new Vector2d(49.5,-30))
                 .addTemporalMarker( () -> {
                     arm(-1350,1000);
                     servoRightOpen();
                  })
-                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
+                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(180.0))
                 .addTemporalMarker( () -> {
                     arm(20,1000);
                 })
@@ -95,12 +95,12 @@ public class RedCloseRR extends LinearOpMode {
                 .addTemporalMarker( () -> {
                     servoLeftOpen();
                 })
-                .splineTo(new Vector2d(53.5,-37),Math.toRadians(180))
+                .splineTo(new Vector2d(49.5,-37),Math.toRadians(180))
                 .addTemporalMarker( () -> {
                     arm(-1350,1000);
                     servoRightOpen();
                 })
-                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
+                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(180.10))
                 .addTemporalMarker( () -> {
                     arm(20,1000);
                 })
@@ -116,14 +116,14 @@ public class RedCloseRR extends LinearOpMode {
                     arm(-1350,1000);
                     servoRightOpen();
                 })
-                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10)).addTemporalMarker( () -> {
+                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(180.10)).addTemporalMarker( () -> {
                     arm(20,1000);
                 })
                 .build();
 
         TrajectorySequence GoThruTruss = drive.trajectorySequenceBuilder(new Pose2d(10.76,-9.89, Math.toRadians(153.1)))
-                .splineTo(new Vector2d(-26.50, -10.90), Math.toRadians(186.14))
-                .lineToSplineHeading(new Pose2d(-63.62, -17.55, Math.toRadians(180.00)))
+                .splineTo(new Vector2d(-26.50, -10.90), Math.toRadians(180.14))
+                .lineToSplineHeading(new Pose2d(-60.62, -17.55, Math.toRadians(180.00)))
                 .build();
 
         //This Trajectory pulls from stack 2, can change to 1 by copy pasting stack 1 into the drive trajectory builder
@@ -135,9 +135,9 @@ public class RedCloseRR extends LinearOpMode {
                 servoRightClose();
 
                 })
-                .splineTo(new Vector2d(-26.50, -10.90), Math.toRadians(186.14))
-                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
-                .splineTo(new Vector2d(53.5,-44), Math.toRadians(180))
+                .lineTo(new Vector2d(-26.50, -10.90))
+                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(180.0))
+                .lineToConstantHeading(new Vector2d(49.5,-30))
                 .addTemporalMarker( () -> {
                     servoLeftOpenFl();
                     servoRightOpenFl();
@@ -149,12 +149,12 @@ public class RedCloseRR extends LinearOpMode {
                 })
                 .build();
         TrajectorySequence ParkLeft = drive.trajectorySequenceBuilder(new Pose2d(53.5,-44,Math.toRadians(180)))
-                .splineToConstantHeading(new Vector2d(53.5, -12), Math.toRadians(180.00))
+                .splineToConstantHeading(new Vector2d(49.5, -12), Math.toRadians(180.00))
                 .lineToConstantHeading(REDPARKLEFT)
 
                 .build();
         TrajectorySequence ParkRight = drive.trajectorySequenceBuilder(new Pose2d(53.5,-44,Math.toRadians(180)))
-                .splineToConstantHeading(new Vector2d(53.5, -60), Math.toRadians(180.00))
+                .splineToConstantHeading(new Vector2d(49.5, -60), Math.toRadians(180.00))
                 .lineToConstantHeading(REDPARKRIGHT)
 
                 .build();
