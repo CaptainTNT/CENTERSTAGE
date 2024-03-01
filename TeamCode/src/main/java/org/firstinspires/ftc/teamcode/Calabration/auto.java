@@ -25,6 +25,8 @@ public class auto extends OpMode {
     public static DcMotorEx Launchmotor2 = null;
     public static Servo Servo = null;
     public static Servo Servo2 = null;
+    public static Servo Servo3 = null;
+    public static Servo Servo4 = null;
 
     public static ElapsedTime timer = new ElapsedTime();
     public static void strafeLeft(int target, double power, double sleep) {
@@ -179,7 +181,7 @@ public class auto extends OpMode {
     }
 
 
-    public static void arm (int Target, double Power, boolean autoStop, double sleep) {
+    public static void arm (int Target, double sleep) {
         Reset();
         timer.reset();
         double p = 0.0025, i = 0, d = 0.00001, f = 0.083;
@@ -207,12 +209,6 @@ public class auto extends OpMode {
             Launchmotor.setPower(power);
             Launchmotor2.setPower(power);
         }
-
-        if ((timer.milliseconds() == sleep && autoStop)){
-            stopArm();
-            Reset();
-        }
-
 
 
     }
@@ -242,6 +238,22 @@ public class auto extends OpMode {
             Servo.setPosition(1);
         }
     }
+    public static void servoLeftOpenFl (double sleep) {
+        timer.reset();
+
+        while (sleep > timer.milliseconds()) {
+            Servo3.setPosition(1);
+
+        }
+    }
+
+    public static void servoRightOpenFl (double sleep) {
+        timer.reset();
+
+        while (sleep > timer.milliseconds()) {
+            Servo4.setPosition(1);
+        }
+    }
 
     public static void servoLeftClose () {
         Servo2.setPosition(0);
@@ -249,6 +261,13 @@ public class auto extends OpMode {
 
     public static void servoRightClose () {
         Servo.setPosition(0);
+    }
+    public static void servoLeftCloseFl () {
+        Servo3.setPosition(0);
+    }
+
+    public static void servoRightCloseFl () {
+        Servo4.setPosition(0);
     }
 
     public static void Reset() {

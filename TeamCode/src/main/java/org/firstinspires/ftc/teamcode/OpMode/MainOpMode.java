@@ -89,7 +89,6 @@ public class MainOpMode extends OpMode {
         backLeftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         LaunchMotor2.setDirection(DcMotorSimple.Direction.REVERSE);
         servo1.setPosition(Servo.Direction.REVERSE.ordinal());
-        servo7.setPosition(Servo.Direction.REVERSE.ordinal());
 
 
         leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

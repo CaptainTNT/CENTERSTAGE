@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.auton;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.Servo;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.Servo2;
+import static org.firstinspires.ftc.teamcode.Calabration.auto.*;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
@@ -9,7 +10,9 @@ import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 
+import org.apache.commons.math3.geometry.Vector;
 import org.apache.commons.math3.geometry.euclidean.twod.Line;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
@@ -31,63 +34,115 @@ public class RedCloseRR extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+        //Defines and reverses motors
         Servo = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo1");
         Servo2 = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo2");
-        Pose2d StartPose = new Pose2d(12,-63,Math.toRadians(-90));
+        Servo3 = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo 6");
+        Servo4 = hardwareMap.get(com.qualcomm.robotcore.hardware.Servo.class, "servo 7");
+        Launchmotor = hardwareMap.get(DcMotorEx.class, "Launch Motor");
+        Launchmotor2 = hardwareMap.get(DcMotorEx.class, "Launch Motor 2");
+        Servo.setDirection(com.qualcomm.robotcore.hardware.Servo.Direction.REVERSE);
+        Launchmotor2.setDirection(DcMotorEx.Direction.REVERSE);
+
+        Pose2d StartPose = new Pose2d(12,-63,Math.toRadians(270));
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
-        TrajectorySequence untitled0 = drive.trajectorySequenceBuilder(new Pose2d(11.38, -64.56, Math.toRadians(180)))
-                .splineToSplineHeading(new Pose2d(10, 0), Math.toRadians(92.37))
-                .build();
-        TrajectorySequence test = drive.trajectorySequenceBuilder(new Pose2d(0, 0,Math.toRadians(180)))
-            .forward(20) .build();
-        TrajectorySequence LeftPlacement = drive.trajectorySequenceBuilder(StartPose)
-                .splineToSplineHeading(new Pose2d(11.34, -31.27, Math.toRadians(90)),Math.toRadians(0))
-                .splineTo(new Vector2d(53.5,-30), Math.toRadians(180))
-                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
-                .build();
-        TrajectorySequence Test2 = drive.trajectorySequenceBuilder(new Pose2d(12,-63,Math.toRadians(-90)))
-                .lineToSplineHeading(new Pose2d(12, -32, Math.toRadians(180.00)))
+
+        /*TrajectorySequence Test2 = drive.trajectorySequenceBuilder(StartPose)
+                .lineToSplineHeading(new Pose2d(11.34, -31.27, Math.toRadians(180.00)))
                 .splineToConstantHeading(new Vector2d(7, -30),Math.toRadians(180.00))
                 .addTemporalMarker( () -> {
                     // This marker runs two seconds into the trajectory
-                    Servo.setPosition(1);
-
+                    servoLeftOpen(1000);
                     // Run your action in here!
                     })
+                .build();*/
+
+        TrajectorySequence LeftPlacement = drive.trajectorySequenceBuilder(StartPose)
+                .lineToSplineHeading(new Pose2d(11.34, -31.27, Math.toRadians(180.00)))
+                .splineToConstantHeading(new Vector2d(7, -30), Math.toRadians(180.00))
+                .addTemporalMarker( () -> {
+                    servoLeftOpen(1000);
+                })
+                .splineTo(new Vector2d(53.5,-30), Math.toRadians(180))
+                .addTemporalMarker( () -> {
+                    arm(-1350,1000);
+                    servoRightOpen(1000);
+                 })
+                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
+                .addTemporalMarker( () -> {
+                    arm(20,1000);
+                })
                 .build();
+        TrajectorySequence RightPlacement = drive.trajectorySequenceBuilder(StartPose)
+                .lineToSplineHeading(new Pose2d(28.53, -30.26, Math.toRadians(180.00)))
+                .splineTo(new Vector2d(53.5,-44), Math.toRadians(180))
+                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
+
+                .build();
+        TrajectorySequence MiddlePlacement = drive.trajectorySequenceBuilder(StartPose)
+                .lineToSplineHeading(new Pose2d(11.34, -31.27, Math.toRadians(90.00)))
+                .splineTo(new Vector2d(53.5,-37),Math.toRadians(180))
+                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
+                .build();
+        TrajectorySequence GoThruTruss = drive.trajectorySequenceBuilder(new Pose2d(10.76,-9.89, Math.toRadians(153.1)))
+                .splineTo(new Vector2d(-26.50, -10.90), Math.toRadians(186.14))
+                .lineToSplineHeading(new Pose2d(-63.62, -17.55, Math.toRadians(180.00)))
+                .build();
+
+        //This Trajectory pulls from stack 2, can change to 1 by copy pasting stack 1 into the drive trajectory builder
+        TrajectorySequence PullFromStackAndPlace = drive.trajectorySequenceBuilder(stack2)
+                .addTemporalMarker(  () -> {
+                servoLeftCloseFl();
+                servoRightCloseFl();
+                servoLeftClose();
+                servoRightClose();
+
+                })
+                .splineTo(new Vector2d(-26.50, -10.90), Math.toRadians(186.14))
+                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
+                .splineTo(new Vector2d(53.5,-44), Math.toRadians(180))
+                .addTemporalMarker( () -> {
+                    servoLeftOpenFl(1000);
+                    servoRightOpenFl(1000);
+                    arm(-1350,1000);
+                    servoLeftOpen(1000);
+                    servoRightOpen(1000);
+                    arm(20,1000);
+                    // Run your action in here!
+                })
+                .build();
+        TrajectorySequence ParkLeft = drive.trajectorySequenceBuilder(new Pose2d(53.5,-44,Math.toRadians(180)))
+                .splineToConstantHeading(new Vector2d(53.5, -11), Math.toRadians(180.00))
+                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
+
+                .build();
+
+
+
+
+
+
+
+
+
 
 
         waitForStart();
         drive.setPoseEstimate(StartPose);
-        drive.followTrajectorySequence(Test2);
+        if (Left) {
+            drive.followTrajectorySequence(LeftPlacement);
+            drive.followTrajectorySequence(GoThruTruss);
+            drive.followTrajectorySequence(PullFromStackAndPlace);
 
+
+        } else if(Middle){
+
+        }
+        else if (Right) {
+
+        }
     }
-        /*Pose2d StartPose = new Pose2d(12,-63,Math.toRadians(270));
-    Trajectory RightPlacement = drive.trajectoryBuilder(StartPose, true)
-            .lineToSplineHeading(new Pose2d(28.53, -30.26, Math.toRadians(180.00)))
-            .splineTo(new Vector2d(53.5,-44), Math.toRadians(180))
-            .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
 
-            .build();
-        //This Trajectory pulls from stack 2, can change to 1 by copy pasting stack 1 into the drive trajectory builder
-   Trajectory Pullfromstackandplace = drive.trajectoryBuilder(stack2,true)
-            .splineTo(new Vector2d(-26.50, -10.90), Math.toRadians(186.14))
-            .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
-            .splineTo(new Vector2d(53.5,-44), Math.toRadians(180))
-            .build();
-
-
-    Trajectory GoThruTruss = drive.trajectoryBuilder(new Pose2d(10.76,-9.89), Math.toRadians(153.1))
-            .splineTo(new Vector2d(-26.50, -10.90), Math.toRadians(186.14))
-            .lineToSplineHeading(new Pose2d(-63.62, -17.55, Math.toRadians(180.00)))
-            .build();
-
-     Trajectory MiddlePlacement = drive.trajectoryBuilder(StartPose, true)
-            .lineToSplineHeading(new Pose2d(11.34, -31.27, Math.toRadians(90.00)))
-            .splineTo(new Vector2d(53.5,-37),Math.toRadians(180))
-            .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
-            .build();
-    */
 
 
 
