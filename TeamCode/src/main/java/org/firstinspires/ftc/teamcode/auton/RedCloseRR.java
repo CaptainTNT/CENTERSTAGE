@@ -2,6 +2,9 @@ package org.firstinspires.ftc.teamcode.auton;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.Servo;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.Servo2;
 import static org.firstinspires.ftc.teamcode.Calabration.auto.*;
+import static org.firstinspires.ftc.teamcode.common.RedPropPipeline.Location.LEFT;
+import static org.firstinspires.ftc.teamcode.common.RedPropPipeline.Location.MIDDLE;
+import static org.firstinspires.ftc.teamcode.common.RedPropPipeline.Location.RIGHT;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
@@ -15,13 +18,19 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.apache.commons.math3.geometry.Vector;
 import org.apache.commons.math3.geometry.euclidean.twod.Line;
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.Calabration.hardwareImports;
+import org.firstinspires.ftc.teamcode.common.RedPropPipeline;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.trajectorysequence.TrajectorySequence;
+import org.firstinspires.ftc.vision.VisionPortal;
+
 @Config
 @Autonomous
 public class RedCloseRR extends LinearOpMode {
-
+    private RedPropPipeline.Location location = MIDDLE;
+    private RedPropPipeline redPropProcessor;
+    private VisionPortal visionPortal;
     SampleMecanumDrive drive;
     Pose2d stack1 = new Pose2d(-67.5,-30.1,Math.toRadians(180));
     Pose2d stack2 = new Pose2d(-67.5,-17.9,Math.toRadians(180));
@@ -38,6 +47,16 @@ public class RedCloseRR extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+        redPropProcessor = new RedPropPipeline(telemetry);
+        visionPortal = VisionPortal.easyCreateWithDefaults(
+                hardwareMap.get(WebcamName.class, "Webcam 1"), redPropProcessor);
+
+
+
+        while (!isStarted()) {
+            location = redPropProcessor.getLocation();
+            telemetry.update();
+        }
         //Defines and reverses motors
         hardwareImports motor = new hardwareImports(hardwareMap);
 
@@ -151,12 +170,18 @@ public class RedCloseRR extends LinearOpMode {
 
 
         waitForStart();
+        while (opModeIsActive()) {
+            telemetry.addData("Location", redPropProcessor.getLocation());
+            telemetry.update();
+        }
+
         drive.setPoseEstimate(StartPose);
-        if (Left) {
+        if (location == LEFT) {
 
             drive.followTrajectorySequence(LeftPlacement);
             drive.followTrajectorySequence(GoThruTruss);
             drive.followTrajectorySequence(PullFromStackAndPlace);
+            drive.followTrajectorySequence(ParkLeft);
 
             drive.followTrajectorySequence(ParkLeft);
             //drive.followTrajectorySequence(ParkRight);
@@ -164,7 +189,7 @@ public class RedCloseRR extends LinearOpMode {
 
 
 
-        } else if(Middle){
+        } else if(location == MIDDLE){
 
             drive.followTrajectorySequence(MiddlePlacement);
             drive.followTrajectorySequence(GoThruTruss);
@@ -173,7 +198,7 @@ public class RedCloseRR extends LinearOpMode {
             drive.followTrajectorySequence(ParkLeft);
             //drive.followTrajectorySequence(ParkRight);
         }
-        else if (Right) {
+        else if (location == RIGHT) {
 
             drive.followTrajectorySequence(RightPlacement);
             drive.followTrajectorySequence(GoThruTruss);
