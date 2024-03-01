@@ -58,12 +58,12 @@ public class RedCloseRR extends LinearOpMode {
                 .lineToSplineHeading(new Pose2d(11.34, -31.27, Math.toRadians(180.00)))
                 .splineToConstantHeading(new Vector2d(7, -30), Math.toRadians(180.00))
                 .addTemporalMarker( () -> {
-                    servoLeftOpen(1000);
+                    servoLeftOpen();
                 })
                 .splineTo(new Vector2d(53.5,-30), Math.toRadians(180))
                 .addTemporalMarker( () -> {
                     arm(-1350,1000);
-                    servoRightOpen(1000);
+                    servoRightOpen();
                  })
                 .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
                 .addTemporalMarker( () -> {
@@ -74,12 +74,12 @@ public class RedCloseRR extends LinearOpMode {
         TrajectorySequence MiddlePlacement = drive.trajectorySequenceBuilder(StartPose)
                 .lineToSplineHeading(new Pose2d(12, -31.27, Math.toRadians(90.00)))
                 .addTemporalMarker( () -> {
-                    servoLeftOpen(1000);
+                    servoLeftOpen();
                 })
                 .splineTo(new Vector2d(53.5,-37),Math.toRadians(180))
                 .addTemporalMarker( () -> {
                     arm(-1350,1000);
-                    servoRightOpen(1000);
+                    servoRightOpen();
                 })
                 .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
                 .addTemporalMarker( () -> {
@@ -90,12 +90,12 @@ public class RedCloseRR extends LinearOpMode {
         TrajectorySequence RightPlacement = drive.trajectorySequenceBuilder(StartPose)
                 .lineToSplineHeading(new Pose2d(28.53, -30.26, Math.toRadians(180.00)))
                 .addTemporalMarker( () -> {
-                    servoLeftOpen(1000);
+                    servoLeftOpen();
                 })
                 .splineTo(new Vector2d(53.5,-44), Math.toRadians(180))
                 .addTemporalMarker( () -> {
                     arm(-1350,1000);
-                    servoRightOpen(1000);
+                    servoRightOpen();
                 })
                 .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10)).addTemporalMarker( () -> {
                     arm(20,1000);
@@ -120,11 +120,11 @@ public class RedCloseRR extends LinearOpMode {
                 .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
                 .splineTo(new Vector2d(53.5,-44), Math.toRadians(180))
                 .addTemporalMarker( () -> {
-                    servoLeftOpenFl(1000);
-                    servoRightOpenFl(1000);
+                    servoLeftOpenFl();
+                    servoRightOpenFl();
                     arm(-1350,1000);
-                    servoLeftOpen(1000);
-                    servoRightOpen(1000);
+                    servoLeftOpen();
+                    servoRightOpen();
                     arm(20,1000);
                     // Run your action in here!
                 })
