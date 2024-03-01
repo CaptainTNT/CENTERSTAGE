@@ -34,6 +34,8 @@ public class RedCloseRR extends LinearOpMode {
     Vector2d REDPARKRIGHT = new Vector2d(66,-60);
 
 
+
+
     @Override
     public void runOpMode() throws InterruptedException {
         //Defines and reverses motors
@@ -107,8 +109,13 @@ public class RedCloseRR extends LinearOpMode {
                 })
                 .build();
         TrajectorySequence ParkLeft = drive.trajectorySequenceBuilder(new Pose2d(53.5,-44,Math.toRadians(180)))
-                .splineToConstantHeading(new Vector2d(53.5, -11), Math.toRadians(180.00))
-                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
+                .splineToConstantHeading(new Vector2d(53.5, -12), Math.toRadians(180.00))
+                .lineToConstantHeading(REDPARKLEFT)
+
+                .build();
+        TrajectorySequence ParkRight = drive.trajectorySequenceBuilder(new Pose2d(53.5,-44,Math.toRadians(180)))
+                .splineToConstantHeading(new Vector2d(53.5, -60), Math.toRadians(180.00))
+                .lineToConstantHeading(REDPARKRIGHT)
 
                 .build();
 
@@ -128,6 +135,11 @@ public class RedCloseRR extends LinearOpMode {
             drive.followTrajectorySequence(LeftPlacement);
             drive.followTrajectorySequence(GoThruTruss);
             drive.followTrajectorySequence(PullFromStackAndPlace);
+
+            drive.followTrajectorySequence(ParkLeft);
+            //drive.followTrajectorySequence(ParkRight);
+
+
 
 
         } else if(Middle){
