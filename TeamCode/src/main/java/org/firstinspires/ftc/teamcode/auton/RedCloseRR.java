@@ -181,7 +181,6 @@ public class RedCloseRR extends LinearOpMode {
             drive.followTrajectorySequence(LeftPlacement);
             drive.followTrajectorySequence(GoThruTruss);
             drive.followTrajectorySequence(PullFromStackAndPlace);
-            drive.followTrajectorySequence(ParkLeft);
 
             drive.followTrajectorySequence(ParkLeft);
             //drive.followTrajectorySequence(ParkRight);
