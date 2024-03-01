@@ -70,17 +70,38 @@ public class RedCloseRR extends LinearOpMode {
                     arm(20,1000);
                 })
                 .build();
+
+        TrajectorySequence MiddlePlacement = drive.trajectorySequenceBuilder(StartPose)
+                .lineToSplineHeading(new Pose2d(12, -31.27, Math.toRadians(90.00)))
+                .addTemporalMarker( () -> {
+                    servoLeftOpen(1000);
+                })
+                .splineTo(new Vector2d(53.5,-37),Math.toRadians(180))
+                .addTemporalMarker( () -> {
+                    arm(-1350,1000);
+                    servoRightOpen(1000);
+                })
+                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
+                .addTemporalMarker( () -> {
+                    arm(20,1000);
+                })
+                .build();
+
         TrajectorySequence RightPlacement = drive.trajectorySequenceBuilder(StartPose)
                 .lineToSplineHeading(new Pose2d(28.53, -30.26, Math.toRadians(180.00)))
+                .addTemporalMarker( () -> {
+                    servoLeftOpen(1000);
+                })
                 .splineTo(new Vector2d(53.5,-44), Math.toRadians(180))
-                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
+                .addTemporalMarker( () -> {
+                    arm(-1350,1000);
+                    servoRightOpen(1000);
+                })
+                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10)).addTemporalMarker( () -> {
+                    arm(20,1000);
+                })
+                .build();
 
-                .build();
-        TrajectorySequence MiddlePlacement = drive.trajectorySequenceBuilder(StartPose)
-                .lineToSplineHeading(new Pose2d(11.34, -31.27, Math.toRadians(90.00)))
-                .splineTo(new Vector2d(53.5,-37),Math.toRadians(180))
-                .splineToConstantHeading(new Vector2d(10.76, -9.89), Math.toRadians(153.10))
-                .build();
         TrajectorySequence GoThruTruss = drive.trajectorySequenceBuilder(new Pose2d(10.76,-9.89, Math.toRadians(153.1)))
                 .splineTo(new Vector2d(-26.50, -10.90), Math.toRadians(186.14))
                 .lineToSplineHeading(new Pose2d(-63.62, -17.55, Math.toRadians(180.00)))
@@ -132,6 +153,7 @@ public class RedCloseRR extends LinearOpMode {
         waitForStart();
         drive.setPoseEstimate(StartPose);
         if (Left) {
+
             drive.followTrajectorySequence(LeftPlacement);
             drive.followTrajectorySequence(GoThruTruss);
             drive.followTrajectorySequence(PullFromStackAndPlace);
@@ -144,8 +166,21 @@ public class RedCloseRR extends LinearOpMode {
 
         } else if(Middle){
 
+            drive.followTrajectorySequence(MiddlePlacement);
+            drive.followTrajectorySequence(GoThruTruss);
+            drive.followTrajectorySequence(PullFromStackAndPlace);
+
+            drive.followTrajectorySequence(ParkLeft);
+            //drive.followTrajectorySequence(ParkRight);
         }
         else if (Right) {
+
+            drive.followTrajectorySequence(RightPlacement);
+            drive.followTrajectorySequence(GoThruTruss);
+            drive.followTrajectorySequence(PullFromStackAndPlace);
+
+            drive.followTrajectorySequence(ParkLeft);
+            //drive.followTrajectorySequence(ParkRight);
 
         }
     }
